@@ -1,0 +1,64 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <partial name="_AccountLeftMenuPartial" />
+        </div>
+
+        <div class="col-md-9">
+            <div class="pt-5 pt-lg-8 pl-md-5 pl-lg-9 space-bottom-2 space-bottom-lg-3 mb-xl-1">
+                <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-lg-8 pb-xl-1">
+                    Dashboard
+                </h6>
+                <div class="ml-lg-1 mb-4">
+                    <span class="font-size-22">Hello Book Cave USER</span>
+                    <span class="font-size-2">
+                        (not logged user?
+                        <a class="link-black-100" asp-controller="Account">Log out</a>)</span>
+                </div>
+                <div class="mb-4">
+                    <p class="mb-0 font-size-2 ml-lg-1 text-gray-600">
+                        From your account dashboard you can view your
+                        <span class="text-dark">recent orders,</span> manage your
+                        <span class="text-dark">shipping and billing addresses,</span>
+                        and edit your
+                        <span class="text-dark">password and account details.</span>
+                    </p>
+                </div>
+                <div class="row no-gutters row-cols-1 row-cols-sm-4 row-cols-md-2 row-cols-lg-4">
+                    <div class="col-md-2">
+                        <div class="border py-6 text-center">
+                            <a asp-controller="Account" asp-action="Orders" class="btn bg-gray-200 rounded-circle px-4 mb-2">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </a>
+                            <div class="font-size-3 mb-xl-1">Orders</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="border border-left-0 py-6 text-center">
+                            <a asp-controller="Account" asp-action="Comments" class="btn bg-gray-200 rounded-circle px-4 mb-2">
+                                <i class="fa-regular fa-comments"></i>
+                            </a>
+                            <div class="font-size-3 mb-xl-1">Comments</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="border border-left-0 py-6 text-center">
+                            <a asp-controller="Account" asp-action="Addresses" class="btn bg-gray-200 rounded-circle px-4 mb-2">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </a>
+                            <div class="font-size-3 mb-xl-1">Addresses</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="border py-6 text-center">
+                            <a asp-controller="Account" asp-action="Details" class="btn bg-gray-200 rounded-circle px-4 mb-2">
+                                <i class="fa-regular fa-user"></i>
+                            </a>
+                            <div class="font-size-3 mb-xl-1">Account Details</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
