@@ -4,4 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Ardalis.Specification" Version="5.2.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookCave.Domain\BookCave.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

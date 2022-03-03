@@ -4,14 +4,16 @@ using BookCave.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookCave.Persistance.Migrations
 {
     [DbContext(typeof(BookCaveDbContext))]
-    partial class BookCaveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220303201208_somethingchange")]
+    partial class somethingchange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,6 +54,9 @@ namespace BookCave.Persistance.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImageUri")
                         .IsRequired()
@@ -114,6 +119,9 @@ namespace BookCave.Persistance.Migrations
 
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(13)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.HasKey("CategoryId", "ISBN");
 
@@ -220,6 +228,9 @@ namespace BookCave.Persistance.Migrations
 
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(13)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<byte>("Quantity")
                         .HasColumnType("tinyint");

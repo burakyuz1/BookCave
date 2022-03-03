@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookCave.Persistance.Migrations
 {
     [DbContext(typeof(BookCaveDbContext))]
-    [Migration("20220303155711_init")]
-    partial class init
+    [Migration("20220303201419_somethingchange2")]
+    partial class somethingchange2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -115,14 +115,11 @@ namespace BookCave.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ISBN")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BookISBN")
                         .HasColumnType("nvarchar(13)");
 
                     b.HasKey("CategoryId", "ISBN");
 
-                    b.HasIndex("BookISBN");
+                    b.HasIndex("ISBN");
 
                     b.ToTable("CategoryDetails");
                 });
@@ -224,9 +221,6 @@ namespace BookCave.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ISBN")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BookISBN")
                         .HasColumnType("nvarchar(13)");
 
                     b.Property<byte>("Quantity")
@@ -238,7 +232,7 @@ namespace BookCave.Persistance.Migrations
 
                     b.HasKey("OrderId", "ISBN");
 
-                    b.HasIndex("BookISBN");
+                    b.HasIndex("ISBN");
 
                     b.ToTable("OrderDetails");
                 });
@@ -277,13 +271,15 @@ namespace BookCave.Persistance.Migrations
 
             modelBuilder.Entity("BookCave.Domain.Entities.CategoryDetail", b =>
                 {
-                    b.HasOne("BookCave.Domain.Entities.Book", "Book")
-                        .WithMany("CategoryDetails")
-                        .HasForeignKey("BookISBN");
-
                     b.HasOne("BookCave.Domain.Entities.Category", "Category")
                         .WithMany("CategoryDetails")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookCave.Domain.Entities.Book", "Book")
+                        .WithMany("CategoryDetails")
+                        .HasForeignKey("ISBN")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -304,8 +300,10 @@ namespace BookCave.Persistance.Migrations
             modelBuilder.Entity("BookCave.Domain.Entities.OrderDetail", b =>
                 {
                     b.HasOne("BookCave.Domain.Entities.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookISBN");
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("ISBN")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BookCave.Domain.Entities.Order", "Order")
                         .WithMany("OrderDetails")
@@ -328,6 +326,8 @@ namespace BookCave.Persistance.Migrations
                     b.Navigation("CategoryDetails");
 
                     b.Navigation("Comments");
+
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("BookCave.Domain.Entities.Category", b =>

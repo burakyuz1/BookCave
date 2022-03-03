@@ -1,12 +1,11 @@
-﻿using System;
+﻿using BookCave.Domain.Abstracts;
+using BookCave.Domain.Entities.Common;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookCave.Domain.Entities
 {
-    public class Book
+    public class Book :IEntity
     {
         public string ISBN { get; set; }
         public string Name { get; set; }
@@ -23,6 +22,7 @@ namespace BookCave.Domain.Entities
         public int? AuthorId { get; set; }
         public Author Author { get; set; }
         public ICollection<CategoryDetail> CategoryDetails { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
         public ICollection<Comment> Comments { get; set; }
     }
 }

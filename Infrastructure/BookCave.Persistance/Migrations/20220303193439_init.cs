@@ -116,18 +116,17 @@ namespace BookCave.Persistance.Migrations
                 columns: table => new
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    ISBN = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    BookISBN = table.Column<string>(type: "nvarchar(13)", nullable: true)
+                    ISBN = table.Column<string>(type: "nvarchar(13)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CategoryDetails", x => new { x.CategoryId, x.ISBN });
                     table.ForeignKey(
-                        name: "FK_CategoryDetails_Books_BookISBN",
-                        column: x => x.BookISBN,
+                        name: "FK_CategoryDetails_Books_ISBN",
+                        column: x => x.ISBN,
                         principalTable: "Books",
                         principalColumn: "ISBN",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CategoryDetails_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -165,8 +164,7 @@ namespace BookCave.Persistance.Migrations
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false),
-                    ISBN = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    BookISBN = table.Column<string>(type: "nvarchar(13)", nullable: true),
+                    ISBN = table.Column<string>(type: "nvarchar(13)", nullable: false),
                     Quantity = table.Column<byte>(type: "tinyint", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false)
                 },
@@ -174,11 +172,11 @@ namespace BookCave.Persistance.Migrations
                 {
                     table.PrimaryKey("PK_OrderDetails", x => new { x.OrderId, x.ISBN });
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Books_BookISBN",
-                        column: x => x.BookISBN,
+                        name: "FK_OrderDetails_Books_ISBN",
+                        column: x => x.ISBN,
                         principalTable: "Books",
                         principalColumn: "ISBN",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderDetails_Orders_OrderId",
                         column: x => x.OrderId,
@@ -198,9 +196,9 @@ namespace BookCave.Persistance.Migrations
                 column: "PublisherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryDetails_BookISBN",
+                name: "IX_CategoryDetails_ISBN",
                 table: "CategoryDetails",
-                column: "BookISBN");
+                column: "ISBN");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ISBN",
@@ -208,9 +206,9 @@ namespace BookCave.Persistance.Migrations
                 column: "ISBN");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_BookISBN",
+                name: "IX_OrderDetails_ISBN",
                 table: "OrderDetails",
-                column: "BookISBN");
+                column: "ISBN");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

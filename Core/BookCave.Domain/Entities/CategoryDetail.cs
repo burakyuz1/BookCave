@@ -1,6 +1,9 @@
-﻿namespace BookCave.Domain.Entities
+﻿using BookCave.Domain.Abstracts;
+using BookCave.Domain.Entities.Common;
+
+namespace BookCave.Domain.Entities
 {
-    public class CategoryDetail
+    public class CategoryDetail : IEntity
     {
         public int? CategoryId { get; set; }
         public Category Category { get; set; }

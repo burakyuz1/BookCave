@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookCave.Domain.Abstracts;
+using BookCave.Domain.Entities.Common;
 
 namespace BookCave.Domain.Entities
 {
-    public class OrderDetail
+    public class OrderDetail : IEntity
     {
         public int? OrderId { get; set; }
         public Order Order { get; set; }

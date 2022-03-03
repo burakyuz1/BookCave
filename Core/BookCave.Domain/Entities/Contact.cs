@@ -1,4 +1,5 @@
-﻿using BookCave.Domain.Entities.Common;
+﻿using BookCave.Domain.Abstracts;
+using BookCave.Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookCave.Domain.Entities
 {
-    public class Contact : BaseEntity
+    public class Contact : BaseEntity, IEntity
     {
         public string AddressTitle { get; set; }
         public string AddressDescription { get; set; }

@@ -1,11 +1,6 @@
 ﻿using BookCave.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookCave.Persistance.Configurations
 {
@@ -14,6 +9,8 @@ namespace BookCave.Persistance.Configurations
         public void Configure(EntityTypeBuilder<CategoryDetail> builder)
         {
             builder.HasKey(x => new { x.CategoryId, x.ISBN });
+            builder.HasOne(x => x.Category).WithMany(x => x.CategoryDetails).HasForeignKey(x => x.CategoryId);
+            builder.HasOne(x => x.Book).WithMany(x => x.CategoryDetails).HasForeignKey(x => x.ISBN);
         }
     }
 }

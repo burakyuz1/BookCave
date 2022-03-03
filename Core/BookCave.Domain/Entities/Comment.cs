@@ -1,9 +1,10 @@
-﻿using BookCave.Domain.Entities.Common;
+﻿using BookCave.Domain.Abstracts;
+using BookCave.Domain.Entities.Common;
 using System;
 
 namespace BookCave.Domain.Entities
 {
-    public class Comment : BaseEntity
+    public class Comment : BaseEntity, IEntity
     {
         public string Title { get; set; }
         public string Content { get; set; }
