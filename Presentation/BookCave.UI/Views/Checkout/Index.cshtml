@@ -1,4 +1,4 @@
-﻿<div id="content" class="site-content bg-punch-light space-bottom-3">
+﻿<div id="content" class="site-content space-bottom-3">
     <div class="col-full container">
         <div id="primary" class="content-area">
             <main id="main" class="site-main">
@@ -34,7 +34,7 @@
                             <form name="checkout"
                                   method="post"
                                   class="checkout woocommerce-checkout row mt-8"
-                                  action="https://themes.woocommerce.com/storefront/checkout/"
+                                  action=""
                                   enctype="multipart/form-data"
                                   novalidate="novalidate">
                                 <div class="col2-set col-md-6 col-lg-7 col-xl-8 mb-6 mb-md-0"
@@ -45,7 +45,7 @@
                                         </h6>
                                         <p class="mb-9">
                                             Would you like to add new address or update your
-                                            address?<a href="#">Go to address page.</a>
+                                            address?<a asp-controller="Account" asp-action="Addresses"> Go to address page.</a>
                                         </p>
 
                                         <div class="row row-cols-1 row-cols-md-3 h-100">
