@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>ReadStop</title>
+    <title>Book Cave</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -621,9 +621,9 @@
                                 <div class="font-weight-medium">$750.00</div>
                             </div>
                             <div class="px-4 mb-8 px-md-6">
-                                <a href="../shop/cart.html"
+                                <a asp-controller="Cart" asp-action="Index"
                                     class="btn btn-block py-4 rounded-0 btn-outline-dark mb-4">View Cart</a>
-                                <a href="../shop/checkout.html"
+                                <a asp-controller="Checkout" asp-action="Index"
                                     class="btn btn-block py-4 rounded-0 btn-dark">Checkout</a>
                             </div>
                         </div>
@@ -652,51 +652,65 @@
     @RenderBody()
     <!------------------------------------------------------RENDER BODY END--------------------------------------------------------------------->
 
+
   <footer class="site-footer_v3 mt-4">
         <div class="bg-gray-200">
             <div class="space-top-3 bg-primary-home-v3">
+
                 <div class="pb-5 space-bottom-lg-3">
                     <div class="container">
-                        <div class="row">
+                        <div class="row text-white">
                             <div class="col-lg-4 mb-6 mb-lg-0">
                                 <div class="pb-md-6">
                                     <a href="index.html" class="d-inline-block mb-5">
                                         <img style="height: 75px;margin-top: 4px;" src="~/img/logo/logo.png" alt="">
                                     </a>
                                     <address class="font-size-2 mb-5">
+
                                         <span class="mb-2 font-weight-normal text-light">
                                            Bilge Adam Academy Boost5 Students <br />
                                             Ankara/Turkey
+
                                         </span>
                                     </address>
                                     <div class="mb-4">
                                         <a href="mailto:sale@bookworm.com"
+
                                             class="font-size-2 d-block h-light mb-1">sale@bookcave.com</a>
                                         <a href="tel:+1246-345-0695" class="font-size-2 d-block h-light">+9000000000</a>
                                     </div>
                                     <ul class="list-unstyled mb-0 d-flex">
                                         <li class="btn pl-0">
                                             <a class="h-light" href="#">
+
                                                 <span class="fab fa-instagram"></span>
                                             </a>
                                         </li>
                                         <li class="btn">
+
                                             <a class="h-light" href="#">
+
                                                 <span class="fab fa-facebook-f"></span>
                                             </a>
                                         </li>
                                         <li class="btn">
+
                                             <a class="h-light" href="#">
+
                                                 <span class="fab fa-youtube"></span>
                                             </a>
                                         </li>
                                         <li class="btn">
+
                                             <a class="h-light" href="#">
+
                                                 <span class="fab fa-twitter"></span>
                                             </a>
                                         </li>
                                         <li class="btn">
+
                                             <a class="h-light" href="#">
+
                                                 <span class="fab fa-pinterest"></span>
                                             </a>
                                         </li>
@@ -709,6 +723,7 @@
                                 </h4>
                                 <ul class="list-unstyled mb-0">
                                     <li class="pb-2">
+
                                         <a class="font-size-2 h-light widgets-hover transition-3d-hover" href="#">About
                                             as</a>
                                     </li>
@@ -722,6 +737,7 @@
                                     </li>
                                     <li class="pt-2">
                                         <a class="font-size-2 h-light widgets-hover transition-3d-hover" href="#">Sign
+
                                             in/Join</a>
                                     </li>
                                 </ul>
@@ -732,6 +748,7 @@
                                 </h4>
                                 <ul class="list-unstyled mb-0">
                                     <li class="pb-2">
+
                                         <a class="font-size-2 h-light widgets-hover transition-3d-hover" href="#">Help
                                             Center</a>
                                     </li>
@@ -754,6 +771,7 @@
                                     <li class="pt-2">
                                         <a class="font-size-2 h-light widgets-hover transition-3d-hover" href="#">Store
                                             Pickup</a>
+
                                     </li>
                                 </ul>
                             </div>
@@ -763,6 +781,7 @@
                                 </h4>
                                 <ul class="list-unstyled mb-0">
                                     <li class="pb-2">
+
                                         <a class="font-size-2 h-light widgets-hover transition-3d-hover" href="#">Return
                                             Policy</a>
                                     </li>
@@ -776,6 +795,7 @@
                                     </li>
                                     <li class="pt-2">
                                         <a class="font-size-2 h-light widgets-hover transition-3d-hover"
+
                                             href="#">Privacy</a>
                                     </li>
                                 </ul>
@@ -786,6 +806,7 @@
                                 </h4>
                                 <ul class="list-unstyled mb-0">
                                     <li class="pb-2">
+
                                         <a class="font-size-2 h-light widgets-hover transition-3d-hover"
                                             href="#">Action</a>
                                     </li>
@@ -807,6 +828,7 @@
                                     </li>
                                     <li class="pt-2">
                                         <a class="font-size-2 h-light widgets-hover transition-3d-hover"
+
                                             href="#">Romantic Comedy</a>
                                     </li>
                                 </ul>
@@ -817,8 +839,10 @@
                 <div class="space-1">
                     <div class="container">
                         <div class="d-lg-flex text-center text-lg-left justify-content-between align-items-center">
+
                             <p class="mb-3 mb-lg-0 font-size-2 text-light">
                                 ©2022 Book Cave. All rights reserved
+
                             </p>
                         </div>
                     </div>
