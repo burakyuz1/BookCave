@@ -9,7 +9,7 @@ namespace BookCave.Domain.Entities
     {
         //TODO: USER BAĞLANTISI
         public ICollection<OrderDetail> OrderDetails { get; set; }
-        public DateTime OrderDate { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.Now;
         public bool Status { get; set; }
     }
 }

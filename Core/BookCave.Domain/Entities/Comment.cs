@@ -8,7 +8,7 @@ namespace BookCave.Domain.Entities
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public bool IsActive { get; set; }
         public bool IsSecretName { get; set; }
         public string ISBN { get; set; }
