@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Abstracts\" />
+    <Folder Include="Concretes\" />
     <Folder Include="wwwroot\img\logo\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
@@ -20,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\BookCave.Infrastructure\BookCave.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\BookCave.Persistance\BookCave.Persistance.csproj" />
   </ItemGroup>
 

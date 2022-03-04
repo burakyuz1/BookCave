@@ -7,9 +7,7 @@ namespace BookCave.Persistance.EntityFramework
     {
         public BookCaveDbContext(DbContextOptions<BookCaveDbContext> options) : base(options)
         {
-
         }
-
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -24,7 +22,6 @@ namespace BookCave.Persistance.EntityFramework
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(BookCaveDbContext).Assembly);
-            //Hata alırsak değişecek
         }
     }
 }
