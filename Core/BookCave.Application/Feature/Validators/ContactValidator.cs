@@ -25,27 +25,27 @@ namespace BookCave.Application.Feature.Validators
             RuleFor(x => x.AddressTitle)
                 .NotNull().WithMessage(nullOrEmptyMessage)
                 .NotEmpty().WithMessage(nullOrEmptyMessage)
-                .MaximumLength(20).WithMessage(maxTitleLengthMessage);
+                .MaximumLength(maxTitleLength).WithMessage(maxTitleLengthMessage);
 
             RuleFor(x => x.AddressDescription)
                 .NotNull().WithMessage(nullOrEmptyMessage)
                 .NotEmpty().WithMessage(nullOrEmptyMessage)
-                .MaximumLength(255).WithMessage(maxDescriptionLengthMessage);
+                .MaximumLength(maxDescriptionLength).WithMessage(maxDescriptionLengthMessage);
 
             RuleFor(x => x.Country)
                 .NotNull().WithMessage(nullOrEmptyMessage)
                 .NotEmpty().WithMessage(nullOrEmptyMessage)
-                .MaximumLength(40).WithMessage(maxCityOrCountryLengthMessage);
+                .MaximumLength(maxCityOrCountryLength).WithMessage(maxCityOrCountryLengthMessage);
 
             RuleFor(x => x.City)
                 .NotNull().WithMessage(nullOrEmptyMessage)
                 .NotEmpty().WithMessage(nullOrEmptyMessage)
-                .MaximumLength(40).WithMessage(maxCityOrCountryLengthMessage);
+                .MaximumLength(maxCityOrCountryLength).WithMessage(maxCityOrCountryLengthMessage);
 
             RuleFor(x => x.PhoneNumber)
                 .NotNull().WithMessage(nullOrEmptyMessage)
                 .NotEmpty().WithMessage(nullOrEmptyMessage)
-                .MaximumLength(15).WithMessage(maxPhoneNumberLengthMessage);
+                .MaximumLength(maxPhoneNumberLength).WithMessage(maxPhoneNumberLengthMessage);
         }
     }
 }

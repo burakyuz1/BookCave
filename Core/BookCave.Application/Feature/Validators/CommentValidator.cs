@@ -21,12 +21,12 @@ namespace BookCave.Application.Feature.Validators
             RuleFor(x => x.Title)
                 .NotNull().WithMessage(nullOrEmptyMessage)
                 .NotEmpty().WithMessage(nullOrEmptyMessage)
-                .MaximumLength(30).WithMessage(maxTitleLengthMessage);
+                .MaximumLength(maxTitleLength).WithMessage(maxTitleLengthMessage);
 
             RuleFor(x => x.Content)
                .NotNull().WithMessage(nullOrEmptyMessage)
                .NotEmpty().WithMessage(nullOrEmptyMessage)
-               .MaximumLength(255).WithMessage(maxContentLengthMessage);
+               .MaximumLength(maxContentLength).WithMessage(maxContentLengthMessage);
         }
     }
 }
