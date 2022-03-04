@@ -38,7 +38,9 @@ namespace BookCave.Application.Feature.Validators
             RuleFor(x => x.Name)
                 .NotNull().WithMessage(nullOrEmptyMessage)
                 .NotEmpty().WithMessage(nullOrEmptyMessage)
+
                 .MaximumLength(maxNameLength).WithMessage(maxNameLengthMessage);
+
 
             RuleFor(x => x.PublishYear)
                 .NotEmpty().WithMessage(nullOrEmptyMessage)
