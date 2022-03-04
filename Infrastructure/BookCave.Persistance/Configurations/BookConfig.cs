@@ -12,11 +12,11 @@ namespace BookCave.Persistance.Configurations
             builder.Property(x => x.ISBN).HasMaxLength(13).IsRequired();
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Details).HasMaxLength(500).IsRequired();
-            builder.Property(x => x.PublishYear).IsRequired(); //TODO: FluentApi'de düzenlenecek 1600-DateTime.Now.Year
-            builder.Property(x => x.NumberOfPages).IsRequired(); //TODO: 30 - ushort.maxLength;
-            builder.Property(x => x.UnitPrice).HasPrecision(18, 2).IsRequired(); // TODO: 0'dan düşük olamaz
+            builder.Property(x => x.PublishYear).IsRequired(); 
+            builder.Property(x => x.NumberOfPages).IsRequired(); 
+            builder.Property(x => x.UnitPrice).HasPrecision(18, 2).IsRequired(); 
             builder.Property(x => x.ImageUri).IsRequired();
-            builder.Property(x => x.Stock).IsRequired(); // TODO: 0'dan düşük olamaz.
+            builder.Property(x => x.Stock).IsRequired(); 
             builder.HasOne(x => x.Publisher).WithMany(x => x.Books).HasForeignKey(x => x.PublisherId);
             builder.HasOne(x => x.Author).WithMany(x => x.Books).HasForeignKey(x => x.AuthorId);
             builder.HasMany(x => x.Comments).WithOne(x => x.Book).HasForeignKey(x => x.ISBN);
