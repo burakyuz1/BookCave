@@ -1,0 +1,11 @@
+﻿@model AuthorViewModel
+
+<ul class="product-categories">
+    @foreach (var author in Model.Authors)
+    {
+        <li class="custom-control custom-checkbox  pb-2">
+            <input type="checkbox" class="custom-control-input" id="@author.Id">
+            <label class="custom-control-label" for="@author.Id">@author.FullName</label>
+        </li>
+    }
+</ul>

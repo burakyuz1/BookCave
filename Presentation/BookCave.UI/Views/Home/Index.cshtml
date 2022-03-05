@@ -19,370 +19,48 @@
                      "slidesToShow": 1
                    }
                 }]'>
-            <li class="bg-indigo-light p-4 p-md-5 rounded-md">
-                <div class="d-md-flex align-items-center">
-                    <div class="mb-4 mb-md-0">
-                        <div class="text-uppercase font-size-1 mb-1 text-truncate">
-                            <a href="../shop/single-product-v5.html">Paperback</a>
-                        </div>
-                        <h6 class="woocommerce-loop-product__title product__title h-dark font-weight-regular">
-                            <a href="../shop/single-product-v5.html">Nightingale</a>
-                        </h6>
-                        <div class="font-size-2  mb-1 text-truncate">
-                            <a href="../others/authors-single.html"
-                               class="text-gray-700">Kelly Harms</a>
-                        </div>
-                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                            <span class="woocommerce-Price-amount amount">
-                                <span class="woocommerce-Price-currencySymbol">$</span>41
-                            </span>
-                        </div>
-                        <div class="product__rating d-flex align-items-center font-size-2 mb-4">
-                            <div class="text-yellow-darker mr-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="far fa-star"></small>
-                                <small class="far fa-star"></small>
+            <!--Arka plan renkleri
+                tangerine, chili, carolina, indigo
+                -->
+            @foreach (var book in Model.LastBooks)
+            {
+                <li class="bg-tangerine-light p-4 p-md-5 rounded-md">
+                    <div class="d-md-flex align-items-center">
+                        <div class="mb-4 mb-md-0">
+                            <div class="text-uppercase font-size-1 mb-1 text-truncate">
+                                <a href="#">@book.PublisherName</a>
                             </div>
-                            <div class="">(3,714)</div>
-                        </div>
-                        <div class="product__hover d-flex align-items-center">
-                            <a href="../shop/single-product-v5.html"
-                               class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                <span class="product__add-to-cart mr-2">ADD TO CART</span>
-                                <span class="product__add-to-cart-icon font-size-4">
-                                    <i class="flaticon-icon-126515"></i>
-                                </span>
-                            </a>
-                            <a href="../shop/single-product-v5.html"
-                               class="mr-1 h-p-bg btn btn-outline-primary border-0">
-                                <i class="flaticon-switch"></i>
-                            </a>
-                            <a href="../shop/single-product-v5.html" class="h-p-bg  btn btn-outline-primary border-0">
-                                <i class="flaticon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ml-auto">
-                        <a href="../shop/single-product-v5.html" class="d-block">
-                            <img src="https://picsum.photos/150/226" class="img-fluid" alt="image-description">
-                        </a>
-                    </div>
-                </div>
-            </li>
-            <li class="bg-tangerine-light p-4 p-md-5 rounded-md">
-                <div class="d-md-flex align-items-center">
-                    <div class="mb-4 mb-md-0">
-                        <div class="text-uppercase font-size-1 mb-1 text-truncate">
-                            <a href="../shop/single-product-v5.html">Kindle Edition</a>
-                        </div>
-                        <h6 class="woocommerce-loop-product__title product__title h-dark font-weight-regular">
-                            <a href="../shop/single-product-v5.html">Mermaids</a>
-                        </h6>
-                        <div class="font-size-2  mb-1 text-truncate">
-                            <a href="../others/authors-single.html"
-                               class="text-gray-700">Kelly Harms</a>
-                        </div>
-                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                            <span class="woocommerce-Price-amount amount">
-                                <span class="woocommerce-Price-currencySymbol">$</span>41
-                            </span>
-                        </div>
-                        <div class="product__rating d-flex align-items-center font-size-2 mb-4">
-                            <div class="text-yellow-darker mr-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="far fa-star"></small>
-                                <small class="far fa-star"></small>
+                            <br />
+                            <h6 class="woocommerce-loop-product__title product__title h-dark font-weight-regular">
+                                <a href="#">@book.BookName</a>
+                            </h6>
+                            <div class="font-size-2  mb-1 text-truncate">
+                                <a href="#"
+                                   class="text-gray-700">@book.AuthorName</a>
                             </div>
-                            <div class="">(3,714)</div>
-                        </div>
-                        <div class="product__hover d-flex align-items-center">
-                            <a href="../shop/single-product-v5.html"
-                               class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                <span class="product__add-to-cart mr-2">ADD TO CART</span>
-                                <span class="product__add-to-cart-icon font-size-4">
-                                    <i class="flaticon-icon-126515"></i>
+                            <div class="price d-flex align-items-center font-weight-medium font-size-3">
+                                <span class="woocommerce-Price-amount amount">
+                                    <span class="woocommerce-Price-currencySymbol">$</span>@book.UnitPrice
                                 </span>
-                            </a>
-                            <a href="../shop/single-product-v5.html"
-                               class="mr-1 h-p-bg btn btn-outline-primary border-0">
-                                <i class="flaticon-switch"></i>
-                            </a>
-                            <a href="../shop/single-product-v5.html" class="h-p-bg  btn btn-outline-primary border-0">
-                                <i class="flaticon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ml-auto">
-                        <a href="../shop/single-product-v5.html" class="d-block">
-                            <img src="https://picsum.photos/150/226" class="img-fluid" alt="image-description">
-                        </a>
-                    </div>
-                </div>
-            </li>
-            <li class="bg-chili-light p-4 p-md-5 rounded-md">
-                <div class="d-md-flex align-items-center">
-                    <div class="mb-4 mb-md-0">
-                        <div class="text-uppercase font-size-1 mb-1 text-truncate">
-                            <a href="../shop/single-product-v5.html">Kindle Edition</a>
-                        </div>
-                        <h6 class="woocommerce-loop-product__title product__title h-dark font-weight-regular crop-text-2">
-                            <a href="../shop/single-product-v5.html">The Hideaway</a>
-                        </h6>
-                        <div class="font-size-2  mb-1 text-truncate">
-                            <a href="../others/authors-single.html"
-                               class="text-gray-700">Kelly Harms</a>
-                        </div>
-                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                            <span class="woocommerce-Price-amount amount">
-                                <span class="woocommerce-Price-currencySymbol">$</span>41
-                            </span>
-                        </div>
-                        <div class="product__rating d-flex align-items-center font-size-2 mb-4">
-                            <div class="text-yellow-darker mr-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="far fa-star"></small>
-                                <small class="far fa-star"></small>
                             </div>
-                            <div class="">(3,714)</div>
-                        </div>
-                        <div class="product__hover d-flex align-items-center">
-                            <a href="../shop/single-product-v5.html"
-                               class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                <span class="product__add-to-cart mr-2">ADD TO CART</span>
-                                <span class="product__add-to-cart-icon font-size-4">
-                                    <i class="flaticon-icon-126515"></i>
-                                </span>
-                            </a>
-                            <a href="../shop/single-product-v5.html"
-                               class="mr-1 h-p-bg btn btn-outline-primary border-0">
-                                <i class="flaticon-switch"></i>
-                            </a>
-                            <a href="../shop/single-product-v5.html" class="h-p-bg  btn btn-outline-primary border-0">
-                                <i class="flaticon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ml-auto">
-                        <a href="../shop/single-product-v5.html" class="d-block">
-                            <img src="https://picsum.photos/150/226" class="img-fluid" alt="image-description">
-                        </a>
-                    </div>
-                </div>
-            </li>
-            <li class="bg-carolina-light p-4 p-md-5 rounded-md">
-                <div class="d-md-flex align-items-center">
-                    <div class="mb-4 mb-md-0">
-                        <div class="text-uppercase font-size-1 mb-1 text-truncate">
-                            <a href="../shop/single-product-v5.html">Kindle Edition</a>
-                        </div>
-                        <h6 class="woocommerce-loop-product__title product__title h-dark font-weight-regular crop-text-2">
-                            <a href="../shop/single-product-v5.html">The Hideaway</a>
-                        </h6>
-                        <div class="font-size-2  mb-1 text-truncate">
-                            <a href="../others/authors-single.html"
-                               class="text-gray-700">Kelly Harms</a>
-                        </div>
-                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                            <span class="woocommerce-Price-amount amount">
-                                <span class="woocommerce-Price-currencySymbol">$</span>41
-                            </span>
-                        </div>
-                        <div class="product__rating d-flex align-items-center font-size-2 mb-4">
-                            <div class="text-yellow-darker mr-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="far fa-star"></small>
-                                <small class="far fa-star"></small>
+                            <br />
+                            <div class="product__hover d-flex align-items-center">
+                                <a href="#"
+                                   class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
+                                    <span class="product__add-to-cart mr-2">ADD TO CART</span>
+                                </a>
                             </div>
-                            <div class="">(3,714)</div>
                         </div>
-                        <div class="product__hover d-flex align-items-center">
-                            <a href="../shop/single-product-v5.html"
-                               class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                <span class="product__add-to-cart mr-2">ADD TO CART</span>
-                                <span class="product__add-to-cart-icon font-size-4">
-                                    <i class="flaticon-icon-126515"></i>
-                                </span>
-                            </a>
-                            <a href="../shop/single-product-v5.html"
-                               class="mr-1 h-p-bg btn btn-outline-primary border-0">
-                                <i class="flaticon-switch"></i>
-                            </a>
-                            <a href="../shop/single-product-v5.html" class="h-p-bg  btn btn-outline-primary border-0">
-                                <i class="flaticon-heart"></i>
+                        <div class="ml-auto">
+                            <a href="../shop/single-product-v5.html" class="d-block">
+                                <img height="226" width="150" src="~/img/books/@(book.ImagePath)" class="img-fluid" alt="image-description">
                             </a>
                         </div>
                     </div>
-                    <div class="ml-auto">
-                        <a href="../shop/single-product-v5.html" class="d-block">
-                            <img src="https://picsum.photos/150/226" class="img-fluid" alt="image-description">
-                        </a>
-                    </div>
-                </div>
-            </li>
-            <li class="bg-tangerine-light p-4 p-md-5 rounded-md">
-                <div class="d-md-flex align-items-center">
-                    <div class="mb-4 mb-md-0">
-                        <div class="text-uppercase font-size-1 mb-1 text-truncate">
-                            <a href="../shop/single-product-v5.html">Kindle Edition</a>
-                        </div>
-                        <h6 class="woocommerce-loop-product__title product__title h-dark font-weight-regular">
-                            <a href="../shop/single-product-v5.html">Mermaids</a>
-                        </h6>
-                        <div class="font-size-2  mb-1 text-truncate">
-                            <a href="../others/authors-single.html"
-                               class="text-gray-700">Kelly Harms</a>
-                        </div>
-                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                            <span class="woocommerce-Price-amount amount">
-                                <span class="woocommerce-Price-currencySymbol">$</span>41
-                            </span>
-                        </div>
-                        <div class="product__rating d-flex align-items-center font-size-2 mb-4">
-                            <div class="text-yellow-darker mr-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="far fa-star"></small>
-                                <small class="far fa-star"></small>
-                            </div>
-                            <div class="">(3,714)</div>
-                        </div>
-                        <div class="product__hover d-flex align-items-center">
-                            <a href="../shop/single-product-v5.html"
-                               class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                <span class="product__add-to-cart mr-2">ADD TO CART</span>
-                                <span class="product__add-to-cart-icon font-size-4">
-                                    <i class="flaticon-icon-126515"></i>
-                                </span>
-                            </a>
-                            <a href="../shop/single-product-v5.html"
-                               class="mr-1 h-p-bg btn btn-outline-primary border-0">
-                                <i class="flaticon-switch"></i>
-                            </a>
-                            <a href="../shop/single-product-v5.html" class="h-p-bg  btn btn-outline-primary border-0">
-                                <i class="flaticon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ml-auto">
-                        <a href="../shop/single-product-v5.html" class="d-block">
-                            <img src="https://picsum.photos/150/226" class="img-fluid" alt="image-description">
-                        </a>
-                    </div>
-                </div>
-            </li>
-            <li class="bg-indigo-light p-4 p-md-5 rounded-md">
-                <div class="d-md-flex align-items-center">
-                    <div class="mb-4 mb-md-0">
-                        <div class="text-uppercase font-size-1 mb-1 text-truncate">
-                            <a href="../shop/single-product-v5.html">Paperback</a>
-                        </div>
-                        <h6 class="woocommerce-loop-product__title product__title h-dark font-weight-regular">
-                            <a href="../shop/single-product-v5.html">Nightingale</a>
-                        </h6>
-                        <div class="font-size-2  mb-1 text-truncate">
-                            <a href="../others/authors-single.html"
-                               class="text-gray-700">Kelly Harms</a>
-                        </div>
-                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                            <span class="woocommerce-Price-amount amount">
-                                <span class="woocommerce-Price-currencySymbol">$</span>41
-                            </span>
-                        </div>
-                        <div class="product__rating d-flex align-items-center font-size-2 mb-4">
-                            <div class="text-yellow-darker mr-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="far fa-star"></small>
-                                <small class="far fa-star"></small>
-                            </div>
-                            <div class="">(3,714)</div>
-                        </div>
-                        <div class="product__hover d-flex align-items-center">
-                            <a href="../shop/single-product-v5.html"
-                               class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                <span class="product__add-to-cart mr-2">ADD TO CART</span>
-                                <span class="product__add-to-cart-icon font-size-4">
-                                    <i class="flaticon-icon-126515"></i>
-                                </span>
-                            </a>
-                            <a href="../shop/single-product-v5.html"
-                               class="mr-1 h-p-bg btn btn-outline-primary border-0">
-                                <i class="flaticon-switch"></i>
-                            </a>
-                            <a href="../shop/single-product-v5.html" class="h-p-bg  btn btn-outline-primary border-0">
-                                <i class="flaticon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ml-auto">
-                        <a href="../shop/single-product-v5.html" class="d-block">
-                            <img src="https://picsum.photos/150/226" class="img-fluid" alt="image-description">
-                        </a>
-                    </div>
-                </div>
-            </li>
-            <li class="bg-carolina-light p-4 p-md-5 rounded-md">
-                <div class="d-md-flex align-items-center">
-                    <div class="mb-4 mb-md-0">
-                        <div class="text-uppercase font-size-1 mb-1 text-truncate">
-                            <a href="../shop/single-product-v5.html">Kindle Edition</a>
-                        </div>
-                        <h6 class="woocommerce-loop-product__title product__title h-dark font-weight-regular crop-text-2">
-                            <a href="../shop/single-product-v5.html">The Hideaway</a>
-                        </h6>
-                        <div class="font-size-2  mb-1 text-truncate">
-                            <a href="../others/authors-single.htmls"
-                               class="text-gray-700">Kelly Harms</a>
-                        </div>
-                        <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                            <span class="woocommerce-Price-amount amount">
-                                <span class="woocommerce-Price-currencySymbol">$</span>41
-                            </span>
-                        </div>
-                        <div class="product__rating d-flex align-items-center font-size-2 mb-4">
-                            <div class="text-yellow-darker mr-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="far fa-star"></small>
-                                <small class="far fa-star"></small>
-                            </div>
-                            <div class="">(3,714)</div>
-                        </div>
-                        <div class="product__hover d-flex align-items-center">
-                            <a href="../shop/single-product-v5.html"
-                               class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
-                                <span class="product__add-to-cart mr-2">ADD TO CART</span>
-                                <span class="product__add-to-cart-icon font-size-4">
-                                    <i class="flaticon-icon-126515"></i>
-                                </span>
-                            </a>
-                            <a href="../shop/single-product-v5.html"
-                               class="mr-1 h-p-bg btn btn-outline-primary border-0">
-                                <i class="flaticon-switch"></i>
-                            </a>
-                            <a href="../shop/single-product-v5.html" class="h-p-bg  btn btn-outline-primary border-0">
-                                <i class="flaticon-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ml-auto">
-                        <a href="../shop/single-product-v5.html" class="d-block">
-                            <img src="https://picsum.photos/150/226" class="img-fluid" alt="image-description">
-                        </a>
-                    </div>
-                </div>
-            </li>
+                </li>
+
+            }
+
         </ul>
     </div>
 </section>
@@ -452,7 +130,7 @@
             </a>
         </header>
         <ul class="products list-unstyled mb-0 row row-cols-2 row-cols-md-3 row-cols-xl-4 row-cols-wd-5">
-            @foreach (var book in Model.HomeBooks)
+            @foreach (var book in Model.TrendingBooks)
             {
                 <li class="col">
                     <div class="product product__space product__space-primary border rounded-md bg-white mb-5">

@@ -1,0 +1,11 @@
+﻿@model CategoryViewModel
+
+<ul class="product-categories">
+    @foreach (var category in Model.Categories)
+    {
+        <li class="custom-control custom-checkbox  pb-2">
+            <input type="checkbox" class="custom-control-input" id="@category.Id">
+            <label class="custom-control-label" for="@category.Id">@category.Name</label>
+        </li>
+    }
+</ul>

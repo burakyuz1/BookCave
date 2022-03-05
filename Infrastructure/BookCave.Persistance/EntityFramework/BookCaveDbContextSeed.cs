@@ -180,7 +180,7 @@ namespace BookCave.Persistance.EntityFramework
             Book book12 = new()
             {
                 ISBN = "9781401310929",
-                Name = "My Turn: The Autobiography",
+                Name = "Nadal",
                 Details = "What makes a champion? What does it take to be the best in the world at your sport? Rafael Nadal has the answers. In his memoir, written with award-winning journalist John Carlin, he reveals the secrets of his game and shares the inspiring personal story behind his success. It begins in Mallorca, where the tight-knit Nadal family has lived for generations.",
                 ImageUri = "nadal.jpg",
                 Stock = 20,

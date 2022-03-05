@@ -15,6 +15,7 @@ namespace BookCave.Domain.Entities
         public decimal UnitPrice { get; set; }
         public string ImageUri { get; set; }
         public int Stock { get; set; }
+        public int SalesQuantity { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public bool Status { get; set; }
         public int? PublisherId { get; set; }

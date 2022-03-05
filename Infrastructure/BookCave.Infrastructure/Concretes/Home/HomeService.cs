@@ -4,7 +4,6 @@ using BookCave.Application.Feature.Specifications;
 using BookCave.Application.ViewModels;
 using BookCave.Domain.Entities;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookCave.Infrastructure.Concretes.Home
@@ -20,14 +19,26 @@ namespace BookCave.Infrastructure.Concretes.Home
 
         public async Task<HomeBookViewModel> GetHomeBookViewModelAsync()
         {
-            HomeBookFilterSpecification homeBookFilterSpecification = new();
-            List<Book> books = await _repository.GetAllAsync(homeBookFilterSpecification);
+            HomeBookFilterSpecification trendingBookFilter = new("trendingBook");
+            List<Book> trendingBooks = await _repository.GetAllAsync(trendingBookFilter);
 
-            List<BookViewModel> homeBooks = new();
+            HomeBookFilterSpecification lastBookFilter = new("lastBook");
+            List<Book> lastBooks = await _repository.GetAllAsync(lastBookFilter);
 
-            foreach (var book in books)
+            List<BookViewModel> trendingBookVM = MapBookModel(trendingBooks);
+
+            List<BookViewModel> lastBookVM = MapBookModel(lastBooks);
+
+            return new() { TrendingBooks = trendingBookVM, LastBooks = lastBookVM };
+        }
+
+        private List<BookViewModel> MapBookModel(List<Book> dbBooks)
+        {
+            List<BookViewModel> bookViemModel = new();
+
+            foreach (var book in dbBooks)
             {
-                homeBooks.Add(new()
+                bookViemModel.Add(new()
                 {
                     ISBN = book.ISBN,
                     BookName = book.Name,
@@ -37,8 +48,7 @@ namespace BookCave.Infrastructure.Concretes.Home
                     AuthorName = book.Author.FullName
                 });
             }
-
-            return new() { HomeBooks = homeBooks };
+            return bookViemModel;
         }
     }
 }

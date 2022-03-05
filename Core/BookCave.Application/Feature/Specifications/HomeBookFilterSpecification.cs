@@ -6,9 +6,18 @@ namespace BookCave.Application.Feature.Specifications
 {
     public class HomeBookFilterSpecification : Specification<Book>
     {
-        public HomeBookFilterSpecification()
+        public HomeBookFilterSpecification(string type)
         {
-            Query.Take(10).Include(x => x.Author).Include(x => x.Publisher);
+            if (type == "trendingBook")
+            {
+                Query.Take(10).Include(x => x.Author).Include(x => x.Publisher).OrderByDescending(x => x.SalesQuantity);
+            }
+            if (type == "lastBook")
+            {
+                Query.Take(7).Include(x => x.Author).Include(x => x.Publisher).OrderByDescending(x => x.CreatedDate);
+            }
         }
+
+
     }
 }

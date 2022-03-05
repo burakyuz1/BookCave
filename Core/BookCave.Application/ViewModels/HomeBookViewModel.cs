@@ -4,7 +4,8 @@ namespace BookCave.Application.ViewModels
 {
     public class HomeBookViewModel
     {
-        public List<BookViewModel> HomeBooks { get; set; }
+        public List<BookViewModel> TrendingBooks { get; set; }
+        public List<BookViewModel> LastBooks { get; set; }
     }
     public class BookViewModel
     {
