@@ -17,13 +17,17 @@ namespace BookCave.Infrastructure.Concretes.Shop
         {
             _repository = repository;
         }
-        public async Task<CategoryViewModel> GetCategoryViewModelAsync()
+        public async Task<List<CategoryViewModel>> GetCategoryViewModelAsync()
         {
             ShopCategoryFilterSpecification shopCategorySpec = new();
 
             List<Category> categories = await _repository.GetAllAsync(shopCategorySpec);
 
-            return new() { Categories = categories };
+            return categories.Select(x => new CategoryViewModel()
+            {
+                CategoryId = x.Id,
+                CategoryName = x.Name
+            }).ToList();
         }
     }
 }

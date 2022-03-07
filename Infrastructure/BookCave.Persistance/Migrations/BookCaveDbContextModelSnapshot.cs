@@ -45,6 +45,9 @@ namespace BookCave.Persistance.Migrations
                     b.Property<int?>("AuthorId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -88,6 +91,8 @@ namespace BookCave.Persistance.Migrations
 
                     b.HasIndex("AuthorId");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("PublisherId");
 
                     b.ToTable("Books");
@@ -108,21 +113,6 @@ namespace BookCave.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("BookCave.Domain.Entities.CategoryDetail", b =>
-                {
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ISBN")
-                        .HasColumnType("nvarchar(13)");
-
-                    b.HasKey("CategoryId", "ISBN");
-
-                    b.HasIndex("ISBN");
-
-                    b.ToTable("CategoryDetails");
                 });
 
             modelBuilder.Entity("BookCave.Domain.Entities.Comment", b =>
@@ -261,32 +251,19 @@ namespace BookCave.Persistance.Migrations
                         .WithMany("Books")
                         .HasForeignKey("AuthorId");
 
+                    b.HasOne("BookCave.Domain.Entities.Category", "Category")
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId");
+
                     b.HasOne("BookCave.Domain.Entities.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PublisherId");
 
                     b.Navigation("Author");
 
-                    b.Navigation("Publisher");
-                });
-
-            modelBuilder.Entity("BookCave.Domain.Entities.CategoryDetail", b =>
-                {
-                    b.HasOne("BookCave.Domain.Entities.Category", "Category")
-                        .WithMany("CategoryDetails")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookCave.Domain.Entities.Book", "Book")
-                        .WithMany("CategoryDetails")
-                        .HasForeignKey("ISBN")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
                     b.Navigation("Category");
+
+                    b.Navigation("Publisher");
                 });
 
             modelBuilder.Entity("BookCave.Domain.Entities.Comment", b =>
@@ -324,8 +301,6 @@ namespace BookCave.Persistance.Migrations
 
             modelBuilder.Entity("BookCave.Domain.Entities.Book", b =>
                 {
-                    b.Navigation("CategoryDetails");
-
                     b.Navigation("Comments");
 
                     b.Navigation("OrderDetails");
@@ -333,7 +308,7 @@ namespace BookCave.Persistance.Migrations
 
             modelBuilder.Entity("BookCave.Domain.Entities.Category", b =>
                 {
-                    b.Navigation("CategoryDetails");
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("BookCave.Domain.Entities.Order", b =>

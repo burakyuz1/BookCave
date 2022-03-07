@@ -1,11 +1,14 @@
 ﻿@model AuthorViewModel
 
 <ul class="product-categories">
-    @foreach (var author in Model.Authors)
+    @for (int i = 0; i < Model.AuthorSelects.Count; i++) //FOREACH CALISMIYOR
     {
-        <li class="custom-control custom-checkbox  pb-2">
-            <input type="checkbox" class="custom-control-input" id="@author.Id">
-            <label class="custom-control-label" for="@author.Id">@author.FullName</label>
+        <li class="custom-control custom-checkbox pb-2">
+            <input type="checkbox" asp-for="AuthorSelects[i].IsSelected" id="@Model.AuthorSelects[i].AuthorId" />
+            <label for="@Model.AuthorSelects[i].AuthorId">@Model.AuthorSelects[i].AuthorName</label>
+
+            <input type="hidden" asp-for="AuthorSelects[i].AuthorId" />
+            <input type="hidden" asp-for="AuthorSelects[i].AuthorName" />
         </li>
     }
 </ul>

@@ -7,6 +7,6 @@ namespace BookCave.Domain.Entities
     public class Category: BaseEntity, IEntity
     {
         public string Name { get; set; }
-        public ICollection<CategoryDetail> CategoryDetails { get; set; }
+        public ICollection<Book> Books { get; set; }
     }
 }

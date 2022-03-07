@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BookCave.Domain.Entities
 {
-    public class Book :IEntity
+    public class Book : IEntity
     {
         public string ISBN { get; set; }
         public string Name { get; set; }
@@ -22,7 +22,8 @@ namespace BookCave.Domain.Entities
         public Publisher Publisher { get; set; }
         public int? AuthorId { get; set; }
         public Author Author { get; set; }
-        public ICollection<CategoryDetail> CategoryDetails { get; set; }
+        public int? CategoryId { get; set; }
+        public Category Category { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
         public ICollection<Comment> Comments { get; set; }
     }

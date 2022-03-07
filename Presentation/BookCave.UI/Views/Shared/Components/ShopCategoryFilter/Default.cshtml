@@ -1,11 +1,25 @@
-﻿@model CategoryViewModel
+﻿@model List<CategoryViewModel>
 
 <ul class="product-categories">
-    @foreach (var category in Model.Categories)
+    @foreach (var category in Model)
     {
-        <li class="custom-control custom-checkbox  pb-2">
-            <input type="checkbox" class="custom-control-input" id="@category.Id">
-            <label class="custom-control-label" for="@category.Id">@category.Name</label>
+        <li class="cat-item cat-item-9 cat-parent">
+            <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@category.CategoryId">@category.CategoryName</a>
         </li>
     }
 </ul>
+@*@for (int i = 0; i < Model.CategorySelects.Count; i++) //FOREACH CALISMIYOR
+    {
+        <li class="custom-control custom-checkbox pb-2">
+            <input type="checkbox" asp-for="CategorySelects[i].IsSelected" id="@Model.CategorySelects[i].CategoryId"/>
+            <label for="@Model.CategorySelects[i].CategoryId">@Model.CategorySelects[i].CategoryName</label>
+
+            <input type="hidden" asp-for="CategorySelects[i].CategoryId" />
+            <input type="hidden" asp-for="CategorySelects[i].CategoryName" />
+        </li>
+}*@
+
+
+
+
+

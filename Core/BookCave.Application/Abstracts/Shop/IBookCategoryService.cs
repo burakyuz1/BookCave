@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BookCave.Application.Abstracts.Shop
 {
-    public interface IBookService
+    public interface IBookCategoryService
     {
-        Task<List<BookViewModel>> GetBookViewModelAsync();
+        Task<BookCategoryViewModel> GetBookCategoryViewModel(int? categoryId, AuthorViewModel author);
     }
 }

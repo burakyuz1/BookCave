@@ -35,7 +35,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 279,
                 Status = true,
                 UnitPrice = 20.99m,
-                PublishYear = 2000
+                PublishYear = 2000,
+                Category = category1
             };
             Book book2 = new()
             {
@@ -49,7 +50,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 356,
                 Status = true,
                 UnitPrice = 49.37m,
-                PublishYear = 2011
+                PublishYear = 2011,
+                Category = category2
             };
             Book book3 = new()
             {
@@ -63,7 +65,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 498,
                 Status = true,
                 UnitPrice = 15.33m,
-                PublishYear = 2000
+                PublishYear = 2000,
+                Category = category3
             };
             Book book4 = new()
             {
@@ -77,7 +80,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 416,
                 Status = true,
                 UnitPrice = 40.44m,
-                PublishYear = 2022
+                PublishYear = 2022,
+                Category = category4
             };
             Book book5 = new()
             {
@@ -91,7 +95,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 279,
                 Status = true,
                 UnitPrice = 50.99m,
-                PublishYear = 2014
+                PublishYear = 2014,
+                Category = category4
             };
             Book book6 = new()
             {
@@ -105,7 +110,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 350,
                 Status = true,
                 UnitPrice = 65.99m,
-                PublishYear = 2018
+                PublishYear = 2018,
+                Category = category3
             };
             Book book7 = new()
             {
@@ -119,7 +125,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 194,
                 Status = true,
                 UnitPrice = 45.55m,
-                PublishYear = 2011
+                PublishYear = 2011,
+                Category = category2
             };
             Book book8 = new()
             {
@@ -133,7 +140,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 374,
                 Status = true,
                 UnitPrice = 27.95m,
-                PublishYear = 2008
+                PublishYear = 2008,
+                Category = category1
             };
             Book book9 = new()
             {
@@ -147,7 +155,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 298,
                 Status = true,
                 UnitPrice = 32.99m,
-                PublishYear = 2013
+                PublishYear = 2013,
+                Category = category2
             };
             Book book10 = new()
             {
@@ -161,7 +170,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 627,
                 Status = true,
                 UnitPrice = 25.99m,
-                PublishYear = 2011
+                PublishYear = 2011,
+                Category = category3
             };
             Book book11 = new()
             {
@@ -175,7 +185,8 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 320,
                 Status = true,
                 UnitPrice = 15.99m,
-                PublishYear = 2016
+                PublishYear = 2016,
+                Category = category4
             };
             Book book12 = new()
             {
@@ -189,36 +200,13 @@ namespace BookCave.Persistance.EntityFramework
                 NumberOfPages = 250,
                 Status = true,
                 UnitPrice = 13.95m,
-                PublishYear = 2011
+                PublishYear = 2011,
+                Category = category2
             };
 
-            db.CategoryDetails.AddRange(
-                new() { Book = book1, Category = category1 },
-                new() { Book = book1, Category = category2 },
-                new() { Book = book2, Category = category1 },
-                new() { Book = book2, Category = category2 },
-                new() { Book = book2, Category = category3 },
-                new() { Book = book3, Category = category4 },
-                new() { Book = book4, Category = category1 },
-                new() { Book = book4, Category = category2 },
-                new() { Book = book5, Category = category3 },
-                new() { Book = book6, Category = category1 },
-                new() { Book = book6, Category = category2 },
-                new() { Book = book7, Category = category2 },
-                new() { Book = book7, Category = category3 },
-                new() { Book = book7, Category = category4 },
-                new() { Book = book8, Category = category1 },
-                new() { Book = book8, Category = category2 },
-                new() { Book = book9, Category = category3 },
-                new() { Book = book10, Category = category2 },
-                new() { Book = book10, Category = category3 },
-                new() { Book = book11, Category = category1 },
-                new() { Book = book11, Category = category4 },
-                new() { Book = book12, Category = category2 }
-                );
+            db.AddRange(book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12);
 
             await db.SaveChangesAsync();
-
         }
     }
 }

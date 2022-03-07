@@ -14,6 +14,7 @@ namespace BookCave.Persistance.Configurations
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
+            builder.HasMany(x => x.Books).WithOne(x => x.Category).HasForeignKey(x => x.CategoryId);
         }
     }
 }

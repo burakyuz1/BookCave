@@ -13,7 +13,7 @@ namespace BookCave.Infrastructure
             service.AddScoped<IHomeService, HomeService>();
             service.AddScoped<ICategoryService, CategoryService>();
             service.AddScoped<IAuthorService, AuthorService>();
-            service.AddScoped<IBookService, BookService>();
+            service.AddScoped<IBookCategoryService, BookCategoryService>();
         }
 
     }
