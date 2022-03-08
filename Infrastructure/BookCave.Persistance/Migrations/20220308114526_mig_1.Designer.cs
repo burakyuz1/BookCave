@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookCave.Persistance.Migrations
 {
     [DbContext(typeof(BookCaveDbContext))]
-    [Migration("20220307150459_mig_1")]
+    [Migration("20220308114526_mig_1")]
     partial class mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
