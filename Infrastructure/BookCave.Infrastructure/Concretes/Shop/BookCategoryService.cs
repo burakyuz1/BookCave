@@ -22,7 +22,7 @@ namespace BookCave.Infrastructure.Concretes.Shop
             _bookRepository = repository;
             _categoryRepository = categoryRepository;
         }
-        public async Task<BookCategoryViewModel> GetBookCategoryViewModel(int? categoryId, AuthorViewModel author)
+        public async Task<BookCategoryViewModel> GetBookCategoryViewModel(int? categoryId, AuthorViewModel author, PublisherViewModel publisher)
         {
 
             List<int> authorIds = new List<int>();
@@ -32,7 +32,14 @@ namespace BookCave.Infrastructure.Concretes.Shop
                     if (item.IsSelected == true)
                         authorIds.Add(item.AuthorId);
 
-            ShopBookFilterSpecification shopBookFilterSpec = new(categoryId, authorIds);
+            List<int> publisherIds = new List<int>();
+
+            if (publisher.PublisherSelects != null)
+                foreach (var item in publisher.PublisherSelects)
+                    if (item.IsSelected == true)
+                        publisherIds.Add(item.PublisherId);
+
+            ShopBookFilterSpecification shopBookFilterSpec = new(categoryId, authorIds, publisherIds);
             ShopCategoryFilterSpecification shopCategoryFilter = new();
 
             List<Book> books = await _bookRepository.GetAllAsync(shopBookFilterSpec);
