@@ -17,9 +17,9 @@ namespace BookCave.UI.Controllers
         {
             _bookCategoryService = bookService;
         }
-        public async Task<IActionResult> Index(int? categoryId, AuthorViewModel author, PublisherViewModel publisher)
+        public async Task<IActionResult> Index(int? categoryId, AuthorViewModel author, int? min, int? max, PublisherViewModel publisher)
         {
-            var model = await _bookCategoryService.GetBookCategoryViewModel(categoryId, author, publisher);
+            var model = await _bookCategoryService.GetBookCategoryViewModel(categoryId, author, min, max, publisher);
             return View(model);
         }
     }
