@@ -10,6 +10,8 @@ namespace BookCave.Application.ViewModels
 {
     public class BookCategoryViewModel
     {
+        public int? Max { get; set; }
+        public int? Min { get; set; }
         public int? CategoryId { get; set; }
         //public List<Category> Categories { get; set; }
         public string CategoryName { get; set; }

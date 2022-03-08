@@ -48,18 +48,18 @@
                                 <div class="row">
                                     <div class="float-left col-md-6 ">
                                         <span>Min$</span>
-                                        <input type="number" min=0 max=100 />
+                                        <input asp-for="Min" type="number" min=0 max=100 />
                                     </div>
                                     <div class="float:left col-md-6">
                                         <span>Max$</span>
-                                        <input type="number" min=0 max=100 />
+                                        <input asp-for="Max" type="number" min=0 max=100 />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button asp-route-categoryId="@Model.CategoryId" type="submit" class="btn btn-primary rounded-0 float-right">Filter</button>
+                        <button asp-route-categoryId="@Model.CategoryId"  asp-route-max="@Model.Max" asp-route-min="@Model.Min" type="submit" class="btn btn-primary rounded-0 float-right">Filter</button>
                     </div>
                 </form>
             </div>

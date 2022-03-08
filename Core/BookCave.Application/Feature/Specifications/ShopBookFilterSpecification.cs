@@ -7,7 +7,7 @@ namespace BookCave.Application.Feature.Specifications
 {
     public class ShopBookFilterSpecification : Specification<Book>
     {
-        public ShopBookFilterSpecification(int? categoryId, List<int> authorIds)
+        public ShopBookFilterSpecification(int? categoryId, List<int> authorIds, int? min, int? max)
         {
             if (categoryId.HasValue)
             {
@@ -17,7 +17,10 @@ namespace BookCave.Application.Feature.Specifications
             {
                 Query.Where(x => authorIds.Contains(x.AuthorId.Value));
             }
-
+            if (min.HasValue && max.HasValue)
+            {
+                Query.Where(x => x.UnitPrice >= min && x.UnitPrice <= max);
+            }
             Query.OrderByDescending(x => x.SalesQuantity).Include(x => x.Publisher).Include(x => x.Author);
         }
     }

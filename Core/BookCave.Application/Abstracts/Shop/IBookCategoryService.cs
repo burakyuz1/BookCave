@@ -9,6 +9,6 @@ namespace BookCave.Application.Abstracts.Shop
 {
     public interface IBookCategoryService
     {
-        Task<BookCategoryViewModel> GetBookCategoryViewModel(int? categoryId, AuthorViewModel author);
+        Task<BookCategoryViewModel> GetBookCategoryViewModel(int? categoryId, AuthorViewModel author, int? min, int? max);
     }
 }
