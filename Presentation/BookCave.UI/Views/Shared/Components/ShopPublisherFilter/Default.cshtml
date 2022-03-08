@@ -1,0 +1,14 @@
+﻿@model PublisherViewModel
+
+<ul class="product-categories">
+    @for (int i = 0; i < Model.PublisherSelects.Count; i++) //FOREACH CALISMIYOR
+    {
+        <li class="custom-control custom-checkbox pb-2">
+            <input type="checkbox" asp-for="PublisherSelects[i].IsSelected" id="@Model.PublisherSelects[i].PublisherId" />
+            <label for="@Model.PublisherSelects[i].PublisherId">@Model.PublisherSelects[i].PublisherName</label>
+
+            <input type="hidden" asp-for="PublisherSelects[i].PublisherId" />
+            <input type="hidden" asp-for="PublisherSelects[i].PublisherName" />
+        </li>
+    }
+</ul>

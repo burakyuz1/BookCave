@@ -1,5 +1,4 @@
-﻿using BookCave.Domain.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BookCave.Application.ViewModels
 {
