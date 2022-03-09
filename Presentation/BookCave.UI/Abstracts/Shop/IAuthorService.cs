@@ -1,7 +1,7 @@
-﻿using BookCave.Application.ViewModels;
+﻿using BookCave.BookCave.UI.ViewModels;
 using System.Threading.Tasks;
 
-namespace BookCave.Application.Abstracts.Shop
+namespace BookCave.BookCave.UI.Abstracts.Shop
 {
     public interface IAuthorService
     {

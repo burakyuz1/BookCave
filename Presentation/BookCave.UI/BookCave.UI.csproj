@@ -5,17 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Abstracts\**" />
-    <Compile Remove="Concretes\**" />
-    <Content Remove="Abstracts\**" />
-    <Content Remove="Concretes\**" />
-    <EmbeddedResource Remove="Abstracts\**" />
-    <EmbeddedResource Remove="Concretes\**" />
-    <None Remove="Abstracts\**" />
-    <None Remove="Concretes\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\img\logo\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>

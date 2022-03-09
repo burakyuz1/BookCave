@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace BookCave.Application.ViewModels
+namespace BookCave.BookCave.UI.ViewModels
 {
     public class AuthorViewModel
     {
         public List<AuthorSelect> AuthorSelects { get; set; }
+        public List<int> Ids { get; set; }
     }
     public class AuthorSelect
     {

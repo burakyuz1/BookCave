@@ -1,7 +1,7 @@
 ﻿using BookCave.Application.Abstracts.Repository;
-using BookCave.Application.Abstracts.Shop;
+using BookCave.BookCave.UI.Abstracts.Shop;
 using BookCave.Application.Feature.Specifications;
-using BookCave.Application.ViewModels;
+using BookCave.BookCave.UI.ViewModels;
 using BookCave.Domain.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookCave.Infrastructure.Concretes.Shop
+namespace BookCave.BookCave.UI.Concretes.Shop
 {
     public class BookCategoryService : IBookCategoryService
     {
@@ -63,11 +63,7 @@ namespace BookCave.Infrastructure.Concretes.Shop
                 CategoryId = categoryId,
                 Books = bookViews,
                 CategoryName = categoryId.HasValue ? categories.FirstOrDefault(x => x.Id == categoryId.Value).Name : string.Empty,
-                Categories = categories.Select(x => new SelectListItem()
-                {
-                    Text = x.Name,
-                    Value = x.Id.ToString()
-                }).ToList()
+                Categories = categories
             };
         }
     }

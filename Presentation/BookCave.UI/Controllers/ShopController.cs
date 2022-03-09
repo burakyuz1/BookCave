@@ -1,11 +1,11 @@
-﻿using BookCave.Application.Abstracts.Shop;
+﻿using BookCave.BookCave.UI.Abstracts.Shop;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
-using BookCave.Application.ViewModels;
+using BookCave.BookCave.UI.ViewModels;
 
 namespace BookCave.UI.Controllers
 {
@@ -17,7 +17,7 @@ namespace BookCave.UI.Controllers
         {
             _bookCategoryService = bookService;
         }
-        public async Task<IActionResult> Index(int? categoryId, AuthorViewModel author, int? min, int? max, PublisherViewModel publisher)
+        public async Task<IActionResult> Index(AuthorViewModel author, PublisherViewModel publisher,int? categoryId, int? min, int? max)
         {
             var model = await _bookCategoryService.GetBookCategoryViewModel(categoryId, author, min, max, publisher);
             return View(model);

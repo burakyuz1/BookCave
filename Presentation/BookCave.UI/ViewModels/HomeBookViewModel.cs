@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BookCave.Application.ViewModels
+namespace BookCave.BookCave.UI.ViewModels
 {
     public class HomeBookViewModel
     {

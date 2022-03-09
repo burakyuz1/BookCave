@@ -17,9 +17,20 @@
                                 </a>
                             </div>
                             <div class="mt-3 widget-content collapse show">
-                                <select asp-items="Model.Categories" asp-for="CategoryId">
-                                    <option value="">All</option>
-                                </select>
+                                @*<select asp-items="Model.Categories" asp-for="CategoryId">
+                                        <option value="">All</option>
+                                    </select>*@
+                                <ul>
+
+                                    @foreach (var item in Model.Categories)
+                                    {
+                                        <li>
+                                            <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@item.Id">@item.Name</a>
+                                            @*<input type="submit" name="name" value="" />*@
+                                        </li>
+                                    }
+                                </ul>
+
                             </div>
                         </div>
 
@@ -73,7 +84,7 @@
                         </div>
                     </div>
                     <div>
-                        <button asp-route-categoryId="@Model.CategoryId"  asp-route-max="@Model.Max" asp-route-min="@Model.Min" type="submit" class="btn btn-primary rounded-0 float-right">Filter</button>
+                        <button asp-route-categoryId="@Model.CategoryId" asp-route-max="@Model.Max" asp-route-min="@Model.Min" type="submit" class="btn btn-primary rounded-0 float-right">Filter</button>
                     </div>
                 </form>
             </div>

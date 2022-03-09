@@ -1,4 +1,4 @@
-﻿using BookCave.Application.Abstracts.Shop;
+﻿using BookCave.BookCave.UI.Abstracts.Shop;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

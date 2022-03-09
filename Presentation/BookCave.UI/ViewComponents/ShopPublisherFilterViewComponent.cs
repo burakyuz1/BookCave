@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using BookCave.Application.Abstracts.Shop;
+using BookCave.BookCave.UI.Abstracts.Shop;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookCave.UI.ViewComponents

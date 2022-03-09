@@ -1,12 +1,12 @@
-﻿using BookCave.Application.Abstracts.Home;
+﻿using BookCave.BookCave.UI.Abstracts.Home;
 using BookCave.Application.Abstracts.Repository;
 using BookCave.Application.Feature.Specifications;
-using BookCave.Application.ViewModels;
+using BookCave.BookCave.UI.ViewModels;
 using BookCave.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BookCave.Infrastructure.Concretes.Home
+namespace BookCave.BookCave.UI.Concretes.Home
 {
     public class HomeService : IHomeService
     {
