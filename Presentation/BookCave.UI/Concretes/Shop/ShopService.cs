@@ -6,10 +6,11 @@ using BookCave.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookCave.Application;
 
 namespace BookCave.UI.Concretes.Shop
 {
-    public class ShopService : IShopService
+    public class ShopService : IShopService //ShopViewModelService olacak
     {
         private readonly IRepository<Book> _bookRepository;
         private readonly IRepository<Category> _categoryRepository;
@@ -29,21 +30,49 @@ namespace BookCave.UI.Concretes.Shop
             _publisherRepository = publisherRepository;
         }
 
-        public async Task<ShopViewModel> GetShopViewModelAsync(List<int> authorIds, List<int> publisherIds, int? categoryId, int? min, int? max)
+        public async Task<ShopViewModel> GetShopViewModelAsync(List<AuthorViewModel> authors, List<PublisherViewModel> publishers, int? categoryId, int? min, int? max, OrderType orderType)
         {
-            List<Author> authors = await _authorRepository.GetAllAsync(new AuthorSpecification());
-            List<Publisher> publishers = await _publisherRepository.GetAllAsync(new PublisherSpecification());
+            var authorIds = authors.Where(x=>x.IsSelected ).Select(x => x.AuthorId).ToList(); 
+            var publisherIds = publishers.Where(x => x.IsSelected).Select(x => x.PublisherId).ToList();
+
+            List<Author> authorsDb = await _authorRepository.GetAllAsync(new AuthorSpecification());
+            List<Publisher> publishersDb = await _publisherRepository.GetAllAsync(new PublisherSpecification());
             List<Category> categories = await _categoryRepository.GetAllAsync(new CategorySpecification());
-            List<Book> books = await _bookRepository.GetAllAsync(new ShopBookFilterSpecification(authorIds, publisherIds, categoryId, min, max));
-            
+            List<Book> books = await _bookRepository.GetAllAsync(new ShopBookFilterSpecification(authorIds, publisherIds, categoryId, min, max, orderType));
+
+            #region Refactor
+            var publishersFilterById = publishersDb.Select(x => new PublisherViewModel()
+            {
+                PublisherId = x.Id,
+                PublisherName = x.Name,
+                IsSelected = false
+            }).ToList();
+
+            foreach (var item in publishersFilterById)
+                if (publisherIds.Contains(item.PublisherId))
+                    item.IsSelected = true;
+
+            var authorsFilterById = authorsDb.Select(x => new AuthorViewModel() //KOMPLE YAZARLAR
+            {
+                AuthorId = x.Id,
+                AuthorName = x.FullName,
+                IsSelected = false
+            }).ToList();
+
+            foreach (var item in authorsFilterById)
+                if (authorIds.Contains(item.AuthorId))
+                    item.IsSelected = true; 
+            #endregion
+
             return new()
             {
                 CategoryId = categoryId,
+                OrderType = orderType,
                 CategoryName = categoryId.HasValue ? categories.FirstOrDefault(x => x.Id == categoryId.Value).Name : string.Empty,
                 MaxPrice = max,
                 MinPrice = min,
-                Authors = authors.Select(x => new AuthorViewModel() { AuthorId = x.Id, AuthorName = x.FullName }).ToList(),
-                Publishers = publishers.Select(x => new PublisherViewModel() { PublisherId = x.Id, PublisherName = x.Name }).ToList(),
+                Authors = authorsFilterById,
+                Publishers = publishersFilterById,
                 Categories = categories,
                 Books = books.Select(x => new BookViewModel()
                 {

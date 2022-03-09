@@ -4,47 +4,50 @@
         <!--LEFT ASIDE START-->
         <div class="col-md-3">
             <div id="secondary" class="sidebar widget-area order-1" role="complementary">
-                <form method="get">
-                    <div id="widgetAccordion" class="mb-2">
-                        <div id="woocommerce_product_categories-2"
-                             class="widget p-4d875 border woocommerce widget_product_categories">
-                            <div id="widgetHeadingOne" class="widget-head">
+                <form id="filterForm" method="get">
+                    <div class="mb-2">
+                        <!--FILTER CATEGORY START-->
+                        <div class="widget p-4d875 border woocommerce widget_product_categories">
+                            <div class="widget-head">
                                 <a class="d-flex align-items-center justify-content-between text-dark">
                                     <h3 class="widget-title mb-0 font-weight-medium font-size-3">
                                         Categories
                                     </h3>
                                 </a>
                             </div>
-                            <div class="mt-3 widget-content collapse show">
+                            <div class="mt-3 widget-content">
+                                <input type="hidden" id="catId" asp-for="CategoryId" value="@Model.CategoryId" />
+                                <input id="sortingHidden" type="hidden" asp-for="OrderType" value="@Model.OrderType" />
                                 <ul>
-
+                                    <li>
+                                        <a data-cat-ids="0" style="cursor:pointer">All</a>
+                                    </li>
                                     @foreach (var item in Model.Categories)
                                     {
                                         <li>
-                                            <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@item.Id">@item.Name</a>
-                                            @*<input type="submit" name="name" value="" />*@
+                                            <a style="cursor:pointer" data-cat-ids="@item.Id">@item.Name</a>
                                         </li>
                                     }
                                 </ul>
                             </div>
                         </div>
-
-                        <div id="Authors" class="widget widget_search widget_author p-4d875 border">
+                        <!--FILTER CATEGORY END-->
+                        <!--FILTER AUTHOR START-->
+                        <div class="widget widget_search widget_author p-4d875 border">
                             <div class="widget-head">
                                 <a class="d-flex align-items-center justify-content-between text-dark">
                                     <h3 class="widget-title mb-0 font-weight-medium font-size-3">
                                         Author
                                     </h3>
                                 </a>
-
                             </div>
                             <div class="mt-4 widget-content">
                                 <ul class="product-categories">
                                     @for (int i = 0; i < Model.Authors.Count; i++)
                                     {
                                         <li class="custom-checkbox pb-2">
-                                            <input type="checkbox" asp-for="Authors[i].IsSelected" id="@Model.Authors[i].AuthorId" />
-                                            <label for="@Model.Authors[i].AuthorId" class="d-inline-block ml-2">@Model.Authors[i].AuthorName</label>
+                                            <input type="checkbox" asp-for="Authors[i].IsSelected" id="author-@Model.Authors[i].AuthorId" />
+                                            <label for="author-@Model.Authors[i].AuthorId" class="d-inline-block ml-2">@Model.Authors[i].AuthorName</label>
 
                                             <input type="hidden" asp-for="Authors[i].AuthorId" />
                                             <input type="hidden" asp-for="Authors[i].AuthorName" />
@@ -53,8 +56,9 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <div id="Publisher" class="widget widget_search widget_author p-4d875 border">
+                        <!--FILTER AUTHOR END-->
+                        <!--FILTER PUBLISHER START-->
+                        <div class="widget widget_search widget_author p-4d875 border">
                             <div class="widget-head">
                                 <a class="d-flex align-items-center justify-content-between text-dark">
                                     <h3 class="widget-title mb-0 font-weight-medium font-size-3">
@@ -68,8 +72,8 @@
                                     @for (int i = 0; i < Model.Publishers.Count; i++)
                                     {
                                         <li class="custom-checkbox pb-2">
-                                            <input type="checkbox" asp-for="Publishers[i].IsSelected" id="@Model.Publishers[i].PublisherId" />
-                                            <label for="@Model.Publishers[i].PublisherId" class="d-inline-block ml-2">@Model.Publishers[i].PublisherName</label>
+                                            <input type="checkbox" asp-for="Publishers[i].IsSelected" id="publisher-@Model.Publishers[i].PublisherId" />
+                                            <label for="publisher-@Model.Publishers[i].PublisherId" class="d-inline-block ml-2">@Model.Publishers[i].PublisherName</label>
 
                                             <input type="hidden" asp-for="Publishers[i].PublisherId" />
                                             <input type="hidden" asp-for="Publishers[i].PublisherName" />
@@ -78,17 +82,17 @@
                                 </ul>
                             </div>
                         </div>
-
+                        <!--FILTER PUBLISHER END-->
+                        <!--FILTER PRICE START-->
                         <div class="widget border p-4d875 woocommerce widget_price_filter">
-                            <div class="widget-head" id="widgetHeading-woocommerce_price_filter-2">
+                            <div class="widget-head">
                                 <a class="d-flex align-items-center justify-content-between text-dark">
                                     <h3 class="widget-title font-weight-medium font-size-3 mb-0">
                                         Filter by price
                                     </h3>
                                 </a>
                             </div>
-                            <div class="mt-4 widget-content"
-                                 aria-labelledby="widgetHeading-woocommerce_price_filter-2">
+                            <div class="mt-4 widget-content">
                                 <div class="row">
                                     <div class="float-left col-md-6 ">
                                         <span>Min$</span>
@@ -101,6 +105,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!--FILTER PRICE END-->
+
                     </div>
                     <div>
                         <button asp-route-categoryId="@Model.CategoryId" asp-route-max="@Model.MaxPrice" asp-route-min="@Model.MinPrice" type="submit" class="btn btn-primary rounded-0 float-right">Filter</button>
@@ -112,7 +118,6 @@
         <!--CONTENT ASIDE START-->
         <div class="col-md-9">
             <div class="position-relative mb-6">
-
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel"
                          aria-labelledby="pills-one-example1-tab">
@@ -121,17 +126,13 @@
                                 <h1 class="woocommerce-result-count m-0">@(Model.CategoryName ?? "")</h1>
                             </div>
                             <div class="shop-control-bar__right d-md-flex align-items-center">
-                                <form class="woocommerce-ordering mb-4 m-md-0" method="get">
-
-                                    <select class="js-select selectpicker dropdown-select orderby" name="orderby" data-style="border-bottom shadow-none outline-none py-2">
-                                        <option value="price">Sort by price: low to high</option>
-                                        <option value="price-desc">Sort by price: high to low</option>
-                                    </select>
-
-                                </form>
+                                <select id="orderByPrice" class="selectpicker dropdown-select orderby" name="orderby" data-style="border-bottom shadow-none outline-none py-2">
+                                    <option value="DEFAULT">Sort by trending</option>
+                                    <option value="INCREASING">Sort by price: low to high</option>
+                                    <option value="DECREASING">Sort by price: high to low</option>
+                                </select>
                             </div>
                         </div>
-
                         <ul class="products list-unstyled row no-gutters row-cols-2 row-cols-lg-3 row-cols-wd-4 border-top border-left mb-6">
                             @foreach (var book in Model.Books)
                             {
@@ -204,3 +205,32 @@
         <!-- CONTENT END-->
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            let selectedSortingType = $("#sortingHidden").val();
+            $(`#orderByPrice option[value=${selectedSortingType}]`).prop("selected", true);
+        })
+
+        $("[data-cat-ids]").click(function () {
+            let id = $(this).data("cat-ids");
+            if (id == 0) {
+                $("#catId").val(null);
+            } else {
+                $("#catId").val(id);
+            }
+            $("#filterForm").submit();
+        })
+
+        $("#orderByPrice").on('change', function () {
+
+            let selectedValue = $("#orderByPrice").val();
+
+            $("#sortingHidden").val(selectedValue);
+
+            $("#filterForm").submit();
+
+        })
+    </script>
+}

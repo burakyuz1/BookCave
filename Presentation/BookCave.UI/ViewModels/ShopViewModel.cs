@@ -1,4 +1,5 @@
-﻿using BookCave.Domain.Entities;
+﻿using BookCave.Application;
+using BookCave.Domain.Entities;
 using System.Collections.Generic;
 
 namespace BookCave.UI.ViewModels
@@ -9,6 +10,7 @@ namespace BookCave.UI.ViewModels
         public int? MinPrice { get; set; }
         public int? CategoryId { get; set; }
         public string CategoryName { get; set; }
+        public OrderType OrderType { get; set; }
         public List<Category> Categories { get; set; }
         public List<BookViewModel> Books { get; set; }
         public List<AuthorViewModel> Authors { get; set; }

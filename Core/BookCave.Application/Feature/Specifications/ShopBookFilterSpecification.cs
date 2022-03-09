@@ -7,8 +7,9 @@ namespace BookCave.Application.Feature.Specifications
 {
     public class ShopBookFilterSpecification : Specification<Book>
     {
-        public ShopBookFilterSpecification(List<int> authorIds, List<int> publisherIds, int? categoryId, int? min, int? max)
+        public ShopBookFilterSpecification(List<int> authorIds, List<int> publisherIds, int? categoryId, int? min, int? max, OrderType orderType)
         {
+
             if (categoryId.HasValue)
             {
                 Query.Where(x => x.CategoryId == categoryId.Value);
@@ -25,7 +26,18 @@ namespace BookCave.Application.Feature.Specifications
             {
                 Query.Where(x => publisherIds.Contains(x.PublisherId.Value));
             }
-            Query.OrderByDescending(x => x.SalesQuantity).Include(x => x.Publisher).Include(x => x.Author);
+            switch (orderType)
+            {
+                case OrderType.DECREASING:
+                    Query.OrderByDescending(x => x.UnitPrice).Include(x => x.Publisher).Include(x => x.Author);
+                    break;
+                case OrderType.INCREASING:
+                    Query.OrderBy(x => x.UnitPrice).Include(x => x.Publisher).Include(x => x.Author);
+                    break;
+                default:
+                    Query.OrderByDescending(x => x.SalesQuantity).Include(x => x.Publisher).Include(x => x.Author);
+                    break;
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using BookCave.UI.Abstracts.Shop;
+﻿using BookCave.Application;
+using BookCave.UI.Abstracts.Shop;
+using BookCave.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,9 @@ namespace BookCave.UI.Controllers
         {
             _shopService = shopService;
         }
-        public async Task<IActionResult> Index(List<int> authorIds, List<int> publisherIds, int? categoryId, int? min, int? max)
+        public async Task<IActionResult> Index(List<AuthorViewModel> authors , List<PublisherViewModel> publishers, int? categoryId, int? minPrice, int? maxPrice, OrderType orderType)
         {
-            var model = await _shopService.GetShopViewModelAsync(authorIds, publisherIds, categoryId, min, max);
+            var model = await _shopService.GetShopViewModelAsync(authors, publishers, categoryId, minPrice, maxPrice, orderType);
             return View(model);
         }
     }
