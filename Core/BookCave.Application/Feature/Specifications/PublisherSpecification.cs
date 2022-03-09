@@ -4,9 +4,9 @@ using BookCave.Domain.Entities;
 
 namespace BookCave.Application.Feature.Specifications
 {
-    public class ShopPublisherFilterSpecification : Specification<Publisher>
+    public class PublisherSpecification : Specification<Publisher>
     {
-        public ShopPublisherFilterSpecification()
+        public PublisherSpecification()
         {
             Query.OrderBy(x => x.Name);
         }

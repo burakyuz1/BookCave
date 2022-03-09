@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace BookCave.Application.Feature.Specifications
 {
-    public class ShopAuthorFilterSpecification : Specification<Author>
+    public class CategorySpecification : Specification<Category>
     {
-        public ShopAuthorFilterSpecification()
+        public CategorySpecification()
         {
-            Query.OrderBy(x => x.FullName);
+            Query.OrderBy(x => x.Name);
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using BookCave.BookCave.UI.Abstracts.Home;
-using BookCave.BookCave.UI.ViewModels;
+﻿using BookCave.UI.Abstracts.Home;
+using BookCave.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

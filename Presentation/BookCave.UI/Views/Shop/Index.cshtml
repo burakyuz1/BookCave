@@ -1,5 +1,4 @@
-﻿@model BookCategoryViewModel
-
+﻿@model ShopViewModel
 <div class="container">
     <div class="row">
         <!--LEFT ASIDE START-->
@@ -17,9 +16,6 @@
                                 </a>
                             </div>
                             <div class="mt-3 widget-content collapse show">
-                                @*<select asp-items="Model.Categories" asp-for="CategoryId">
-                                        <option value="">All</option>
-                                    </select>*@
                                 <ul>
 
                                     @foreach (var item in Model.Categories)
@@ -30,37 +26,60 @@
                                         </li>
                                     }
                                 </ul>
-
                             </div>
                         </div>
 
                         <div id="Authors" class="widget widget_search widget_author p-4d875 border">
-                            <div id="widgetHeading21" class="widget-head">
+                            <div class="widget-head">
                                 <a class="d-flex align-items-center justify-content-between text-dark">
                                     <h3 class="widget-title mb-0 font-weight-medium font-size-3">
                                         Author
                                     </h3>
                                 </a>
+
                             </div>
-                            <div id="widgetCollapse21" class="mt-4 widget-content">
-                                <vc:shop-author-filter />
+                            <div class="mt-4 widget-content">
+                                <ul class="product-categories">
+                                    @for (int i = 0; i < Model.Authors.Count; i++)
+                                    {
+                                        <li class="custom-checkbox pb-2">
+                                            <input type="checkbox" asp-for="Authors[i].IsSelected" id="@Model.Authors[i].AuthorId" />
+                                            <label for="@Model.Authors[i].AuthorId" class="d-inline-block ml-2">@Model.Authors[i].AuthorName</label>
+
+                                            <input type="hidden" asp-for="Authors[i].AuthorId" />
+                                            <input type="hidden" asp-for="Authors[i].AuthorName" />
+                                        </li>
+                                    }
+                                </ul>
                             </div>
                         </div>
 
                         <div id="Publisher" class="widget widget_search widget_author p-4d875 border">
-                            <div id="widgetHeading21" class="widget-head">
+                            <div class="widget-head">
                                 <a class="d-flex align-items-center justify-content-between text-dark">
                                     <h3 class="widget-title mb-0 font-weight-medium font-size-3">
                                         Publisher
                                     </h3>
                                 </a>
                             </div>
-                            <div id="widgetCollapse21" class="mt-4 widget-content">
-                                <vc:shop-publisher-filter />
+                            <div class="mt-4 widget-content">
+                                <ul class="product-categories">
+
+                                    @for (int i = 0; i < Model.Publishers.Count; i++)
+                                    {
+                                        <li class="custom-checkbox pb-2">
+                                            <input type="checkbox" asp-for="Publishers[i].IsSelected" id="@Model.Publishers[i].PublisherId" />
+                                            <label for="@Model.Publishers[i].PublisherId" class="d-inline-block ml-2">@Model.Publishers[i].PublisherName</label>
+
+                                            <input type="hidden" asp-for="Publishers[i].PublisherId" />
+                                            <input type="hidden" asp-for="Publishers[i].PublisherName" />
+                                        </li>
+                                    }
+                                </ul>
                             </div>
                         </div>
 
-                        <div id="woocommerce_price_filter-2" class="widget border p-4d875 woocommerce widget_price_filter">
+                        <div class="widget border p-4d875 woocommerce widget_price_filter">
                             <div class="widget-head" id="widgetHeading-woocommerce_price_filter-2">
                                 <a class="d-flex align-items-center justify-content-between text-dark">
                                     <h3 class="widget-title font-weight-medium font-size-3 mb-0">
@@ -68,23 +87,23 @@
                                     </h3>
                                 </a>
                             </div>
-                            <div id="widget-collapse-woocommerce_price_filter-2" class="mt-4 widget-content"
+                            <div class="mt-4 widget-content"
                                  aria-labelledby="widgetHeading-woocommerce_price_filter-2">
                                 <div class="row">
                                     <div class="float-left col-md-6 ">
                                         <span>Min$</span>
-                                        <input asp-for="Min" type="number" min=0 max=100 />
+                                        <input asp-for="MinPrice" type="number" min="0" max="1000" />
                                     </div>
                                     <div class="float:left col-md-6">
                                         <span>Max$</span>
-                                        <input asp-for="Max" type="number" min=0 max=100 />
+                                        <input asp-for="MaxPrice" type="number" min="0" max="1000" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button asp-route-categoryId="@Model.CategoryId" asp-route-max="@Model.Max" asp-route-min="@Model.Min" type="submit" class="btn btn-primary rounded-0 float-right">Filter</button>
+                        <button asp-route-categoryId="@Model.CategoryId" asp-route-max="@Model.MaxPrice" asp-route-min="@Model.MinPrice" type="submit" class="btn btn-primary rounded-0 float-right">Filter</button>
                     </div>
                 </form>
             </div>
@@ -185,30 +204,3 @@
         <!-- CONTENT END-->
     </div>
 </div>
-
-
-@section Scripts {
-
-    <script>
-        $("#filterForm").submit(function (e) {
-            const categories = $(".categoryList");
-            let selectedCategoryIds = [];
-            for (var i = 0; i < categories.length; i++) {
-                if (categories[i].checked) {
-                    selectedCategoryIds.push(categories[i].id)
-                }
-            }
-            console.log(JSON.stringify(selectedCategoryIds));
-            @*$.ajax({
-                url: '@Url.Action("Index","Shop")',
-                type: "GET",
-                data: { selectedCategoryIds: JSON.stringify(selectedCategoryIds)},
-                success: function (data) {
-                    alert("koray");
-                }
-            })*@
-
-        })
-
-    </script>
-}

@@ -1,25 +1,23 @@
-﻿using BookCave.BookCave.UI.Abstracts.Shop;
+﻿using BookCave.UI.Abstracts.Shop;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
 using System;
-using BookCave.BookCave.UI.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookCave.UI.Controllers
 {
     public class ShopController : Controller
     {
-        private readonly IBookCategoryService _bookCategoryService;
+        private readonly IShopService _shopService;
 
-        public ShopController(IBookCategoryService bookService)
+        public ShopController(IShopService shopService)
         {
-            _bookCategoryService = bookService;
+            _shopService = shopService;
         }
-        public async Task<IActionResult> Index(AuthorViewModel author, PublisherViewModel publisher,int? categoryId, int? min, int? max)
+        public async Task<IActionResult> Index(List<int> authorIds, List<int> publisherIds, int? categoryId, int? min, int? max)
         {
-            var model = await _bookCategoryService.GetBookCategoryViewModel(categoryId, author, min, max, publisher);
+            var model = await _shopService.GetShopViewModelAsync(authorIds, publisherIds, categoryId, min, max);
             return View(model);
         }
     }
