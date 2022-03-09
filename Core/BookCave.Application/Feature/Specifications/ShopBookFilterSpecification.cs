@@ -39,5 +39,11 @@ namespace BookCave.Application.Feature.Specifications
                     break;
             }
         }
+
+        public ShopBookFilterSpecification(List<int> authorIds, List<int> publisherIds, int? categoryId, int? min, int? max, OrderType orderType, int skip, int take) : this(authorIds, publisherIds, categoryId, min, max, orderType)
+        {
+            Query.Skip(skip).Take(take);
+        }
+
     }
 }

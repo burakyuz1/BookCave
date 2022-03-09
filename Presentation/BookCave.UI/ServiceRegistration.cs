@@ -11,7 +11,7 @@ namespace BookCave.UI
         public static void AddInfrastructureServices(this IServiceCollection service)
         {
             service.AddScoped<IHomeService, HomeService>();
-            service.AddScoped<IShopService, ShopService>();
+            service.AddScoped<IShopViewModelService, ShopViewModelService>();
         }
     }
 }

@@ -11,15 +11,21 @@ namespace BookCave.UI.Controllers
 {
     public class ShopController : Controller
     {
-        private readonly IShopService _shopService;
+        private readonly IShopViewModelService _shopService;
 
-        public ShopController(IShopService shopService)
+        public ShopController(IShopViewModelService shopService)
         {
             _shopService = shopService;
         }
-        public async Task<IActionResult> Index(List<AuthorViewModel> authors , List<PublisherViewModel> publishers, int? categoryId, int? minPrice, int? maxPrice, OrderType orderType)
+        public async Task<IActionResult> Index(
+            List<AuthorViewModel> authors,
+            List<PublisherViewModel> publishers,
+            int? categoryId,
+            int? minPrice, int? maxPrice,
+            OrderType orderType,
+            byte pageNumber = 1)
         {
-            var model = await _shopService.GetShopViewModelAsync(authors, publishers, categoryId, minPrice, maxPrice, orderType);
+            var model = await _shopService.GetShopViewModelAsync(authors, publishers, categoryId, minPrice, maxPrice, orderType, pageNumber);
             return View(model);
         }
     }

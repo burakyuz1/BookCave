@@ -5,6 +5,7 @@
         <div class="col-md-3">
             <div id="secondary" class="sidebar widget-area order-1" role="complementary">
                 <form id="filterForm" method="get">
+
                     <div class="mb-2">
                         <!--FILTER CATEGORY START-->
                         <div class="widget p-4d875 border woocommerce widget_product_categories">
@@ -18,6 +19,7 @@
                             <div class="mt-3 widget-content">
                                 <input type="hidden" id="catId" asp-for="CategoryId" value="@Model.CategoryId" />
                                 <input id="sortingHidden" type="hidden" asp-for="OrderType" value="@Model.OrderType" />
+                                <input type="hidden" id="pageStatu" name="pageNumber" />
                                 <ul>
                                     <li>
                                         <a data-cat-ids="0" style="cursor:pointer">All</a>
@@ -106,7 +108,6 @@
                             </div>
                         </div>
                         <!--FILTER PRICE END-->
-
                     </div>
                     <div>
                         <button asp-route-categoryId="@Model.CategoryId" asp-route-max="@Model.MaxPrice" asp-route-min="@Model.MinPrice" type="submit" class="btn btn-primary rounded-0 float-right">Filter</button>
@@ -186,20 +187,41 @@
                         </ul>
                     </div>
                 </div>
+                <!--PAGINATION START-->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
-                        <li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="flex-shrink-0 flex-md-shrink-1 page-item active" aria-current="page">
-                            <a class="page-link"
-                               href="#">3</a>
+                        @{ var pageInfo = Model.PaginationInfo; }
+
+                        <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasPrevious ? "" : "disabled")"><a style="cursor:pointer" id="previousPage" class="page-link">Previous</a></li>
+
+
+                        @foreach (var i in pageInfo.PageNumbers)
+                        {
+                            if (i == -1)
+                            {
+                                <li class="flex-shrink-0 flex-md-shrink-1 page-item disabled"><a style="cursor:pointer" class="page-link">&hellip;</a></li>
+
+                            }
+                            else
+                            {
+                                if (@pageInfo.CurrentPage == i)
+                                {
+                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item active"><a style="cursor:pointer" data-page-id="@i" class="page-link">@(i)</a></li>
+                                }
+                                else
+                                {
+                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item"><a style="cursor:pointer" data-page-id="@i" class="page-link">@(i)</a></li>
+                                }
+                            }
+                        }
+
+                        <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasNext ? "" : "disabled")">
+                            <a style="cursor:pointer" id="nextPage" class="page-link">Next</a>
                         </li>
-                        <li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="flex-shrink-0 flex-md-shrink-1 page-item"><a class="page-link" href="#">Next</a></li>
                     </ul>
                 </nav>
+                <!--PAGINATION END-->
+
             </div>
         </div>
         <!-- CONTENT END-->
@@ -226,11 +248,27 @@
         $("#orderByPrice").on('change', function () {
 
             let selectedValue = $("#orderByPrice").val();
-
             $("#sortingHidden").val(selectedValue);
-
             $("#filterForm").submit();
+        })
 
+        $("#previousPage").click(function (e) {
+
+            var destinationPage = '@(Model.PaginationInfo.CurrentPage - 1)'
+            $("#pageStatu").val(destinationPage);
+            $("#filterForm").submit();
+        })
+
+        $("#nextPage").click(function (e) {
+            var destinationPage = '@(Model.PaginationInfo.CurrentPage + 1)'
+            $("#pageStatu").val(destinationPage);
+            $("#filterForm").submit();
+        })
+
+        $("[data-page-id]").click(function () {
+            let id = $(this).data("page-id");
+            $("#pageStatu").val(id);
+            $("#filterForm").submit();
         })
     </script>
 }
