@@ -21,7 +21,7 @@ namespace BookCave.UI
             services.AddPersistanceServices(Configuration);
 
             services.AddInfrastructureServices();
-            
+
             services.AddControllersWithViews();
         }
 
@@ -31,13 +31,22 @@ namespace BookCave.UI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => endpoints.MapControllerRoute(
-              name: "default",
-              pattern: "{controller=Home}/{action=Index}/{id?}"
-            ));
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+            });
         }
     }
 }

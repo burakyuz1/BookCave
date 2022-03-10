@@ -1,5 +1,7 @@
 using BookCave.Persistance.EntityFramework;
+using BookCave.Persistance.Identity;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
@@ -16,6 +18,11 @@ namespace BookCave.UI
             {
                 var context = scope.ServiceProvider.GetRequiredService<BookCaveDbContext>();
                 await BookCaveDbContextSeed.SeedDataAsync(context);
+
+
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                await IdentityBookCaveDbContextSeed.SeedAsync(roleManager, userManager);
             }
 
             host.Run();

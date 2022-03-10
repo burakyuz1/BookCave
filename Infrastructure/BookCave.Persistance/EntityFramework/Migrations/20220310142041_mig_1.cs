@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BookCave.Persistance.Migrations
+namespace BookCave.Persistance.EntityFramework.Migrations
 {
     public partial class mig_1 : Migration
     {

@@ -4,14 +4,16 @@ using BookCave.Persistance.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BookCave.Persistance.Migrations
+namespace BookCave.Persistance.EntityFramework.Migrations
 {
     [DbContext(typeof(BookCaveDbContext))]
-    partial class BookCaveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220310142041_mig_1")]
+    partial class mig_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

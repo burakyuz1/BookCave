@@ -10,18 +10,18 @@ namespace BookCave.Persistance.EntityFramework
         {
             if (db.Categories.Any() || db.Books.Any() || db.Authors.Any() || db.Publishers.Any()) return;
 
-            Author author1 = new() { FullName = "David" };
-            Author author2 = new() { FullName = "Jackson" };
-            Author author3 = new() { FullName = "Beckham" };
+            Author author1 = new() { FullName = "Author1" };
+            Author author2 = new() { FullName = "Author2" };
+            Author author3 = new() { FullName = "Author3" };
 
             Category category1 = new() { Name = "Romance" };
             Category category2 = new() { Name = "Biography" };
             Category category3 = new() { Name = "Science-Fiction" };
             Category category4 = new() { Name = "Horror" };
 
-            Publisher publisher1 = new() { Name = "Golden Books" };
-            Publisher publisher2 = new() { Name = "Life Books" };
-            Publisher publisher3 = new() { Name = "Flowers Books" };
+            Publisher publisher1 = new() { Name = "Publisher1" };
+            Publisher publisher2 = new() { Name = "Publisher2" };
+            Publisher publisher3 = new() { Name = "Publisher3" };
 
             Book book1 = new()
             {
@@ -51,7 +51,7 @@ namespace BookCave.Persistance.EntityFramework
                 Status = true,
                 UnitPrice = 49.37m,
                 PublishYear = 2011,
-                Category = category2
+                Category = category1
             };
             Book book3 = new()
             {
@@ -66,7 +66,7 @@ namespace BookCave.Persistance.EntityFramework
                 Status = true,
                 UnitPrice = 15.33m,
                 PublishYear = 2000,
-                Category = category3
+                Category = category1
             };
             Book book4 = new()
             {
@@ -111,7 +111,7 @@ namespace BookCave.Persistance.EntityFramework
                 Status = true,
                 UnitPrice = 65.99m,
                 PublishYear = 2018,
-                Category = category3
+                Category = category4
             };
             Book book7 = new()
             {
@@ -126,7 +126,7 @@ namespace BookCave.Persistance.EntityFramework
                 Status = true,
                 UnitPrice = 45.55m,
                 PublishYear = 2011,
-                Category = category2
+                Category = category3
             };
             Book book8 = new()
             {
@@ -136,12 +136,12 @@ namespace BookCave.Persistance.EntityFramework
                 ImageUri = "thehunger.jpg",
                 Stock = 20,
                 Author = author2,
-                Publisher = publisher1,
+                Publisher = publisher2,
                 NumberOfPages = 374,
                 Status = true,
                 UnitPrice = 27.95m,
                 PublishYear = 2008,
-                Category = category1
+                Category = category3
             };
             Book book9 = new()
             {
@@ -156,7 +156,7 @@ namespace BookCave.Persistance.EntityFramework
                 Status = true,
                 UnitPrice = 32.99m,
                 PublishYear = 2013,
-                Category = category2
+                Category = category3
             };
             Book book10 = new()
             {
@@ -171,7 +171,7 @@ namespace BookCave.Persistance.EntityFramework
                 Status = true,
                 UnitPrice = 25.99m,
                 PublishYear = 2011,
-                Category = category3
+                Category = category2
             };
             Book book11 = new()
             {
@@ -186,7 +186,7 @@ namespace BookCave.Persistance.EntityFramework
                 Status = true,
                 UnitPrice = 15.99m,
                 PublishYear = 2016,
-                Category = category4
+                Category = category2
             };
             Book book12 = new()
             {

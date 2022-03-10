@@ -1,5 +1,6 @@
 ﻿using BookCave.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace BookCave.Persistance.EntityFramework
 {
@@ -20,7 +21,8 @@ namespace BookCave.Persistance.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BookCaveDbContext).Assembly);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
