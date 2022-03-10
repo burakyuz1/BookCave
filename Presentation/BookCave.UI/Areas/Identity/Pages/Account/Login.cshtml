@@ -5,81 +5,59 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
             <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
+                <div class="p-4 p-md-6">
+                    <div class="form-group mb-4">
+                        <div class="js-form-message js-focus-state">
+                            <label asp-for="Input.Email" class="form-label">Email *</label>
+                            <input asp-for="Input.Email" type="email" class="form-control rounded-0 height-4 px-4" placeholder="Your mail" required="">
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
+                    <div class="form-group mb-4">
+                        <div class="js-form-message js-focus-state">
+                            <label asp-for="Input.Password" class="form-label" for="signinPassword">Password *</label>
+                            <input asp-for="Input.Password" type="password" class="form-control rounded-0 height-4 px-4" placeholder="Your password" required="">
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-5 align-items-center">
+
+                        <div class="js-form-message">
+                            <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
+                                <input asp-for="Input.RememberMe" type="checkbox" class="custom-control-input">
+                                <label class="custom-control-label" asp-for="Input.RememberMe">
+                                    <span class="font-size-2 text-secondary-gray-700">
+                                        Remember me
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <a class="js-animation-link text-dark font-size-2 t-d-u link-muted font-weight-medium" id="forgot-password" asp-page="./ForgotPassword">Forgot Password?</a>
+                    </div>
+                    <div class="mb-4d75">
+                        <button type="submit" class="btn btn-block py-3 rounded-0 btn-dark">Sign In</button>
+                    </div>
+                    <div class="mb-2">
+                        <a class="btn btn-block py-3 rounded-0 btn-outline-dark font-weight-medium" asp-area="Identity" asp-page="/Account/Register">Create Account</a>
+                    </div>
                 </div>
             </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+        </div>
+        <div class="col-md-6">
+
+            <p class="pt-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dui eros, suscipit ut blandit in, tincidunt commodo nisi. Aliquam erat volutpat. Aliquam massa mi, pretium at vehicula eget, congue sed tortor. Donec condimentum lorem id molestie ornare. Praesent vitae urna egestas, congue diam vitae, porta mi. Fusce non accumsan tortor, ut tempor purus. Duis purus augue, euismod in lobortis et, faucibus vitae enim. Vivamus et purus eu ipsum tempor condimentum. Mauris at urna magna. Vivamus ac orci.  Donec condimentum lorem id molestie ornare. Praesent vitae urna egestas, congue diam vitae, porta mi. Donec condimentum lorem id molestie ornare. Praesent vitae urna egestas, congue diam vitae, porta mi. Fusce non accumsan tortor, ut tempor purus. Duis purus augue, euismod in lobortis et, faucibus vitae enim. Vivamus et purus eu ipsum tempor condimentum. Mauris at urna magna. Vivamus ac orci.  Fusce non accumsan tortor, ut tempor purus. Duis purus augue, euismod in lobortis et, faucibus vitae enim. Vivamus et purus eu ipsum tempor condimentum. Mauris at urna magna. Vivamus ac orci. </p>
+        </div>
     </div>
 </div>
 
 @section Scripts {
+
     <partial name="_ValidationScriptsPartial" />
 }

@@ -12,15 +12,15 @@ namespace BookCave.UI.Controllers
         {
             return View();
         }
-          public IActionResult Comments()
+        public IActionResult Comments()
         {
             return View();
         }
-          public IActionResult Addresses()
+        public IActionResult Addresses()
         {
             return View();
         }
-          public IActionResult Details()
+        public IActionResult Details()
         {
             return View();
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookCave.UI.Concretes.Home
 {
-    public class HomeService : IHomeService
+    public class HomeService : IHomeService //HOMEVIEMODEL SERVICE DIYE DEGISCEK
     {
         private readonly IRepository<Book> _repository;
 
