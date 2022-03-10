@@ -1,17 +1,18 @@
 ﻿using BookCave.Application.Abstracts.Repository;
+using BookCave.Application.Enums;
 using BookCave.Application.Feature.Specifications;
+using BookCave.Domain.Entities;
 using BookCave.UI.Abstracts.Shop;
 using BookCave.UI.ViewModels;
-using BookCave.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BookCave.Application;
-using System;
+
 
 namespace BookCave.UI.Concretes.Shop
 {
-    public class ShopViewModelService : IShopViewModelService 
+    public class ShopViewModelService : IShopViewModelService
     {
         private readonly IRepository<Book> _bookRepository;
         private readonly IRepository<Category> _categoryRepository;
@@ -38,43 +39,38 @@ namespace BookCave.UI.Concretes.Shop
             int? min,
             int? max,
             OrderType orderType,
+            string keyword,
+            SearchType searchType,
             byte pageNumber)
         {
-            var authorIds = authors.Where(x => x.IsSelected).Select(x => x.AuthorId).ToList();
-            var publisherIds = publishers.Where(x => x.IsSelected).Select(x => x.PublisherId).ToList();
+            var authorIds = authors.Where(x => x.IsSelected).Select(x => x.Id).ToList();
+            var publisherIds = publishers.Where(x => x.IsSelected).Select(x => x.Id).ToList();
 
-            int filteredTotalBookCount = await _bookRepository.CountAsync(new ShopBookFilterSpecification(authorIds, publisherIds, categoryId, min, max, orderType));
+            int filteredTotalBookCount = await _bookRepository.CountAsync(new ShopBookFilterSpecification(authorIds, publisherIds, categoryId, min, max, orderType, keyword, searchType));
 
             int totalPageCount = (int)Math.Ceiling((double)filteredTotalBookCount / Constants.ITEMS_PER_PAGE);
 
             List<Author> authorsDb = await _authorRepository.GetAllAsync(new AuthorSpecification());
             List<Publisher> publishersDb = await _publisherRepository.GetAllAsync(new PublisherSpecification());
             List<Category> categories = await _categoryRepository.GetAllAsync(new CategorySpecification());
-            List<Book> filteredPageBooks = await _bookRepository.GetAllAsync(new ShopBookFilterSpecification(authorIds, publisherIds, categoryId, min, max, orderType, (pageNumber - 1) * Constants.ITEMS_PER_PAGE, Constants.ITEMS_PER_PAGE));
+            List<Book> filteredPageBooks = await _bookRepository.GetAllAsync(new ShopBookFilterSpecification(authorIds, publisherIds, categoryId, min, max, orderType, (pageNumber - 1) * Constants.ITEMS_PER_PAGE, Constants.ITEMS_PER_PAGE,keyword, searchType));
 
-            #region Refactor
+
             var publishersFilterById = publishersDb.Select(x => new PublisherViewModel()
             {
-                PublisherId = x.Id,
+                Id = x.Id,
                 PublisherName = x.Name,
                 IsSelected = false
             }).ToList();
-
-            foreach (var item in publishersFilterById)
-                if (publisherIds.Contains(item.PublisherId))
-                    item.IsSelected = true;
+            SetTrueSelectedItem(publishersFilterById, publisherIds);
 
             var authorsFilterById = authorsDb.Select(x => new AuthorViewModel() //KOMPLE YAZARLAR
             {
-                AuthorId = x.Id,
+                Id = x.Id,
                 AuthorName = x.FullName,
                 IsSelected = false
             }).ToList();
-
-            foreach (var item in authorsFilterById)
-                if (authorIds.Contains(item.AuthorId))
-                    item.IsSelected = true;
-            #endregion
+            SetTrueSelectedItem(authorsFilterById, authorIds);
 
             return new()
             {
@@ -86,6 +82,7 @@ namespace BookCave.UI.Concretes.Shop
                 Authors = authorsFilterById,
                 Publishers = publishersFilterById,
                 Categories = categories,
+                Keyword = keyword,
                 PaginationInfo = new PaginationInfoViewModel()
                 {
                     CurrentPage = pageNumber,
@@ -93,7 +90,7 @@ namespace BookCave.UI.Concretes.Shop
                     ItemsOnPage = (byte)filteredPageBooks.Count,
                     TotalPages = totalPageCount,
                     HasNext = pageNumber < totalPageCount,
-                    HasPrevious = pageNumber > 1 
+                    HasPrevious = pageNumber > 1
                 },
                 Books = filteredPageBooks.Select(x => new BookViewModel()
                 {
@@ -105,6 +102,13 @@ namespace BookCave.UI.Concretes.Shop
                     AuthorName = x.Author.FullName
                 }).ToList()
             };
+        }
+
+        private void SetTrueSelectedItem<T>(ICollection<T> filteredList, List<int> ids)
+        {
+            foreach (dynamic item in filteredList)
+                if (ids.Contains(item.Id))
+                    item.IsSelected = true;
         }
     }
 }

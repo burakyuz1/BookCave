@@ -20,6 +20,7 @@
                                 <input type="hidden" id="catId" asp-for="CategoryId" value="@Model.CategoryId" />
                                 <input id="sortingHidden" type="hidden" asp-for="OrderType" value="@Model.OrderType" />
                                 <input type="hidden" id="pageStatu" name="pageNumber" />
+                                <input type="hidden" id="searchKeyword" asp-for="Keyword" />
                                 <ul>
                                     <li>
                                         <a data-cat-ids="0" style="cursor:pointer">All</a>
@@ -48,10 +49,10 @@
                                     @for (int i = 0; i < Model.Authors.Count; i++)
                                     {
                                         <li class="custom-checkbox pb-2">
-                                            <input type="checkbox" asp-for="Authors[i].IsSelected" id="author-@Model.Authors[i].AuthorId" />
-                                            <label for="author-@Model.Authors[i].AuthorId" class="d-inline-block ml-2">@Model.Authors[i].AuthorName</label>
+                                            <input type="checkbox" asp-for="Authors[i].IsSelected" id="author-@Model.Authors[i].Id" />
+                                            <label for="author-@Model.Authors[i].Id" class="d-inline-block ml-2">@Model.Authors[i].AuthorName</label>
 
-                                            <input type="hidden" asp-for="Authors[i].AuthorId" />
+                                            <input type="hidden" asp-for="Authors[i].Id" />
                                             <input type="hidden" asp-for="Authors[i].AuthorName" />
                                         </li>
                                     }
@@ -74,10 +75,10 @@
                                     @for (int i = 0; i < Model.Publishers.Count; i++)
                                     {
                                         <li class="custom-checkbox pb-2">
-                                            <input type="checkbox" asp-for="Publishers[i].IsSelected" id="publisher-@Model.Publishers[i].PublisherId" />
-                                            <label for="publisher-@Model.Publishers[i].PublisherId" class="d-inline-block ml-2">@Model.Publishers[i].PublisherName</label>
+                                            <input type="checkbox" asp-for="Publishers[i].IsSelected" id="publisher-@Model.Publishers[i].Id" />
+                                            <label for="publisher-@Model.Publishers[i].Id" class="d-inline-block ml-2">@Model.Publishers[i].PublisherName</label>
 
-                                            <input type="hidden" asp-for="Publishers[i].PublisherId" />
+                                            <input type="hidden" asp-for="Publishers[i].Id" />
                                             <input type="hidden" asp-for="Publishers[i].PublisherName" />
                                         </li>
                                     }
@@ -125,6 +126,13 @@
                         <div class="shop-control-bar d-lg-flex justify-content-between align-items-center mb-5 text-center text-md-left">
                             <div class="shop-control-bar__left mb-4 m-lg-0">
                                 <h1 class="woocommerce-result-count m-0">@(Model.CategoryName ?? "")</h1>
+                                @if (!string.IsNullOrEmpty(Model.Keyword))
+                                {
+                                    <h6 class="woocommerce-result-count m-0 text-muted">
+                                        Your search result for <strong>'@(Model.Keyword)'</strong>
+                                        <a href="#" id="deleteKeyword"><i class="fas fa-times"></i></a>
+                                    </h6>
+                                }
                             </div>
                             <div class="shop-control-bar__right d-md-flex align-items-center">
                                 <select id="orderByPrice" class="selectpicker dropdown-select orderby" name="orderby" data-style="border-bottom shadow-none outline-none py-2">
@@ -233,6 +241,8 @@
         $(document).ready(function () {
             let selectedSortingType = $("#sortingHidden").val();
             $(`#orderByPrice option[value=${selectedSortingType}]`).prop("selected", true);
+
+
         })
 
         $("[data-cat-ids]").click(function () {
@@ -253,7 +263,6 @@
         })
 
         $("#previousPage").click(function (e) {
-
             var destinationPage = '@(Model.PaginationInfo.CurrentPage - 1)'
             $("#pageStatu").val(destinationPage);
             $("#filterForm").submit();
@@ -269,6 +278,13 @@
             let id = $(this).data("page-id");
             $("#pageStatu").val(id);
             $("#filterForm").submit();
+        })
+
+        $("#deleteKeyword").click(function (e) {
+            $("#searchKeyword").val("");
+            var parentEl = ($(this)[0].parentElement);
+            $("#filterForm").submit();
+            parentEl.hidden = true;
         })
     </script>
 }

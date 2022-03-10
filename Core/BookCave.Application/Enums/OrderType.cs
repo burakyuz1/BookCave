@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookCave.Application
+namespace BookCave.Application.Enums
 {
     public enum OrderType
     {

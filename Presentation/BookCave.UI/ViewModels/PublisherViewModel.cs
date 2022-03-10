@@ -4,7 +4,7 @@ namespace BookCave.UI.ViewModels
 {
     public class PublisherViewModel
     {
-        public int PublisherId { get; set; }
+        public int Id { get; set; }
         public string PublisherName { get; set; }
         public bool IsSelected { get; set; }
     }

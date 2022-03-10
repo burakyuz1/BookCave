@@ -11,8 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link href="~/lib/animate/animate.css" rel="stylesheet" />
     <link href="~/lib/bootstrap/bootstrap-select.min.css" rel="stylesheet" />
@@ -61,20 +61,20 @@
                             </ul>
                         </div>
                         <div class="site-search ml-xl-0 ml-md-auto w-r-100 flex-grow-1 mr-md-5 mt-2 mt-md-0 py-2 py-md-0">
-                            <form class="form-inline my-2 my-xl-0">
+                            <form id="formSearch" class="form-inline my-2 my-xl-0" asp-controller="Shop" asp-action="Index" method="get">
+                                <input type="hidden" name="keyword" id="searchKeywordHidden" />
+                                <input type="hidden" name="searchType" id="searchHidden" />
                                 <div class="input-group input-group-borderless w-100">
-                                    <input type="text" class="form-control rounded-left-1 px-3 border-right"
-                                           placeholder="Search for books by keyword"
-                                           aria-label="Amount (to the nearest dollar)" />
+                                    <input id="txtKeyword" type="text" class="form-control rounded-left-1 px-3 border-right"
+                                           placeholder="Keyword for filtering option" />
                                     <div class="input-group-append ml-0">
                                         <select class="d-none d-lg-block custom-select pr-7 pl-4 rounded-0 shadow-none border-0 text-dark"
-                                                id="inputGroupSelect01">
-                                            <option selected>All Categories</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                                id="searchFilter">
+                                            <option value="BY_BOOK_NAME">By book name</option>
+                                            <option value="BY_PUBLISHER_NAME">By publisher name</option>
+                                            <option value="BY_AUTHOR_NAME">By author name</option>
                                         </select>
-                                        <button class="btn btn-primary-yellow px-3 py-2" type="submit">
+                                        <button id="btnSearch" class="btn btn-primary-yellow px-3 py-2" type="button">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
                                     </div>
@@ -869,7 +869,6 @@
     <script src="~/lib/hs/js/hs.slick-carousel.js"></script>
     <script src="~/lib/hs/js/hs.show-animation.js"></script>
     <script src="~/lib/hs/js/hs.selectpiker.js"></script>
-    @*<script src="~/lib/bootstrap/js/filter.js"></script>*@
 
     <script>
         $(document).on("ready", function () {
@@ -915,6 +914,15 @@
                 }
             });
         });
+        $("#btnSearch").click(function (event) {
+            let keyword = $("#txtKeyword").val().trim();
+            $("#searchKeywordHidden").val(keyword);
+            let type = $("#searchFilter").val();
+            $("#searchHidden").val(type);
+            if (keyword != "") {
+                $("#formSearch").submit();
+            }
+        })
     </script>
 
     @await RenderSectionAsync("Scripts", false)
