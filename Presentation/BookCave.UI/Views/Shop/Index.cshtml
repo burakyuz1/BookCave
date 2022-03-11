@@ -175,7 +175,7 @@
                                                 </div>
                                             </div>
                                             <div class="product__hover d-flex align-items-center">
-                                                <a href=".#"
+                                                <a data-add-cart="@book.ISBN" href=".#" 
                                                    class="text-uppercase text-dark h-dark font-weight-medium mr-auto" data-toggle="tooltip"
                                                    data-placement="right" title="" data-original-title="ADD TO CART">
                                                     <span class="product__add-to-cart">ADD TO CART</span>
@@ -238,11 +238,25 @@
 
 @section Scripts{
     <script>
+        $("[data-add-cart]").click(function (event) {
+            event.preventDefault();
+            let bookIsbn = $(this).data('add-cart');
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddBookToCart", "Cart")',
+                data: { isbn: bookIsbn},
+                success: function (data) {
+                    $("#totalCartLinesCount").text(data.totalCartLines);
+                    $("#totalCartLinePrice").text(data.totalPriceCartLine);
+                }
+            })
+
+        })
+
         $(document).ready(function () {
             let selectedSortingType = $("#sortingHidden").val();
             $(`#orderByPrice option[value=${selectedSortingType}]`).prop("selected", true);
-
-
         })
 
         $("[data-cat-ids]").click(function () {

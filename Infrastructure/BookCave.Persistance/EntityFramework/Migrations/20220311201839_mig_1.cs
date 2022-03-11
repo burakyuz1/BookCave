@@ -21,6 +21,19 @@ namespace BookCave.Persistance.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Carts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Carts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -120,6 +133,33 @@ namespace BookCave.Persistance.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CartLines",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ISBN = table.Column<string>(type: "nvarchar(13)", nullable: true),
+                    CartId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartLines", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CartLines_Books_ISBN",
+                        column: x => x.ISBN,
+                        principalTable: "Books",
+                        principalColumn: "ISBN",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CartLines_Carts_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Carts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Comments",
                 columns: table => new
                 {
@@ -185,6 +225,16 @@ namespace BookCave.Persistance.EntityFramework.Migrations
                 column: "PublisherId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CartLines_CartId",
+                table: "CartLines",
+                column: "CartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartLines_ISBN",
+                table: "CartLines",
+                column: "ISBN");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comments_ISBN",
                 table: "Comments",
                 column: "ISBN");
@@ -198,6 +248,9 @@ namespace BookCave.Persistance.EntityFramework.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "CartLines");
+
+            migrationBuilder.DropTable(
                 name: "Comments");
 
             migrationBuilder.DropTable(
@@ -205,6 +258,9 @@ namespace BookCave.Persistance.EntityFramework.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderDetails");
+
+            migrationBuilder.DropTable(
+                name: "Carts");
 
             migrationBuilder.DropTable(
                 name: "Books");

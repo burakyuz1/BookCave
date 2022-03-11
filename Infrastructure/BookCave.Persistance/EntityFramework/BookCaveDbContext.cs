@@ -17,6 +17,8 @@ namespace BookCave.Persistance.EntityFramework
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartLine> CartLines { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

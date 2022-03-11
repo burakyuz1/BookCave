@@ -26,5 +26,6 @@ namespace BookCave.Domain.Entities
         public Category Category { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<CartLine> CartLines { get; set; }
     }
 }

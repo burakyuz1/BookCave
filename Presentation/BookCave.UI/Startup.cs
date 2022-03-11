@@ -1,3 +1,5 @@
+using BookCave.Application.Abstracts;
+using BookCave.Application.Concretes;
 using BookCave.Infrastructure;
 using BookCave.Persistance;
 using Microsoft.AspNetCore.Builder;
@@ -18,6 +20,7 @@ namespace BookCave.UI
         }
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddPersistanceServices(Configuration);
 
             services.AddInfrastructureServices();

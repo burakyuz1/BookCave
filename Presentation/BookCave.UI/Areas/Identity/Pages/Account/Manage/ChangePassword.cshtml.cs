@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using BookCave.Persistance.Identity;
+﻿using BookCave.Persistance.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace BookCave.UI.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
@@ -26,6 +27,8 @@ namespace BookCave.UI.Areas.Identity.Pages.Account.Manage
             _logger = logger;
         }
 
+        public string Mail { get; set; }
+
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -34,6 +37,14 @@ namespace BookCave.UI.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+
+            [Required]
+            [Display(Name = "New Name")]
+            public string NewName { get; set; }
+            [Required]
+            [Display(Name = "New Last Name")]
+            public string NewLastName { get; set; }
+
             [Required]
             [DataType(DataType.Password)]
             [Display(Name = "Current password")]
@@ -51,6 +62,20 @@ namespace BookCave.UI.Areas.Identity.Pages.Account.Manage
             public string ConfirmPassword { get; set; }
         }
 
+        private void LoadInputModel(ApplicationUser user)
+        {
+            var userName = user.Name;
+            var userLastName = user.LastName;
+
+            Mail = user.UserName;
+
+            Input = new InputModel()
+            {
+                NewName = user.Name,
+                NewLastName = user.LastName
+            };
+        }
+
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -62,8 +87,10 @@ namespace BookCave.UI.Areas.Identity.Pages.Account.Manage
             var hasPassword = await _userManager.HasPasswordAsync(user);
             if (!hasPassword)
             {
-                return RedirectToPage("./SetPassword");
+                return RedirectToPage("./SetPassword"); //KÖTÜ VİEW
             }
+
+            LoadInputModel(user);
 
             return Page();
         }

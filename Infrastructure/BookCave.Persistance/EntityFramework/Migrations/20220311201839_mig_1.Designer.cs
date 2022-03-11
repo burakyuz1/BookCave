@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookCave.Persistance.EntityFramework.Migrations
 {
     [DbContext(typeof(BookCaveDbContext))]
-    [Migration("20220310142041_mig_1")]
+    [Migration("20220311201839_mig_1")]
     partial class mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,6 +98,46 @@ namespace BookCave.Persistance.EntityFramework.Migrations
                     b.HasIndex("PublisherId");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("BookCave.Domain.Entities.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CustomerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("BookCave.Domain.Entities.CartLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ISBN")
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ISBN");
+
+                    b.ToTable("CartLines");
                 });
 
             modelBuilder.Entity("BookCave.Domain.Entities.Category", b =>
@@ -268,6 +308,21 @@ namespace BookCave.Persistance.EntityFramework.Migrations
                     b.Navigation("Publisher");
                 });
 
+            modelBuilder.Entity("BookCave.Domain.Entities.CartLine", b =>
+                {
+                    b.HasOne("BookCave.Domain.Entities.Cart", null)
+                        .WithMany("CartLines")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookCave.Domain.Entities.Book", "Book")
+                        .WithMany("CartLines")
+                        .HasForeignKey("ISBN");
+
+                    b.Navigation("Book");
+                });
+
             modelBuilder.Entity("BookCave.Domain.Entities.Comment", b =>
                 {
                     b.HasOne("BookCave.Domain.Entities.Book", "Book")
@@ -303,9 +358,16 @@ namespace BookCave.Persistance.EntityFramework.Migrations
 
             modelBuilder.Entity("BookCave.Domain.Entities.Book", b =>
                 {
+                    b.Navigation("CartLines");
+
                     b.Navigation("Comments");
 
                     b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("BookCave.Domain.Entities.Cart", b =>
+                {
+                    b.Navigation("CartLines");
                 });
 
             modelBuilder.Entity("BookCave.Domain.Entities.Category", b =>
