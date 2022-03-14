@@ -1,4 +1,5 @@
-﻿using BookCave.Domain.Entities.Common;
+﻿using BookCave.Domain.Abstracts;
+using BookCave.Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookCave.Domain.Entities
 {
-    public class CartLine : BaseEntity
+    public class CartLine : BaseEntity, IEntity
     {
         public Book Book { get; set; }
         public string ISBN { get; set; }

@@ -26,15 +26,13 @@ namespace BookCave.UI.Concretes.Carts
             _cartService = cartService;
         }
 
-        public async Task<CartViewModel> AddToCartAsync(string isbn, int quantity)
+        public async Task<CartViewModel> GetCartViewModel()
         {
-            var cart = await GetOrCreateCartAsync();
-            cart = await _cartService.AddCartLineToCart(isbn, quantity, cart.Id);
-
-            return CartToViewModel(cart);
+            return await GetCartVm();
         }
 
-        private async Task<CartViewModel> GetCartViewModel()
+
+        private async Task<CartViewModel> GetCartVm()
         {
             int cartId = (await GetOrCreateCartAsync()).Id;
             var cart = await _cartRepository.FirstOrDefaultAsync(new CartSpecification(cartId));
@@ -43,16 +41,39 @@ namespace BookCave.UI.Concretes.Carts
 
         public async Task<decimal> GetTotalPriceCartLinesAsync()
         {
-            var cartVM = await GetCartViewModel();
+            var cartVM = await GetCartVm();
             return cartVM.TotalPrice;
         }
 
         public async Task<int> GetCartLinesCountAsync()
         {
-            var cartVM = await GetCartViewModel();
+            var cartVM = await GetCartVm();
             return cartVM.TotalCartLines;
         }
+        public async Task<CartViewModel> AddToCartAsync(string isbn, int quantity)
+        {
+            var cart = await GetOrCreateCartAsync();
+            cart = await _cartService.AddCartLineToCart(isbn, quantity, cart.Id);
 
+            return CartToViewModel(cart);
+        }
+        public async Task<CartViewModel> UpdateCartAsync(Dictionary<int, int> quantities)
+        {
+            var cartId = (await GetOrCreateCartAsync()).Id;
+            var cart = await _cartService.SetQuantitiesAsync(cartId, quantities);
+            return CartToViewModel(cart);
+        }
+        public async Task RemoveCartAsync()
+        {
+            var cartId = (await GetOrCreateCartAsync()).Id;
+            await _cartService.RemoveCartAsync(cartId);
+        }
+
+        public async Task RemoveCartLineAsync(int cartLineId)
+        {
+            var cartId = (await GetOrCreateCartAsync()).Id;
+            await _cartService.RemoveCartLineFromCartAsync(cartId, cartLineId);
+        }
 
         private CartViewModel CartToViewModel(Cart cart)
         {
@@ -67,15 +88,15 @@ namespace BookCave.UI.Concretes.Carts
                     UnitPrice = x.Book.UnitPrice,
                     PictureUri = x.Book.ImageUri,
                     Quantity = x.Quantity,
-                    CartLineId = x.Id
+                    CartLineId = x.Id,
+                    AuthorName = x.Book.Author.FullName
                 }).ToList()
             };
         }
 
-
         private async Task<Cart> GetOrCreateCartAsync()
         {
-            var userId = GetOrCreateUser();
+            var userId = await GetOrCreateUserAsync();
             var cart = await _cartRepository.FirstOrDefaultAsync(new CartSpecification(userId));
 
             if (cart == null)
@@ -89,13 +110,13 @@ namespace BookCave.UI.Concretes.Carts
             return cart;
         }
 
-        private string GetOrCreateUser()
+        private async Task<string> GetOrCreateUserAsync()
         {
-            string anonUserId = GetUserAnon();
-            if (!string.IsNullOrEmpty(anonUserId)) return anonUserId;
-
             string loggedUserId = GetUserLogged();
             if (!string.IsNullOrEmpty(loggedUserId)) return loggedUserId;
+
+            string anonUserId = GetUserAnon();
+            if (!string.IsNullOrEmpty(anonUserId)) return anonUserId;
 
             string newUserId = Guid.NewGuid().ToString();
 
@@ -117,5 +138,6 @@ namespace BookCave.UI.Concretes.Carts
 
             return _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
+
     }
 }

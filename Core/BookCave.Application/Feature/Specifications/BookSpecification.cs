@@ -12,7 +12,7 @@ namespace BookCave.Application.Feature.Specifications
     {
         public BookSpecification(string isbn)
         {
-            Query.Where(x => x.ISBN == isbn);
+            Query.Where(x => x.ISBN == isbn).Include(x=>x.Author);
         }
     }
 }

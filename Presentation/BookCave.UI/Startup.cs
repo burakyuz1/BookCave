@@ -1,7 +1,5 @@
-using BookCave.Application.Abstracts;
-using BookCave.Application.Concretes;
-using BookCave.Infrastructure;
 using BookCave.Persistance;
+using BookCave.UI.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -42,6 +40,8 @@ namespace BookCave.UI
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseTransferCart();
 
             app.UseEndpoints(endpoints =>
             {

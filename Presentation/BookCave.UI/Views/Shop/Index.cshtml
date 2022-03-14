@@ -184,7 +184,7 @@
                                                     </span>
                                                 </a>
 
-                                                <a href="../shop/single-product-v2.html" class="h-p-bg btn btn-outline-primary border-0">
+                                                <a href="#" class="h-p-bg btn btn-outline-primary border-0">
                                                     <i class="fa-regular fa-heart"></i>
                                                 </a>
                                             </div>
@@ -247,7 +247,7 @@
                 url: '@Url.Action("AddBookToCart", "Cart")',
                 data: { isbn: bookIsbn},
                 success: function (data) {
-                    $("#totalCartLinesCount").text(data.totalCartLines);
+                    $("#totalCartLinesCount").text(data.totalQuantityCartLines);
                     $("#totalCartLinePrice").text(data.totalPriceCartLine);
                 }
             })
