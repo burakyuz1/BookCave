@@ -1,0 +1,111 @@
+﻿@model CartViewModel
+
+<div id="order_review"
+     class="col-md-6 col-lg-5 col-xl-4 woocommerce-checkout-review-order">
+    <div id="checkoutAccordion"
+         class="border border-gray-900 bg-white mb-5">
+        <div class="p-4d875 border">
+            <div id="checkoutHeadingOnee" class="checkout-head">
+                <a href="#"
+                   class="text-dark d-flex align-items-center justify-content-between"
+                   data-toggle="collapse"
+                   data-target="#checkoutCollapseOnee"
+                   aria-expanded="true"
+                   aria-controls="checkoutCollapseOnee">
+                    <h3 class="checkout-title mb-0 font-weight-medium font-size-3">
+                        Your order
+                    </h3>
+
+                </a>
+            </div>
+            <div id="checkoutCollapseOnee"
+                 class="mt-4 checkout-content collapse show"
+                 aria-labelledby="checkoutHeadingOnee"
+                 data-parent="#checkoutAccordion">
+                <table class="shop_table woocommerce-checkout-review-order-table">
+                    <tbody>
+                        @foreach (var item in Model.CartLines)
+                        {
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    @item.BookName &nbsp;
+                                    <strong class="product-quantity">× @item.Quantity</strong>
+                                </td>
+                                <td class="product-total">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <span class="woocommerce-Price-currencySymbol">$</span>@item.TotalPrice
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="p-4d875 border">
+            <div id="checkoutHeadingOne" class="checkout-head">
+                <a href="#"
+                   class="text-dark d-flex align-items-center justify-content-between"
+                   data-toggle="collapse"
+                   data-target="#checkoutCollapseOne"
+                   aria-expanded="true"
+                   aria-controls="checkoutCollapseOne">
+                    <h3 class="checkout-title mb-0 font-weight-medium font-size-3">
+                        Cart Totals
+                    </h3>
+                </a>
+            </div>
+            <div id="checkoutCollapseOne"
+                 class="mt-4 checkout-content collapse show"
+                 aria-labelledby="checkoutHeadingOne"
+                 data-parent="#checkoutAccordion">
+                <table class="shop_table shop_table_responsive">
+                    <tbody>
+                        <tr class="checkout-subtotal">
+                            <th>Taxes</th>
+                            <td data-title="Taxes">
+                                <span class="woocommerce-Price-amount amount">
+                                    <span class="woocommerce-Price-currencySymbol"></span>8%
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="checkout-subtotal">
+                            <th>Subtotal</th>
+                            <td data-title="Subtotal">
+                                <span class="woocommerce-Price-amount amount">
+                                    <span class="woocommerce-Price-currencySymbol">$</span>@Model.TotalPrice
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="order-shipping">
+                            <th>Shipping</th>
+                            <td data-title="Shipping">Free Shipping</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="p-4d875 border">
+            <table class="shop_table shop_table_responsive">
+                <tbody>
+                    <tr class="order-total">
+                        <th>Total</th>
+                        <td data-title="Total">
+                            <strong>
+                                <span class="woocommerce-Price-amount amount">
+                                    <span class="woocommerce-Price-currencySymbol"></span>@((Model.TotalPrice*1.08m).ToString("c2"))
+                                </span>
+                            </strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-row place-order">
+        <a id="place-order" href="#"
+           class="button alt btn btn-dark btn-block rounded-0 py-4">Place order</a>
+    </div>
+</div>
+

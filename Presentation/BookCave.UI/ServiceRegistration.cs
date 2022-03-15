@@ -16,6 +16,7 @@ namespace BookCave.UI
         {
             service.AddScoped<ICartService, CartService>();
             service.AddScoped<IHomeService, HomeService>();
+            service.AddScoped<IOrderService, OrderService>();
             service.AddScoped<IShopViewModelService, ShopViewModelService>();
             service.AddScoped<ICartViewModelService, CartViewModelService>();
         }

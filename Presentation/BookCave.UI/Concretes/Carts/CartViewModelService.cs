@@ -16,39 +16,36 @@ namespace BookCave.UI.Concretes.Carts
     public class CartViewModelService : ICartViewModelService
     {
         private readonly IRepository<Cart> _cartRepository;
+        private readonly IRepository<Order> _orderRepository;
         private readonly IHttpContextAccessor _httpContext;
         private readonly ICartService _cartService;
+        private readonly IOrderService _orderService;
 
-        public CartViewModelService(IRepository<Cart> cartRepository, IHttpContextAccessor httpContext, ICartService cartService)
+        public CartViewModelService(IRepository<Cart> cartRepository, IHttpContextAccessor httpContext, ICartService cartService, IOrderService orderService, IRepository<Order> orderRepository)
         {
             _cartRepository = cartRepository;
             _httpContext = httpContext;
             _cartService = cartService;
+            _orderService = orderService;
+            _orderRepository = orderRepository;
         }
 
-        public async Task<CartViewModel> GetCartViewModel()
-        {
-            return await GetCartVm();
-        }
-
-
-        private async Task<CartViewModel> GetCartVm()
+        public async Task<CartViewModel> GetCartViewModelAsync()
         {
             int cartId = (await GetOrCreateCartAsync()).Id;
             var cart = await _cartRepository.FirstOrDefaultAsync(new CartSpecification(cartId));
             return CartToViewModel(cart);
         }
 
-        public async Task<decimal> GetTotalPriceCartLinesAsync()
+        public async Task<NavCartViewModel> GetNavCartViewModelAsync()
         {
-            var cartVM = await GetCartVm();
-            return cartVM.TotalPrice;
-        }
-
-        public async Task<int> GetCartLinesCountAsync()
-        {
-            var cartVM = await GetCartVm();
-            return cartVM.TotalCartLines;
+            var cart = await GetOrCreateCartAsync();
+            var cartVm = CartToViewModel(cart);
+            return new()
+            {
+                TotalPriceCartLine = cartVm.TotalPrice,
+                TotalQuantityCartLines = cartVm.TotalCartLines
+            };
         }
         public async Task<CartViewModel> AddToCartAsync(string isbn, int quantity)
         {
@@ -68,13 +65,11 @@ namespace BookCave.UI.Concretes.Carts
             var cartId = (await GetOrCreateCartAsync()).Id;
             await _cartService.RemoveCartAsync(cartId);
         }
-
         public async Task RemoveCartLineAsync(int cartLineId)
         {
             var cartId = (await GetOrCreateCartAsync()).Id;
             await _cartService.RemoveCartLineFromCartAsync(cartId, cartLineId);
         }
-
         private CartViewModel CartToViewModel(Cart cart)
         {
             return new()
@@ -93,7 +88,6 @@ namespace BookCave.UI.Concretes.Carts
                 }).ToList()
             };
         }
-
         private async Task<Cart> GetOrCreateCartAsync()
         {
             var userId = await GetOrCreateUserAsync();
@@ -109,7 +103,6 @@ namespace BookCave.UI.Concretes.Carts
             }
             return cart;
         }
-
         private async Task<string> GetOrCreateUserAsync()
         {
             string loggedUserId = GetUserLogged();
@@ -128,9 +121,7 @@ namespace BookCave.UI.Concretes.Carts
 
             return newUserId;
         }
-
         private string GetUserAnon() => _httpContext.HttpContext.Request.Cookies[Constants.COOKIE_NAME];
-
         private string GetUserLogged()
         {
             if (!_httpContext.HttpContext.User.Identity.IsAuthenticated)
@@ -138,6 +129,46 @@ namespace BookCave.UI.Concretes.Carts
 
             return _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
+        public async Task<OrderCompleteViewModel> CompleteCheckoutAsync(OrderViewModel orderViewModel)
+        {
+            var cartId = (await GetOrCreateCartAsync()).Id;
 
+            Contact contact = new Contact()
+            {
+                Name = orderViewModel.Name,
+                LastName = orderViewModel.LastName,
+                City = orderViewModel.City,
+                Country = orderViewModel.Country,
+                PhoneNumber = orderViewModel.Phone,
+                AddressDescription = orderViewModel.Address
+            };
+
+            Order order = await _orderService.AddOrderAsync(cartId, contact);
+
+            return new()
+            {
+                OrderId = order.Id,
+                Contact = contact,
+                OrderDate = order.OrderDate,
+                OrderDetails = order.OrderDetails,
+                TotalWithTaxes = order.OrderDetails.Sum(x => x.UnitPrice * x.Quantity) * 1.08m,
+                TotalWithoutTaxes = order.OrderDetails.Sum(x => x.UnitPrice * x.Quantity)
+            };
+        }
+
+        public async Task<OrderCompleteViewModel> GetCompletedOrderViewModelAsync(int orderId)
+        {
+
+            var order = await _orderRepository.FirstOrDefaultAsync(new OrderSpecification(orderId));
+            return new()
+            {
+                OrderId = order.Id,
+                Contact = order.ContactDetails,
+                OrderDate = order.OrderDate,
+                OrderDetails = order.OrderDetails,
+                TotalWithTaxes = order.OrderDetails.Sum(x => x.UnitPrice * x.Quantity) * 1.08m,
+                TotalWithoutTaxes = order.OrderDetails.Sum(x => x.UnitPrice * x.Quantity)
+            };
+        }
     }
 }

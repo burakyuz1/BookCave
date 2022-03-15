@@ -1,0 +1,86 @@
+﻿@model OrderViewModel
+<div id="content" class="site-content space-bottom-3">
+    <div class="col-full container">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <article id="post-6"
+                         class="post-6 page type-page status-publish hentry">
+                    <header class="entry-header space-top-2 space-bottom-1 mb-2">
+                        <h4 class="entry-title font-size-7 text-center">Checkout</h4>
+                    </header>
+
+                    <div class="entry-content">
+                        <div class="woocommerce">
+
+                            <form id="place-order-form"
+                                  asp-controller="Cart" asp-action="Checkout"
+                                  method="post"
+                                  class="checkout woocommerce-checkout row mt-8">
+                                <div class="col2-set col-md-6 col-lg-7 col-xl-8 mb-6 mb-md-0"
+                                     id="customer_details">
+
+                                    <div class="px-4 pt-5 bg-white border">
+                                        <div class="woocommerce-billing-fields">
+                                            <h3 class="mb-4 font-size-3">Billing details</h3>
+                                            <div class="woocommerce-billing-fields__field-wrapper row">
+                                                <p class="col-lg-6 mb-4d75 form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_first_name_field" data-priority="10">
+                                                    <label asp-for="@Model.Name" class="form-label">First name <abbr class="required" title="required">*</abbr></label>
+                                                    <input asp-for="@Model.Name" type="text" class="input-text form-control" placeholder="" autocomplete="given-name" autofocus="autofocus">
+                                                    <span asp-validation-for="@Model.Name"></span>
+                                                </p>
+                                                <p class="col-lg-6 mb-4d75 form-row form-row-last validate-required" id="billing_last_name_field" data-priority="20">
+                                                    <label asp-for="@Model.LastName" class="form-label">Last name <abbr class="required" title="required">*</abbr></label>
+                                                    <input asp-for="@Model.LastName" type="text" class="input-text form-control" placeholder="" autocomplete="family-name">
+                                                    <span asp-validation-for="@Model.LastName"></span>
+
+                                                </p>
+                                                <p class="col-12 mb-4d75 form-row form-row-first validate-required validate-phone" id="billing_phone_field" data-priority="100">
+                                                    <label asp-for="@Model.Phone" class="form-label">Phone <abbr class="required" title="required">*</abbr></label>
+                                                    <input asp-for="@Model.Phone" type="tel" class="input-text form-control" placeholder="" autocomplete="tel">
+                                                    <span asp-validation-for="@Model.Phone"></span>
+
+                                                </p>
+
+                                                <p class="col-12 mb-3 form-row form-row-wide address-field validate-required" id="billing_address_1_field" data-priority="50">
+                                                    <label asp-for="@Model.Address" class="form-label">Address <abbr class="required" title="required">*</abbr></label>
+                                                    <input asp-for="@Model.Address" type="text" class="input-text form-control" placeholder="Main Street 1234, Apartment No 15/3" autocomplete="address-line1">
+                                                    <span asp-validation-for="@Model.Address"></span>
+
+                                                </p>
+
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field validate-required" id="billing_city_field" data-priority="70" data-o_class="form-row form-row-wide address-field validate-required">
+                                                    <label asp-for="@Model.City" class="form-label">Town / City <abbr class="required" title="required">*</abbr></label>
+                                                    <input asp-for="@Model.City" type="text" class="input-text form-control" placeholder="" autocomplete="address-level2">
+                                                    <span asp-validation-for="@Model.City"></span>
+
+                                                </p>
+
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field validate-required" id="billing_city_field" data-priority="70" data-o_class="form-row form-row-wide address-field validate-required">
+                                                    <label asp-for="@Model.Country" class="form-label">Country<abbr class="required" title="required">*</abbr></label>
+                                                    <input asp-for="@Model.Country" type="text" class="input-text form-control" placeholder="" autocomplete="address-level2">
+                                                    <span asp-validation-for="@Model.Country"></span>
+
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <vc:checkout-cart></vc:checkout-cart>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $("#place-order").click(function (e) {
+            $("#place-order-form").submit()
+        });
+    </script>
+}

@@ -14,7 +14,7 @@ namespace BookCave.Application
     {
         public static void AddInfrastructureServices(this IServiceCollection service)
         {
-            service.AddScoped<ICartService, CartService>();
+           // service.AddScoped<ICartService, CartService>();
         }
     }
 }
