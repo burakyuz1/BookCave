@@ -39,84 +39,39 @@
                                   novalidate="novalidate">
                                 <div class="col2-set col-md-6 col-lg-7 col-xl-8 mb-6 mb-md-0"
                                      id="customer_details">
-                                    <div class="pl-md-5 pl-lg-9 mb-lg-4">
-                                        <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-5 mb-lg-4 pb-xl-1">
-                                            Addresses
-                                        </h6>
-                                        <p class="mb-9">
-                                            Would you like to add new address or update your
-                                            address?<a asp-controller="Account" asp-action="Addresses"> Go to address page.</a>
-                                        </p>
 
-                                        <div class="row row-cols-1 row-cols-md-3 h-100">
-                                            <div class="col pt-3 pb-3 border border-primary">
-                                                <div class="mb-6 mb-md-0 h-100 d-flex flex-column">
-                                                    <h6 class="font-weight-medium font-size-22 mb-3">
-                                                        Ev Adresi
-                                                    </h6>
-                                                    <address class="d-flex flex-column mb-4">
-                                                        <span class="text-gray-600 font-size-2">Name, surname</span>
-                                                        <span class="text-gray-600 font-size-2">
-                                                            xxxx mahallesi, xxxx. caddesi xxx. sokak xxNumara
-                                                            xxxdaire
-                                                        </span>
+                                    <div class="px-4 pt-5 bg-white border">
+                                        <div class="woocommerce-billing-fields">
+                                            <h3 class="mb-4 font-size-3">Billing details</h3>
+                                            <div class="woocommerce-billing-fields__field-wrapper row">
+                                                <p class="col-lg-6 mb-4d75 form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_first_name_field" data-priority="10">
+                                                    <label for="billing_first_name" class="form-label">First name <abbr class="required" title="required">*</abbr></label>
+                                                    <input type="text" class="input-text form-control" name="billing_first_name" id="billing_first_name" placeholder="" value="" autocomplete="given-name" autofocus="autofocus">
+                                                </p>
+                                                <p class="col-lg-6 mb-4d75 form-row form-row-last validate-required" id="billing_last_name_field" data-priority="20">
+                                                    <label for="billing_last_name" class="form-label">Last name <abbr class="required" title="required">*</abbr></label>
+                                                    <input type="text" class="input-text form-control" name="billing_last_name" id="billing_last_name" placeholder="" value="" autocomplete="family-name">
+                                                </p>
+                                                <p class="col-12 mb-4d75 form-row form-row-first validate-required validate-phone" id="billing_phone_field" data-priority="100">
+                                                    <label for="billing_phone" class="form-label">Phone <abbr class="required" title="required">*</abbr></label>
+                                                    <input type="tel" class="input-text form-control" name="billing_phone" id="billing_phone" placeholder="" value="" autocomplete="tel">
+                                                </p>
 
-                                                        <span class="text-gray-600 font-size-2">XXXXXX/ANKARA</span>
-                                                        <span class="text-gray-600 font-size-2">TÜRKİYE</span>
-                                                    </address>
-                                                    <div class="mt-auto d-flex">
-                                                        <button type="submit"
-                                                                class="btn btn-dark width-150 rounded-0 btn-wide font-weight-medium">
-                                                            SELECTED
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col pt-3 pb-3">
-                                                <div class="mb-6 mb-md-0 h-100 d-flex flex-column">
-                                                    <h6 class="font-weight-medium font-size-22 mb-3">
-                                                        Yurt Adresi
-                                                    </h6>
-                                                    <address class="d-flex flex-column mb-4">
-                                                        <span class="text-gray-600 font-size-2">Name, surname</span>
-                                                        <span class="text-gray-600 font-size-2">
-                                                            xxxx mahallesi, xxxx. caddesi xxx. sokak xxNumara
-                                                            xxxdaire
-                                                        </span>
+                                                <p class="col-12 mb-3 form-row form-row-wide address-field validate-required" id="billing_address_1_field" data-priority="50">
+                                                    <label for="billing_address_1" class="form-label">Address <abbr class="required" title="required">*</abbr></label>
+                                                    <input type="text" class="input-text form-control" name="billing_address_1" id="billing_address_1" placeholder="Main Street 1234, Apartment No 15/3" value="" autocomplete="address-line1">
+                                                </p>
 
-                                                        <span class="text-gray-600 font-size-2">XXXXXX/ANKARA</span>
-                                                        <span class="text-gray-600 font-size-2">TÜRKİYE</span>
-                                                    </address>
-                                                    <div class="mt-auto d-flex">
-                                                        <button type="submit"
-                                                                class="btn btn-dark width-150 rounded-0 btn-wide font-weight-medium">
-                                                            SELECT
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col pt-3 pb-3">
-                                                <div class="mb-6 mb-md-0 h-100 d-flex flex-column">
-                                                    <h6 class="font-weight-medium font-size-22 mb-3">
-                                                        İş Adresi
-                                                    </h6>
-                                                    <address class="d-flex flex-column mb-4">
-                                                        <span class="text-gray-600 font-size-2">Name, surname</span>
-                                                        <span class="text-gray-600 font-size-2">
-                                                            xxxx mahallesi, xxxx. caddesi xxx. sokak xxNumara
-                                                            xxxdaire
-                                                        </span>
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field validate-required" id="billing_city_field" data-priority="70" data-o_class="form-row form-row-wide address-field validate-required">
+                                                    <label for="billing_city" class="form-label">Town / City <abbr class="required" title="required">*</abbr></label>
+                                                    <input type="text" class="input-text form-control" name="billing_city" id="billing_city" placeholder="" value="" autocomplete="address-level2">
+                                                </p>
 
-                                                        <span class="text-gray-600 font-size-2">XXXXXX/ANKARA</span>
-                                                        <span class="text-gray-600 font-size-2">TÜRKİYE</span>
-                                                    </address>
-                                                    <div class="mt-auto d-flex">
-                                                        <button type="submit"
-                                                                class="btn btn-dark width-150 rounded-0 btn-wide font-weight-medium">
-                                                            SELECT
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field validate-required" id="billing_city_field" data-priority="70" data-o_class="form-row form-row-wide address-field validate-required">
+                                                    <label for="billing_city" class="form-label">Country<abbr class="required" title="required">*</abbr></label>
+                                                    <input type="text" class="input-text form-control" name="billing_city" id="billing_city" placeholder="" value="" autocomplete="address-level2">
+                                                </p>
+
                                             </div>
                                         </div>
                                     </div>
@@ -137,24 +92,7 @@
                                                     <h3 class="checkout-title mb-0 font-weight-medium font-size-3">
                                                         Your order
                                                     </h3>
-                                                    <svg class="mins"
-                                                         xmlns="http://www.w3.org/2000/svg"
-                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                         width="15px"
-                                                         height="2px">
-                                                        <path fill-rule="evenodd"
-                                                              fill="rgb(22, 22, 25)"
-                                                              d="M0.000,-0.000 L15.000,-0.000 L15.000,2.000 L0.000,2.000 L0.000,-0.000 Z"></path>
-                                                    </svg>
-                                                    <svg class="plus"
-                                                         xmlns="http://www.w3.org/2000/svg"
-                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                         width="15px"
-                                                         height="15px">
-                                                        <path fill-rule="evenodd"
-                                                              fill="rgb(22, 22, 25)"
-                                                              d="M15.000,8.000 L9.000,8.000 L9.000,15.000 L7.000,15.000 L7.000,8.000 L0.000,8.000 L0.000,6.000 L7.000,6.000 L7.000,-0.000 L9.000,-0.000 L9.000,6.000 L15.000,6.000 L15.000,8.000 Z"></path>
-                                                    </svg>
+                                                
                                                 </a>
                                             </div>
                                             <div id="checkoutCollapseOnee"
@@ -226,24 +164,6 @@
                                                     <h3 class="checkout-title mb-0 font-weight-medium font-size-3">
                                                         Cart Totals
                                                     </h3>
-                                                    <svg class="mins"
-                                                         xmlns="http://www.w3.org/2000/svg"
-                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                         width="15px"
-                                                         height="2px">
-                                                        <path fill-rule="evenodd"
-                                                              fill="rgb(22, 22, 25)"
-                                                              d="M0.000,-0.000 L15.000,-0.000 L15.000,2.000 L0.000,2.000 L0.000,-0.000 Z"></path>
-                                                    </svg>
-                                                    <svg class="plus"
-                                                         xmlns="http://www.w3.org/2000/svg"
-                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                         width="15px"
-                                                         height="15px">
-                                                        <path fill-rule="evenodd"
-                                                              fill="rgb(22, 22, 25)"
-                                                              d="M15.000,8.000 L9.000,8.000 L9.000,15.000 L7.000,15.000 L7.000,8.000 L0.000,8.000 L0.000,6.000 L7.000,6.000 L7.000,-0.000 L9.000,-0.000 L9.000,6.000 L15.000,6.000 L15.000,8.000 Z"></path>
-                                                    </svg>
                                                 </a>
                                             </div>
                                             <div id="checkoutCollapseOne"

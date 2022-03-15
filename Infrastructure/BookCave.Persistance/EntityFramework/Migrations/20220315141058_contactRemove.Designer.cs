@@ -4,14 +4,16 @@ using BookCave.Persistance.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookCave.Persistance.EntityFramework.Migrations
 {
     [DbContext(typeof(BookCaveDbContext))]
-    partial class BookCaveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220315141058_contactRemove")]
+    partial class contactRemove
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,6 +193,18 @@ namespace BookCave.Persistance.EntityFramework.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("BookCave.Domain.Entities.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
             modelBuilder.Entity("BookCave.Domain.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -201,10 +215,8 @@ namespace BookCave.Persistance.EntityFramework.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -218,12 +230,6 @@ namespace BookCave.Persistance.EntityFramework.Migrations
 
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(13)");
-
-                    b.Property<string>("BookName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PictureUri")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Quantity")
                         .HasColumnType("tinyint");
@@ -299,57 +305,6 @@ namespace BookCave.Persistance.EntityFramework.Migrations
                         .HasForeignKey("ISBN");
 
                     b.Navigation("Book");
-                });
-
-            modelBuilder.Entity("BookCave.Domain.Entities.Order", b =>
-                {
-                    b.OwnsOne("BookCave.Domain.Entities.Contact", "ContactDetails", b1 =>
-                        {
-                            b1.Property<int>("OrderId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<string>("AddressDescription")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)");
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasMaxLength(25)
-                                .HasColumnType("nvarchar(25)");
-
-                            b1.Property<string>("Country")
-                                .IsRequired()
-                                .HasMaxLength(30)
-                                .HasColumnType("nvarchar(30)");
-
-                            b1.Property<string>("LastName")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)");
-
-                            b1.Property<string>("Name")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)");
-
-                            b1.Property<string>("PhoneNumber")
-                                .IsRequired()
-                                .HasMaxLength(15)
-                                .HasColumnType("nvarchar(15)");
-
-                            b1.HasKey("OrderId");
-
-                            b1.ToTable("Orders");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OrderId");
-                        });
-
-                    b.Navigation("ContactDetails")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BookCave.Domain.Entities.OrderDetail", b =>

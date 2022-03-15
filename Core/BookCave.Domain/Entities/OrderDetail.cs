@@ -9,7 +9,9 @@ namespace BookCave.Domain.Entities
         public Order Order { get; set; }
         public string ISBN { get; set; }
         public Book Book { get; set; }
+        public string BookName { get; set; }
         public byte Quantity { get; set; }
         public decimal UnitPrice { get; set; }
+        public string PictureUri { get; set; }
     }
 }
