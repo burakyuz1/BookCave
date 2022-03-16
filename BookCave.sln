@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8987C724-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{13E6D718-3E46-453F-8F31-DFB3AEA7B8FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCave.Domain", "Core\BookCave.Domain\BookCave.Domain.csproj", "{76350A97-B5C8-4994-B603-876FA2F87DCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCave.Domain", "Core\BookCave.Domain\BookCave.Domain.csproj", "{76350A97-B5C8-4994-B603-876FA2F87DCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCave.Application", "Core\BookCave.Application\BookCave.Application.csproj", "{390D2760-4445-4C81-A837-56CA6665FD2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCave.Application", "Core\BookCave.Application\BookCave.Application.csproj", "{390D2760-4445-4C81-A837-56CA6665FD2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCave.Infrastructure", "Infrastructure\BookCave.Infrastructure\BookCave.Infrastructure.csproj", "{64BE2714-283F-41A3-9B45-E142D2E19460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCave.Infrastructure", "Infrastructure\BookCave.Infrastructure\BookCave.Infrastructure.csproj", "{64BE2714-283F-41A3-9B45-E142D2E19460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookCave.Persistance", "Infrastructure\BookCave.Persistance\BookCave.Persistance.csproj", "{6DA42510-5645-4A3B-BCC8-5FB4EF93DCE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCave.Persistance", "Infrastructure\BookCave.Persistance\BookCave.Persistance.csproj", "{6DA42510-5645-4A3B-BCC8-5FB4EF93DCE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

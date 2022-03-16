@@ -39,7 +39,6 @@ namespace BookCave.Application.Concretes
                 {
                     UnitPrice = x.Book.UnitPrice,
                     BookName = x.Book.Name,
-                    PictureUri = x.Book.ImageUri,
                     ISBN = x.ISBN,
                     Quantity = (byte)x.Quantity
                 }).ToList()

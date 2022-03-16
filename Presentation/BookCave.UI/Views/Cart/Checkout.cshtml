@@ -26,39 +26,39 @@
                                                 <p class="col-lg-6 mb-4d75 form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field" id="billing_first_name_field" data-priority="10">
                                                     <label asp-for="@Model.Name" class="form-label">First name <abbr class="required" title="required">*</abbr></label>
                                                     <input asp-for="@Model.Name" type="text" class="input-text form-control" placeholder="" autocomplete="given-name" autofocus="autofocus">
-                                                    <span asp-validation-for="@Model.Name"></span>
+                                                    <span class="text-danger" asp-validation-for="@Model.Name"></span>
                                                 </p>
                                                 <p class="col-lg-6 mb-4d75 form-row form-row-last validate-required" id="billing_last_name_field" data-priority="20">
                                                     <label asp-for="@Model.LastName" class="form-label">Last name <abbr class="required" title="required">*</abbr></label>
                                                     <input asp-for="@Model.LastName" type="text" class="input-text form-control" placeholder="" autocomplete="family-name">
-                                                    <span asp-validation-for="@Model.LastName"></span>
+                                                    <span class="text-danger" asp-validation-for="@Model.LastName"></span>
 
                                                 </p>
                                                 <p class="col-12 mb-4d75 form-row form-row-first validate-required validate-phone" id="billing_phone_field" data-priority="100">
                                                     <label asp-for="@Model.Phone" class="form-label">Phone <abbr class="required" title="required">*</abbr></label>
                                                     <input asp-for="@Model.Phone" type="tel" class="input-text form-control" placeholder="" autocomplete="tel">
-                                                    <span asp-validation-for="@Model.Phone"></span>
+                                                    <span class="text-danger" asp-validation-for="@Model.Phone"></span>
 
                                                 </p>
 
                                                 <p class="col-12 mb-3 form-row form-row-wide address-field validate-required" id="billing_address_1_field" data-priority="50">
                                                     <label asp-for="@Model.Address" class="form-label">Address <abbr class="required" title="required">*</abbr></label>
                                                     <input asp-for="@Model.Address" type="text" class="input-text form-control" placeholder="Main Street 1234, Apartment No 15/3" autocomplete="address-line1">
-                                                    <span asp-validation-for="@Model.Address"></span>
+                                                    <span class="text-danger" asp-validation-for="@Model.Address"></span>
 
                                                 </p>
 
                                                 <p class="col-12 mb-4d75 form-row form-row-wide address-field validate-required" id="billing_city_field" data-priority="70" data-o_class="form-row form-row-wide address-field validate-required">
                                                     <label asp-for="@Model.City" class="form-label">Town / City <abbr class="required" title="required">*</abbr></label>
                                                     <input asp-for="@Model.City" type="text" class="input-text form-control" placeholder="" autocomplete="address-level2">
-                                                    <span asp-validation-for="@Model.City"></span>
+                                                    <span class="text-danger" asp-validation-for="@Model.City"></span>
 
                                                 </p>
 
                                                 <p class="col-12 mb-4d75 form-row form-row-wide address-field validate-required" id="billing_city_field" data-priority="70" data-o_class="form-row form-row-wide address-field validate-required">
                                                     <label asp-for="@Model.Country" class="form-label">Country<abbr class="required" title="required">*</abbr></label>
                                                     <input asp-for="@Model.Country" type="text" class="input-text form-control" placeholder="" autocomplete="address-level2">
-                                                    <span asp-validation-for="@Model.Country"></span>
+                                                    <span class="text-danger" asp-validation-for="@Model.Country"></span>
 
                                                 </p>
 
@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
 
-                                <vc:checkout-cart></vc:checkout-cart>
+                                <vc:checkout-cart />
                             </form>
                         </div>
                     </div>
@@ -78,9 +78,15 @@
 </div>
 
 @section Scripts{
+
     <script>
         $("#place-order").click(function (e) {
             $("#place-order-form").submit()
         });
     </script>
+}
+
+@section Validators{ 
+    <script src="~/lib/jQuery/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jQuery/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }

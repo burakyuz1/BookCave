@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery-ajax-unobtrusive@3.2.6",
+      "destination": "wwwroot/lib/jQuery/jquery-ajax-unobtrusive/"
+    },
+    {
+      "library": "jquery@3.6.0",
+      "destination": "wwwroot/lib/AA/jquery/"
+    },
+    {
+      "library": "jquery-validate@1.19.3",
+      "destination": "wwwroot/lib/AA/jquery-validate/",
+      "files": [
+        "jquery.validate.min.js",
+        "jquery.validate.js",
+        "additional-methods.min.js",
+        "additional-methods.js"
+      ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.12",
+      "destination": "wwwroot/lib/AA/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "datatable@2.0.2",
+      "destination": "wwwroot/lib/datatable/"
+    },
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/lib/datatables/datatables/"
+    },
+    {
+      "library": "datatables.net-rowreorder@1.2.8",
+      "destination": "wwwroot/lib/datatables/datatables.net-rowreorder/",
+      "files": [
+        "dataTables.rowReorder.min.js",
+        "dataTables.rowReorder.js"
+      ]
+    }
+  ]
+}

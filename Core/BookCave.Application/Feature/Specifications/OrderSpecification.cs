@@ -12,7 +12,11 @@ namespace BookCave.Application.Feature.Specifications
     {
         public OrderSpecification(int orderId)
         {
-            Query.Where(a => a.Id == orderId).Include(x => x.OrderDetails).ThenInclude(ezgi=> ezgi.Book).ThenInclude(ayse=>ayse.Author);
+            Query.Where(a => a.Id == orderId).Include(x => x.OrderDetails).ThenInclude(ezgi => ezgi.Book).ThenInclude(ayse => ayse.Author);
+        }
+        public OrderSpecification(string userId)
+        {
+            Query.Where(a => a.UserId == userId).Include(x => x.OrderDetails).ThenInclude(ezgi => ezgi.Book).ThenInclude(ayse => ayse.Author);
         }
     }
 }

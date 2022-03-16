@@ -16,18 +16,16 @@ namespace BookCave.UI.Concretes.Carts
     public class CartViewModelService : ICartViewModelService
     {
         private readonly IRepository<Cart> _cartRepository;
-        private readonly IRepository<Order> _orderRepository;
         private readonly IHttpContextAccessor _httpContext;
         private readonly ICartService _cartService;
         private readonly IOrderService _orderService;
 
-        public CartViewModelService(IRepository<Cart> cartRepository, IHttpContextAccessor httpContext, ICartService cartService, IOrderService orderService, IRepository<Order> orderRepository)
+        public CartViewModelService(IRepository<Cart> cartRepository, IHttpContextAccessor httpContext, ICartService cartService, IOrderService orderService)
         {
             _cartRepository = cartRepository;
             _httpContext = httpContext;
             _cartService = cartService;
             _orderService = orderService;
-            _orderRepository = orderRepository;
         }
 
         public async Task<CartViewModel> GetCartViewModelAsync()
@@ -149,21 +147,6 @@ namespace BookCave.UI.Concretes.Carts
             {
                 OrderId = order.Id,
                 Contact = contact,
-                OrderDate = order.OrderDate,
-                OrderDetails = order.OrderDetails,
-                TotalWithTaxes = order.OrderDetails.Sum(x => x.UnitPrice * x.Quantity) * 1.08m,
-                TotalWithoutTaxes = order.OrderDetails.Sum(x => x.UnitPrice * x.Quantity)
-            };
-        }
-
-        public async Task<OrderCompleteViewModel> GetCompletedOrderViewModelAsync(int orderId)
-        {
-
-            var order = await _orderRepository.FirstOrDefaultAsync(new OrderSpecification(orderId));
-            return new()
-            {
-                OrderId = order.Id,
-                Contact = order.ContactDetails,
                 OrderDate = order.OrderDate,
                 OrderDetails = order.OrderDetails,
                 TotalWithTaxes = order.OrderDetails.Sum(x => x.UnitPrice * x.Quantity) * 1.08m,

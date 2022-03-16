@@ -12,6 +12,5 @@ namespace BookCave.Domain.Entities
         public string BookName { get; set; }
         public byte Quantity { get; set; }
         public decimal UnitPrice { get; set; }
-        public string PictureUri { get; set; }
     }
 }

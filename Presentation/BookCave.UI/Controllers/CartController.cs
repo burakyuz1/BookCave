@@ -1,4 +1,5 @@
 ﻿using BookCave.UI.Abstracts.Cart;
+using BookCave.UI.Abstracts.Order;
 using BookCave.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -9,10 +10,12 @@ namespace BookCave.UI.Controllers
     public class CartController : Controller
     {
         private readonly ICartViewModelService _cartViewModelService;
+        private readonly IOrderViewModelService _orderViewModelService;
 
-        public CartController(ICartViewModelService cartViewModelService)
+        public CartController(ICartViewModelService cartViewModelService, IOrderViewModelService orderViewModelService)
         {
             _cartViewModelService = cartViewModelService;
+            _orderViewModelService = orderViewModelService;
         }
 
         public async Task<IActionResult> Index()
@@ -66,10 +69,9 @@ namespace BookCave.UI.Controllers
             return View();
         }
 
-
         public async Task<IActionResult> OrderSuccess(OrderCompleteViewModel orderVm)
         {
-            var model = await _cartViewModelService.GetCompletedOrderViewModelAsync(orderVm.OrderId);
+            var model = await _orderViewModelService.GetCompletedOrderViewModelAsync(orderVm.OrderId);
             return View(model);
         }
 

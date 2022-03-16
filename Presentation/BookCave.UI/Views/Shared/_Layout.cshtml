@@ -19,6 +19,7 @@
     <link href="~/lib/slick/slick.css" rel="stylesheet" />
     <link href="~/lib/jQuery/jquery.mCustomScrollbar.css" rel="stylesheet" />
     <link href="~/css/theme.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
 
 </head>
 
@@ -99,7 +100,7 @@
     </header>
 
 
-   
+
     <!--Navigation Items Top-->
     <div class="page-header border-bottom mb-5">
         <div class="container">
@@ -325,77 +326,79 @@
         </div>
     </footer>
 
-     <script src="~/lib/jQuery/js/jquery.min.js"></script>
-        <script src="~/lib/jQuery/js/jquery-migrate.min.js"></script>
-        <script src="~/lib/popper/js/popper.min.js"></script>
-        <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="~/lib/bootstrap/js/bootstrap-select.min.js"></script>
-        <script src="~/lib/jQuery/js/jquery.zeynep.js"></script>
-        <script src="~/lib/jQuery/js/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="~/lib/slick/js/slick.min.js"></script>
-        <script src="~/lib/hs/js/hs.core.js"></script>
-        <script src="~/lib/hs/js/hs.unfold.js"></script>
-        <script src="~/lib/hs/js/hs.malihu-scrollbar.js"></script>
-        <script src="~/lib/hs/js/hs.slick-carousel.js"></script>
-        <script src="~/lib/hs/js/hs.show-animation.js"></script>
-        <script src="~/lib/hs/js/hs.selectpiker.js"></script>
+    <script src="~/lib/jQuery/js/jquery.min.js"></script>
+    <script src="~/lib/jQuery/js/jquery-migrate.min.js"></script>
+    <script src="~/lib/popper/js/popper.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap-select.min.js"></script>
+    <script src="~/lib/jQuery/js/jquery.zeynep.js"></script>
+    <script src="~/lib/jQuery/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/lib/slick/js/slick.min.js"></script>
+    <script src="~/lib/hs/js/hs.core.js"></script>
+    <script src="~/lib/hs/js/hs.unfold.js"></script>
+    <script src="~/lib/hs/js/hs.malihu-scrollbar.js"></script>
+    <script src="~/lib/hs/js/hs.slick-carousel.js"></script>
+    <script src="~/lib/hs/js/hs.show-animation.js"></script>
+    <script src="~/lib/hs/js/hs.selectpiker.js"></script>
 
     <script>
-            $(document).on("ready", function () {
-                // initialization of unfold component
-                $.HSCore.components.HSUnfold.init($("[data-unfold-target]"));
+        $(document).on("ready", function () {
+            // initialization of unfold component
+            $.HSCore.components.HSUnfold.init($("[data-unfold-target]"));
 
-                // initialization of malihu scrollbar
-                $.HSCore.components.HSMalihuScrollBar.init($(".js-scrollbar"));
+            // initialization of malihu scrollbar
+            $.HSCore.components.HSMalihuScrollBar.init($(".js-scrollbar"));
 
-                // initialization of slick carousel
-                $.HSCore.components.HSSlickCarousel.init(".js-slick-carousel");
+            // initialization of slick carousel
+            $.HSCore.components.HSSlickCarousel.init(".js-slick-carousel");
 
-                // initialization of show animations
-                $.HSCore.components.HSShowAnimation.init(".js-animation-link");
+            // initialization of show animations
+            $.HSCore.components.HSShowAnimation.init(".js-animation-link");
 
-                // init zeynepjs
-                var zeynep = $(".zeynep").zeynep({
-                    onClosed: function () {
-                        // enable main wrapper element clicks on any its children element
-                        $("body main").attr("style", "");
+            // init zeynepjs
+            var zeynep = $(".zeynep").zeynep({
+                onClosed: function () {
+                    // enable main wrapper element clicks on any its children element
+                    $("body main").attr("style", "");
 
-                        console.log("the side menu is closed.");
-                    },
-                    onOpened: function () {
-                        // disable main wrapper element clicks on any its children element
-                        $("body main").attr("style", "pointer-events: none;");
+                    console.log("the side menu is closed.");
+                },
+                onOpened: function () {
+                    // disable main wrapper element clicks on any its children element
+                    $("body main").attr("style", "pointer-events: none;");
 
-                        console.log("the side menu is opened.");
-                    },
-                });
-
-                // handle zeynep overlay click
-                $(".zeynep-overlay").click(function () {
-                    zeynep.close();
-                });
-
-                // open side menu if the button is clicked
-                $(".cat-menu").click(function () {
-                    if ($("html").hasClass("zeynep-opened")) {
-                        zeynep.close();
-                    } else {
-                        zeynep.open();
-                    }
-                });
+                    console.log("the side menu is opened.");
+                },
             });
-            $("#btnSearch").click(function (event) {
-                let keyword = $("#txtKeyword").val().trim();
-                $("#searchKeywordHidden").val(keyword);
-                let type = $("#searchFilter").val();
-                $("#searchHidden").val(type);
-                if (keyword != "") {
-                    $("#formSearch").submit();
-                }
-            })
-        </script>
 
-    @await RenderSectionAsync("Scripts", false)
+            // handle zeynep overlay click
+            $(".zeynep-overlay").click(function () {
+                zeynep.close();
+            });
+
+            // open side menu if the button is clicked
+            $(".cat-menu").click(function () {
+                if ($("html").hasClass("zeynep-opened")) {
+                    zeynep.close();
+                } else {
+                    zeynep.open();
+                }
+            });
+        });
+        $("#btnSearch").click(function (event) {
+            let keyword = $("#txtKeyword").val().trim();
+            $("#searchKeywordHidden").val(keyword);
+            let type = $("#searchFilter").val();
+            $("#searchHidden").val(type);
+            if (keyword != "") {
+                $("#formSearch").submit();
+            }
+        })
+    </script>
+
+    @await RenderSectionAsync("Validators", false);
+    @await RenderSectionAsync("Scripts", false);
+
 </body>
 
 </html>
