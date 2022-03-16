@@ -1,208 +1,160 @@
-﻿    <div class="site-content " id="content">
-      <div class="container ">
-          <div class="row  space-top-2 ">
-              <div id="primary" class="content-area col-sm-9 mx-auto ">
-                  <main id="main" class="site-main ">
-                      <div class="product">
+﻿@model SingleBookViewModel
+
+<div class="site-content " id="content">
+    <div class="container ">
+        <div class="row  space-top-2 ">
+            <div id="primary" class="content-area col-sm-9 mx-auto ">
+                <main id="main" class="site-main ">
+                    <div class="product">
                         <div class="container">
-                          <div class="row pb-7">
-                            <div class="col-lg-5 woocommerce-product-gallery woocommerce-product-gallery--with-images images">
-<img class="w-100" src="https://i.dr.com.tr/cache/600x600-0/originals/0000000058245-1.jpg">                                     
-                            </div>
-                            <div class="col-lg-7 pl-lg-0 summary entry-summary">
-                                <div class="px-lg-4 px-xl-6">
-                                    <h1 class="product_title entry-title font-size-7 mb-3">Where the Crawdads Sing</h1>
-                                    <div class="font-size-2 mb-4">                                             
-                                        <span class=""><i class="fa-regular fa-comment"></i> 3,714</span>
-                                        <span class="ml-2 text-gray-600"><i class="fa-solid fa-pen"></i> Anna Banks</span>
-                                    </div>
-
-                                    <div class="woocommerce-product-details__short-description font-size-2 mb-4">
-                                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut Excepteur sint occaecat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut Excepteur sint occaecat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut Excepteur sint occaecat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut Excepteur sint occaecat.</p>
-                                    </div>
-
-                                    <p class="price font-size-22 font-weight-medium mb-4">
-                                        <span class="woocommerce-Price-amount amount">
-                                            <span class="woocommerce-Price-currencySymbol">$</span>29.95
-                                        </span>
-                                    </p>
-
-                                    <form class="cart d-md-flex align-items-center" method="post" enctype="multipart/form-data">
-                                        <div class="quantity mb-4 mb-md-0 d-flex align-items-center">
-                                            <!-- Quantity -->
-                                            <div class="border px-3 width-120">
-                                                <div class="js-quantity">
-                                                    <div class="d-flex align-items-center">
-                                                        <label class="screen-reader-text sr-only">Quantity</label>
-                                 
-                                                        <input type="number" class="input-text qty text js-result form-control text-center border-0" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
-                                                      
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Quantity -->
+                            <div class="row pb-7">
+                                <div class="col-lg-5 woocommerce-product-gallery woocommerce-product-gallery--with-images images">
+                                    <img style="height:500px" src="~/img/books/@Model.ImageUri">
+                                </div>
+                                <div class="col-lg-7 pl-lg-0 summary entry-summary">
+                                    <div class="px-lg-4 px-xl-6">
+                                        <h1 class="product_title entry-title font-size-7 mb-3">@Model.BookName</h1>
+                                        <div class="font-size-2 mb-4">
+                                            <span class=""><i class="fa-regular fa-comment"></i> @Model.CommentCount</span>
+                                            <span class="ml-2 text-gray-600"><i class="fa-solid fa-pen"></i>@Model.AuthorName</span>
                                         </div>
 
-                                        <button type="submit" asp-controller="Cart" asp-action="Index" name="add-to-cart" value="7145" class="btn btn-dark border-0 rounded-0 p-3 btn-block ml-md-4 single_add_to_cart_button button alt mb-1">Add to cart</button>
+                                        <div class="woocommerce-product-details__short-description font-size-2 mb-4">
+                                            <p class="">@Model.Description</p>
+                                        </div>
 
-                                    </form>
+                                        <p class="price font-size-22 font-weight-medium mb-4">
+                                            <span class="woocommerce-Price-amount amount">
+                                                @Model.UnitPrice.ToString("c2")
+                                            </span>
+                                        </p>
+
+                                        <form class="cart d-md-flex align-items-center" method="post" enctype="multipart/form-data">
+                                            <div class="quantity mb-4 mb-md-0 d-flex align-items-center">
+                                                <!-- Quantity -->
+                                                <div class="border px-3 width-120">
+                                                    <div class="js-quantity">
+                                                        <div class="d-flex align-items-center">
+                                                            <label class="screen-reader-text sr-only">Quantity</label>
+
+                                                            <input type="number" class="input-text qty text js-result form-control text-center border-0" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Quantity -->
+                                            </div>
+
+                                            <button type="submit" asp-controller="Cart" asp-action="Index" name="add-to-cart" value="7145" class="btn btn-dark border-0 rounded-0 p-3 btn-block ml-md-4 single_add_to_cart_button button alt mb-1">Add to cart</button>
+
+                                        </form>
+                                    </div>
+
                                 </div>
-                               
                             </div>
                         </div>
+
+                        <!-- Features Section -->
+                        <div class="woocommerce-tabs wc-tabs-wrapper mb-10 row">
+                            <!-- Nav Classic -->
+                            <ul class="col-lg-4 col-xl-3 pt-9 border-top d-lg-block tabs wc-tabs nav justify-content-lg-center flex-nowrap flex-lg-wrap overflow-auto overflow-lg-visble" id="pills-tab" role="tablist">
+                                <li class="flex-shrink-0 flex-lg-shrink-1 nav-item mb-3">
+                                    <a class="py-1 d-inline-block nav-link font-weight-medium active" id="pills-two-example1-tab" data-toggle="pill" href="#pills-two-example1" role="tab" aria-controls="pills-two-example1" aria-selected="true">
+                                        Product Details
+                                    </a>
+                                </li>
+                                <li class="flex-shrink-0 flex-lg-shrink-1 nav-item mb-3">
+                                    <a class="py-1 d-inline-block nav-link font-weight-medium" id="pills-four-example1-tab" data-toggle="pill" href="#pills-four-example1" role="tab" aria-controls="pills-four-example1" aria-selected="false">
+                                        Reviews (@Model.CommentCount)
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Nav Classic -->
+                            <!-- Tab Content -->
+                            <div class="tab-content col-lg-8 col-xl-9 border-top" id="pills-tabContent">
+                                <div class="woocommerce-Tabs-panel panel entry-content wc-tab tab-pane fade border-left pl-4 pt-4 pl-lg-6 pt-lg-6 pl-xl-9 pt-xl-9 show active" id="pills-two-example1" role="tabpanel" aria-labelledby="pills-two-example1-tab">
+                                    <!-- Mockup Block -->
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-hover table-borderless">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="px-4 px-xl-5">Number of Pages: </th>
+                                                    <td class="">@Model.NumberOfPage</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="px-4 px-xl-5">Publication Year: </th>
+                                                    <td>@Model.PublishYear</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="px-4 px-xl-5">Author Name: </th>
+                                                    <td class="">@Model.AuthorName</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="px-4 px-xl-5">Publisher:</th>
+                                                    <td>@Model.PublisherName</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- End Mockup Block -->
+                                </div>
+                                <div class="woocommerce-Tabs-panel panel entry-content wc-tab tab-pane fade border-left pl-4 pt-4 pl-lg-6 pt-lg-6 pl-xl-9 pt-xl-9" id="pills-four-example1" role="tabpanel" aria-labelledby="pills-four-example1-tab">
+                                    <!-- Mockup Block -->
+                                    <h4 class="font-size-5">Customer Reviews </h4>
+                                    <div class="mb-8">
+                                        <div class="mb-6">
+                                            <div class="d-flex  align-items-center mb-4">
+                                                <div class="h6 mb-0">
+                                                    <i class="fa-regular fa-comment"></i>  <span class="font-weight-normal">@(Model.CommentCount) reviews</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="">
+
+                                        </div>
+                                    </div>
+
+                                    <h4 class="font-size-3 mb-8">1-5 of 44 reviews</h4>
+
+                                    <ul class="list-unstyled mb-8">
+                                        <!--Renderlanacak alan start-->
+                                        <li class="mb-4 pb-5 border-bottom">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <h6 class="mb-0">Amazing Story! You will LOVE it</h6>
+                                            </div>
+                                            <p class="mb-4 text-lh-md">Such an incredibly complex story! I had to buy it because there was a waiting list of 30+ at the local library for this book. Thrilled that I made the purchase</p>
+                                            <div class="text-gray-600 mb-4">Staci, February 22, 2020 </div>
+                                        </li>
+                                        <!--Renderlanacak alan END-->
+
+                                    </ul>
+
+                                    <h4 class="font-size-3 mb-4">Write a Review</h4>
+                                    <form asp-controller="Book" asp-action="AddComment" method="post">
+                                        <div class="js-form-message form-group mb-4">
+                                            <label asp-for="CommentDescription" class="form-label text-dark h6 mb-3">Details please! Your review helps other shoppers.</label>
+                                            <textarea asp-for="CommentDescription" class="form-control rounded-0 p-4" rows="7" id="descriptionTextarea" placeholder="What did you like or dislike? What should other shoppers know before buying?" required="" data-msg="Please enter your message." data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <label asp-for="CommentTitle" class="form-label text-dark h6 mb-3">Add a title</label>
+                                            <input asp-for="CommentTitle" type="text" class="form-control rounded-0 px-4" id="inputCompanyName" placeholder="3000 characters remaining" aria-label="3000 characters remaining">
+                                        </div>
+                                        <div class="d-flex">
+                                            <input type="hidden" asp-for="ISBN" />
+                                            <button type="submit" class="btn btn-dark btn-wide rounded-0 transition-3d-hover">Submit Review</button>
+                                        </div>
+                                    </form>
+                                    <!-- End Mockup Block -->
+                                </div>
+                            </div>
+                            <!-- End Tab Content -->
                         </div>
+                        <!-- End Features Section -->
 
-                          <!-- Features Section -->
-                          <div class="woocommerce-tabs wc-tabs-wrapper mb-10 row">
-                              <!-- Nav Classic -->
-                              <ul class="col-lg-4 col-xl-3 pt-9 border-top d-lg-block tabs wc-tabs nav justify-content-lg-center flex-nowrap flex-lg-wrap overflow-auto overflow-lg-visble" id="pills-tab" role="tablist">
-                                  <li class="flex-shrink-0 flex-lg-shrink-1 nav-item mb-3">
-                                      <a class="py-1 d-inline-block nav-link font-weight-medium active" id="pills-one-example1-tab" data-toggle="pill" href="#pills-one-example1" role="tab" aria-controls="pills-one-example1" aria-selected="true">
-                                          Description
-                                      </a>
-                                  </li>
-                                  <li class="flex-shrink-0 flex-lg-shrink-1 nav-item mb-3">
-                                      <a class="py-1 d-inline-block nav-link font-weight-medium" id="pills-two-example1-tab" data-toggle="pill" href="#pills-two-example1" role="tab" aria-controls="pills-two-example1" aria-selected="false">
-                                          Product Details
-                                      </a>
-                                  </li>
-                                  <li class="flex-shrink-0 flex-lg-shrink-1 nav-item mb-3">
-                                      <a class="py-1 d-inline-block nav-link font-weight-medium" id="pills-four-example1-tab" data-toggle="pill" href="#pills-four-example1" role="tab" aria-controls="pills-four-example1" aria-selected="false">
-                                          Reviews (0)
-                                      </a>
-                                  </li>
-                              </ul>
-                              <!-- End Nav Classic -->
+                    </div>
+                </main>
+            </div>
 
-                              <!-- Tab Content -->
-                              <div class="tab-content col-lg-8 col-xl-9 border-top" id="pills-tabContent">
-                                  <div class="woocommerce-Tabs-panel panel entry-content wc-tab tab-pane fade border-left pl-4 pt-4 pl-lg-6 pt-lg-6 pl-xl-9 pt-xl-9 show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab">
-                                      <!-- Mockup Block -->
-                                      <p class="mb-0">We aim to show you accurate product information. Manufacturers, suppliers and others provide what you see here, and we have not verified it. See our disclaimer</p>
-                                      <p class="mb-0">#1 New York Times Bestseller</p>
-                                      <p class="mb-0">A Reese Witherspoon x Hello Sunshine Book Club Pick</p>
-                                      <p class="mb-4">"I can't even express how much I love this book! I didn't want this story to end!"--Reese Witherspoon</p>
-                                      <p class="mb-4">"Painfully beautiful."--The New York Times Book Review</p>
-                                      <p>"Perfect for fans of Barbara Kingsolver."--Bustle</p>
-                                      <p class="mb-4">For years, rumors of the "Marsh Girl" have haunted Barkley Cove, a quiet town on the North Carolina coast. So in late 1969, when handsome Chase Andrews is found dead, the locals immediately suspect Kya Clark, the so-called Marsh Girl. But Kya is not what they say. Sensitive and intelligent, she has survived for years alone in the marsh that she calls home, finding friends in the gulls and lessons in the sand. Then the time comes when she yearns to be touched and loved. When two young men from town become intrigued by her wild beauty, Kya opens herself to a new life--until the unthinkable happens.</p>
-                                      <p class="mb-4">Perfect for fans of Barbara Kingsolver and Karen Russell, Where the Crawdads Sing is at once an exquisite ode to the natural world, a heartbreaking coming-of-age story, and a surprising tale of possible murder. Owens reminds us that we are forever shaped by the children we once were, and that we are all subject to the beautiful and violent secrets that nature keeps</p>
-                                      <p>WHERE THE CRAWDADS LP</p>
-                                      <!-- End Mockup Block -->
-                                  </div>
-                                  <div class="woocommerce-Tabs-panel panel entry-content wc-tab tab-pane fade border-left pl-4 pt-4 pl-lg-6 pt-lg-6 pl-xl-9 pt-xl-9" id="pills-two-example1" role="tabpanel" aria-labelledby="pills-two-example1-tab">
-                                      <!-- Mockup Block -->
-                                      <div class="table-responsive mb-4">
-                                          <table class="table table-hover table-borderless">
-                                              <tbody>
-                                                  <tr>
-                                                      <th class="px-4 px-xl-5">Number of Pages: </th>
-                                                      <td class="">384 pages</td>
-                                                  </tr>
-                                                  <tr>
-                                                      <th class="px-4 px-xl-5">Publication date: </th>
-                                                      <td>20 Dec 2020</td>
-                                                  </tr>
-                                                  <tr>
-                                                      <th class="px-4 px-xl-5">Publisher:</th>
-                                                      <td>Little, Brown Book Group</td>
-                                                  </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                      <!-- End Mockup Block -->
-                                  </div>
-                                  <div class="woocommerce-Tabs-panel panel entry-content wc-tab tab-pane fade border-left pl-4 pt-4 pl-lg-6 pt-lg-6 pl-xl-9 pt-xl-9" id="pills-three-example1" role="tabpanel" aria-labelledby="pills-three-example1-tab">
-                                      <!-- Mockup Block -->
-                                      <div class="d-flex mb-8 justify-content-center">
-                                          <a href="javascript:;" class="product__video js-fancybox d-block p-4 border position-relative max-width-234" data-src="//www.youtube.com/watch?v=u-0Z0iVBxUY?autoplay=0" data-speed="700">
-                                              <span class="position-absolute-center text-dark font-size-10"><i class="flaticon-multimedia"></i></span>
-                                              <div class="hover-area">
-                                                  <img src="../../assets/img/120x180/img5.jpg" class="img-fluid d-block mx-auto mb-3" alt="image-description">
-                                                  <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-dark">Where The Crawdads Sing Overview</h2>
-                                                  <div class="font-size-2 text-gray-700">Solomon</div>
-                                              </div>
-                                              <span class="text-white bg-dark px-3 py-1 position-absolute bottom-0 right-0">1:45</span>
-                                          </a>
-                                          <a href="javascript:;" class="product__video js-fancybox d-block p-4 border position-relative max-width-234" data-src="www.youtube.com/watch?v=F7yO1tYCYxQ?autoplay=0" data-speed="700">
-                                              <span class="position-absolute-center text-dark font-size-10"><i class="flaticon-multimedia"></i></span>
-                                              <div class="hover-area">
-                                                  <img src="../../assets/img/120x180/img6.jpg" class="img-fluid d-block mx-auto mb-3" alt="image-description">
-                                                  <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-dark">Where The Crawdads Sing Overview</h2>
-                                                  <div class="font-size-2 text-gray-700">Solomon</div>
-                                              </div>
-                                              <span class="text-white bg-dark px-3 py-1 position-absolute bottom-0 right-0">2:21</span>
-                                          </a>
-                                      </div>
-                                      <!-- End Mockup Block -->
-                                  </div>
-                                  <div class="woocommerce-Tabs-panel panel entry-content wc-tab tab-pane fade border-left pl-4 pt-4 pl-lg-6 pt-lg-6 pl-xl-9 pt-xl-9" id="pills-four-example1" role="tabpanel" aria-labelledby="pills-four-example1-tab">
-                                      <!-- Mockup Block -->
-                                      <h4 class="font-size-5">Customer Reviews </h4>
-                                      <div class="mb-8">
-                                          <div class="mb-6">
-                                              <div class="d-flex  align-items-center mb-4">
-                                                  <div class="ml-3 h6 mb-0">
-                                                      <span class="font-weight-normal">3,714 reviews</span>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="">
-                                             
-                                          </div>
-                                      </div>
-
-                                      <h4 class="font-size-3 mb-8">1-5 of 44 reviews</h4>
-
-                                      <ul class="list-unstyled mb-8">
-                                          <li class="mb-4 pb-5 border-bottom">
-                                              <div class="d-flex align-items-center mb-3">
-                                                  <h6 class="mb-0">Amazing Story! You will LOVE it</h6>
-                                              </div>
-                                              <p class="mb-4 text-lh-md">Such an incredibly complex story! I had to buy it because there was a waiting list of 30+ at the local library for this book. Thrilled that I made the purchase</p>
-                                              <div class="text-gray-600 mb-4">Staci, February 22, 2020 </div> 
-                                          </li>
-                                          <li class="mb-4 pb-5 border-bottom">
-                                              <div class="d-flex align-items-center mb-3">
-                                                  <h6 class="mb-0">Get the best seller at a great price.</h6>
-                                                  <div class="text-yellow-darker ml-3">
-                                                  </div>
-                                              </div>
-                                              <p class="mb-4 text-lh-md">Awesome book, great price, fast delivery. Thanks so much.</p>
-                                              <div class="text-gray-600 mb-4">Staci, February 22, 2020 </div>                     
-                                          </li>
-                                          <li class="mb-4 pb-5 border-bottom">
-                                              <div class="d-flex align-items-center mb-3">
-                                                  <h6 class="mb-0">I read this book short...</h6>
-                                              </div>
-                                              <p class="mb-4 text-lh-md">I read this book shortly after I got it and didn't just put it on my TBR shelf mainly because I saw it on Reese Witherspoon's bookclub September read. It was one of the best books I've read this year, and reminded me some of Kristen Hannah's The Great Alone. </p>
-                                              <div class="text-gray-600 mb-4">Staci, February 22, 2020 </div>
-                                          </li>
-                                      </ul>
-
-                                      <h4 class="font-size-3 mb-4">Write a Review</h4>
-
-                                      <div class="js-form-message form-group mb-4">
-                                          <label for="descriptionTextarea" class="form-label text-dark h6 mb-3">Details please! Your review helps other shoppers.</label>
-                                          <textarea class="form-control rounded-0 p-4" rows="7" id="descriptionTextarea" placeholder="What did you like or dislike? What should other shoppers know before buying?" required="" data-msg="Please enter your message." data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
-                                      </div>
-                                      <div class="form-group mb-5">
-                                          <label for="inputCompanyName" class="form-label text-dark h6 mb-3">Add a title</label>
-                                          <input type="text" class="form-control rounded-0 px-4" name="companyName" id="inputCompanyName" placeholder="3000 characters remaining" aria-label="3000 characters remaining">
-                                      </div>
-                                      <div class="d-flex">
-                                          <button type="submit" class="btn btn-dark btn-wide rounded-0 transition-3d-hover">Submit Review</button>
-                                      </div>
-                                      <!-- End Mockup Block -->
-                                  </div>
-                              </div>
-                              <!-- End Tab Content -->
-                          </div>
-                          <!-- End Features Section -->
-
-                      </div>
-                  </main>
-              </div>
-
-          </div>
-      </div>
-  </div>
+        </div>
+    </div>
+</div>

@@ -8,16 +8,11 @@ using System.Threading.Tasks;
 
 namespace BookCave.Application.Feature.Specifications
 {
-    public class BookSpecification : Specification<Book>
+    public class BookCommentSpecification : Specification<Book>
     {
-        public BookSpecification()
+        public BookCommentSpecification(string isbn)
         {
-
+            Query.Where(x => x.ISBN == isbn);
         }
-        public BookSpecification(string isbn)
-        {
-            Query.Where(x => x.ISBN == isbn).Include(x => x.Author);
-        }
-
     }
 }

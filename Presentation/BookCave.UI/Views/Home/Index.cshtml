@@ -32,7 +32,7 @@
                             </div>
                             <br />
                             <h6 class="woocommerce-loop-product__title product__title h-dark font-weight-regular">
-                                <a href="#">@book.BookName</a>
+                                <a asp-controller="Book" asp-action="Index" asp-route-isbn="@book.ISBN">@book.BookName</a>
                             </h6>
                             <div class="font-size-2  mb-1 text-truncate">
                                 <a href="#"
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="ml-auto">
-                            <a href="../shop/single-product-v5.html" class="d-block">
+                            <a asp-controller="Book" asp-action="Index" asp-route-isbn="@book.ISBN" class="d-block">
                                 <img height="226" width="150" src="~/img/books/@(book.ImagePath)" class="img-fluid" alt="image-description">
                             </a>
                         </div>
@@ -137,7 +137,7 @@
                         <div class="product__inner overflow-hidden p-3 p-md-4d875">
                             <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                 <div class="woocommerce-loop-product__thumbnail">
-                                    <a href="#" class="d-block">
+                                    <a asp-controller="Book" asp-action="Index" asp-route-isbn="@book.ISBN" class="d-block">
                                         <img src="~/img/books/@(book.ImagePath)"
                                              class="d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                              alt="book_cave">
@@ -148,7 +148,7 @@
                                         <a href="#">@book.PublisherName</a>
                                     </div>
                                     <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                        <a href="#">
+                                        <a asp-controller="Book" asp-action="Index" asp-route-isbn="@book.ISBN">
                                             @book.BookName
                                         </a>
                                     </h2>
