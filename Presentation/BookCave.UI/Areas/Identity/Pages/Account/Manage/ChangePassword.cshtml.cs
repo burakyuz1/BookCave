@@ -37,14 +37,6 @@ namespace BookCave.UI.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-
-            [Required]
-            [Display(Name = "New Name")]
-            public string NewName { get; set; }
-            [Required]
-            [Display(Name = "New Last Name")]
-            public string NewLastName { get; set; }
-
             [Required]
             [DataType(DataType.Password)]
             [Display(Name = "Current password")]
@@ -64,16 +56,7 @@ namespace BookCave.UI.Areas.Identity.Pages.Account.Manage
 
         private void LoadInputModel(ApplicationUser user)
         {
-            var userName = user.Name;
-            var userLastName = user.LastName;
-
-            Mail = user.UserName;
-
-            Input = new InputModel()
-            {
-                NewName = user.Name,
-                NewLastName = user.LastName
-            };
+            
         }
 
         public async Task<IActionResult> OnGetAsync()

@@ -3,6 +3,7 @@ using BookCave.Domain.Entities;
 using BookCave.UI.Abstracts.Book;
 using BookCave.UI.Abstracts.Comment;
 using BookCave.UI.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -26,6 +27,7 @@ namespace BookCave.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> AddComment(SingleBookViewModel model)
         {
             string isbn = await _commentViewModelService.AddCommentToBook(model);

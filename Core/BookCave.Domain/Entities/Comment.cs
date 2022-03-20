@@ -13,6 +13,6 @@ namespace BookCave.Domain.Entities
         public bool IsSecretName { get; set; }
         public string ISBN { get; set; }
         public Book Book { get; set; }
-        //TODO: user gelecek
+        public string UserId { get; set; }
     }
 }

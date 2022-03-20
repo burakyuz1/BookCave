@@ -2,9 +2,11 @@
 using BookCave.Domain.Entities;
 using BookCave.UI.Abstracts.Comment;
 using BookCave.UI.ViewModels;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BookCave.UI.Concretes.Comments
@@ -12,10 +14,12 @@ namespace BookCave.UI.Concretes.Comments
     public class CommentViewModelService : ICommentViewModelService
     {
         private readonly ICommentService _commentService;
+        private readonly IHttpContextAccessor _httpContext;
 
-        public CommentViewModelService(ICommentService commentService)
+        public CommentViewModelService(ICommentService commentService, IHttpContextAccessor httpContext)
         {
             _commentService = commentService;
+            _httpContext = httpContext;
         }
         public async Task<string> AddCommentToBook(SingleBookViewModel singleBook)
         {
@@ -24,7 +28,8 @@ namespace BookCave.UI.Concretes.Comments
                 IsActive = true,
                 Title = singleBook.CommentTitle,
                 ISBN = singleBook.ISBN,
-                Content = singleBook.CommentDescription
+                Content = singleBook.CommentDescription,
+                UserId = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier)
             };
             await _commentService.AddCommentAsync(comment);
             return singleBook.ISBN;
