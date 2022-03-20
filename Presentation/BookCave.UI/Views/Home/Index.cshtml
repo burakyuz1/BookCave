@@ -45,7 +45,7 @@
                             </div>
                             <br />
                             <div class="product__hover d-flex align-items-center">
-                                <a href="#"
+                                <a data-add-cart="@book.ISBN" href="#"
                                    class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
                                     <span class="product__add-to-cart mr-2">ADD TO CART</span>
                                 </a>
@@ -163,7 +163,7 @@
                                     </div>
                                 </div>
                                 <div class="product__hover d-flex align-items-center">
-                                    <a href="#"
+                                    <a data-add-cart="@book.ISBN "href="#"
                                        class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
                                         <span class="product__add-to-cart">ADD TO CART</span>
                                         <span class="product__add-to-cart-icon font-size-4">
@@ -185,3 +185,21 @@
     </div>
 </section>
 
+@section Scripts{
+    <script>
+        $("[data-add-cart]").click(function(event){
+            event.preventDefault();
+            let bookIsbn=$(this).data('add-cart');
+
+            $.ajax({
+                type:'POST',
+                url:'@Url.Action("AddBookToCart","Cart")',
+                data:{isbn:bookIsbn},
+                success: function(data){
+                    $("#totalCartLinesCount").text(data.totalQuantityCartLines);
+                    $("#totalCartLinesPrice").text(data.totalPriceCartLİne);
+                }
+            })
+        })
+    </script>
+}
