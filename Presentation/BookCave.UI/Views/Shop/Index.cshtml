@@ -99,11 +99,13 @@
                                 <div class="row">
                                     <div class="float-left col-md-6 ">
                                         <span>Min$</span>
-                                        <input asp-for="MinPrice" type="number" min="0" max="1000" />
+                                        <input asp-for="MinPrice" type="number" min="0" max="1000" id="MinPrice" class="input-text qty text js-result form-control text-center"> 
+                                        <span class="text-danger" asp-validation-for="MinPrice"></span>
                                     </div>
                                     <div class="float:left col-md-6">
                                         <span>Max$</span>
-                                        <input asp-for="MaxPrice" type="number" min="0" max="1000" />
+                                        <input asp-for="MaxPrice" type="number" min="0" max="1000" id="MinPrice" class="input-text qty text js-result form-control text-center">
+                                        <span class="text-danger" asp-validation-for="MaxPrice"></span>
                                     </div>
                                 </div>
                             </div>

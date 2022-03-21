@@ -1,6 +1,4 @@
-﻿using BookCave.Application.Abstracts;
-using BookCave.Domain.Entities;
-using BookCave.UI.Abstracts.Book;
+﻿using BookCave.UI.Abstracts.Book;
 using BookCave.UI.Abstracts.Comment;
 using BookCave.UI.ViewModels;
 using Microsoft.AspNetCore.Authorization;
