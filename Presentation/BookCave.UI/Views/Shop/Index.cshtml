@@ -1,248 +1,294 @@
 ﻿@model ShopViewModel
-<div class="container">
-    <div class="row">
-        <!--LEFT ASIDE START-->
-        <div class="col-md-3">
-            <div id="secondary" class="sidebar widget-area order-1" role="complementary">
-                <form id="filterForm" method="get">
+    <style>
+        .filter-top {
+            display: inline-block;
+            border: 1px solid #ccc;
+            padding: 0.4rem 0.4rem;
+            margin-bottom: 0.4rem !important;
+            margin-right: 0.4rem !important;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <!--LEFT ASIDE START-->
+            <div class="col-md-3">
+                <div id="secondary" class="sidebar widget-area order-1" role="complementary">
+                    <form id="filterForm" method="get">
 
-                    <div class="mb-2">
-                        <!--FILTER CATEGORY START-->
-                        <div class="widget p-4d875 border woocommerce widget_product_categories">
-                            <div class="widget-head">
-                                <a class="d-flex align-items-center justify-content-between text-dark">
-                                    <h3 class="widget-title mb-0 font-weight-medium font-size-3">
-                                        Categories
-                                    </h3>
-                                </a>
-                            </div>
-                            <div class="mt-3 widget-content">
-                                <input type="hidden" id="catId" asp-for="CategoryId" value="@Model.CategoryId" />
-                                <input id="sortingHidden" type="hidden" asp-for="OrderType" value="@Model.OrderType" />
-                                <input type="hidden" id="pageStatu" name="pageNumber" />
-                                <input type="hidden" id="searchKeyword" asp-for="Keyword" />
-                                <ul>
-                                    <li>
-                                        <a data-cat-ids="0" style="cursor:pointer">All</a>
-                                    </li>
-                                    @foreach (var item in Model.Categories)
-                                    {
+                        <div class="mb-2">
+                            <!--FILTER CATEGORY START-->
+                            <div class="widget p-4d875 border woocommerce widget_product_categories">
+                                <div class="widget-head">
+                                    <a class="d-flex align-items-center justify-content-between text-dark">
+                                        <h3 class="widget-title mb-0 font-weight-medium font-size-3">
+                                            Categories
+                                        </h3>
+                                    </a>
+                                </div>
+                                <div class="mt-3 widget-content">
+                                    <input type="hidden" id="catId" asp-for="CategoryId" value="@Model.CategoryId" />
+                                    <input id="sortingHidden" type="hidden" asp-for="OrderType" value="@Model.OrderType" />
+                                    <input type="hidden" id="pageStatu" name="pageNumber" />
+                                    <input type="hidden" id="searchKeyword" asp-for="Keyword" />
+                                    <ul>
                                         <li>
-                                            <a style="cursor:pointer" data-cat-ids="@item.Id">@item.Name</a>
+                                            <a data-cat-ids="0" style="cursor:pointer">All</a>
                                         </li>
-                                    }
-                                </ul>
+                                        @foreach (var item in Model.Categories)
+                                        {
+                                            <li>
+                                                <a style="cursor:pointer" data-cat-ids="@item.Id">@item.Name</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <!--FILTER CATEGORY END-->
-                        <!--FILTER AUTHOR START-->
-                        <div class="widget widget_search widget_author p-4d875 border">
-                            <div class="widget-head">
-                                <a class="d-flex align-items-center justify-content-between text-dark">
-                                    <h3 class="widget-title mb-0 font-weight-medium font-size-3">
-                                        Author
-                                    </h3>
-                                </a>
-                            </div>
-                            <div class="mt-4 widget-content">
-                                <ul class="product-categories">
-                                    @for (int i = 0; i < Model.Authors.Count; i++)
-                                    {
-                                        <li class="custom-checkbox pb-2">
-                                            <input type="checkbox" asp-for="Authors[i].IsSelected" id="author-@Model.Authors[i].Id" />
-                                            <label for="author-@Model.Authors[i].Id" class="d-inline-block ml-2">@Model.Authors[i].AuthorName</label>
+                            <!--FILTER CATEGORY END-->
+                            <!--FILTER AUTHOR START-->
+                            <div class="widget widget_search widget_author p-4d875 border">
+                                <div class="widget-head">
+                                    <a class="d-flex align-items-center justify-content-between text-dark">
+                                        <h3 class="widget-title mb-0 font-weight-medium font-size-3">
+                                            Author
+                                        </h3>
+                                    </a>
+                                </div>
+                                <div class="mt-4 widget-content">
+                                    <ul class="product-categories">
+                                        @for (int i = 0; i < Model.Authors.Count; i++)
+                                        {
+                                            <li class="custom-checkbox pb-2">
+                                                <input type="checkbox" asp-for="Authors[i].IsSelected" id="author-@Model.Authors[i].Id" />
+                                                <label for="author-@Model.Authors[i].Id" class="d-inline-block ml-2">@Model.Authors[i].AuthorName</label>
 
-                                            <input type="hidden" asp-for="Authors[i].Id" />
-                                            <input type="hidden" asp-for="Authors[i].AuthorName" />
-                                        </li>
-                                    }
-                                </ul>
+                                                <input type="hidden" asp-for="Authors[i].Id" />
+                                                <input type="hidden" asp-for="Authors[i].AuthorName" />
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <!--FILTER AUTHOR END-->
-                        <!--FILTER PUBLISHER START-->
-                        <div class="widget widget_search widget_author p-4d875 border">
-                            <div class="widget-head">
-                                <a class="d-flex align-items-center justify-content-between text-dark">
-                                    <h3 class="widget-title mb-0 font-weight-medium font-size-3">
-                                        Publisher
-                                    </h3>
-                                </a>
-                            </div>
-                            <div class="mt-4 widget-content">
-                                <ul class="product-categories">
+                            <!--FILTER AUTHOR END-->
+                            <!--FILTER PUBLISHER START-->
+                            <div class="widget widget_search widget_author p-4d875 border">
+                                <div class="widget-head">
+                                    <a class="d-flex align-items-center justify-content-between text-dark">
+                                        <h3 class="widget-title mb-0 font-weight-medium font-size-3">
+                                            Publisher
+                                        </h3>
+                                    </a>
+                                </div>
+                                <div class="mt-4 widget-content">
+                                    <ul class="product-categories">
+                                        @for (int i = 0; i < Model.Publishers.Count; i++)
+                                        {
+                                            <li class="custom-checkbox pb-2">
+                                                <input type="checkbox" asp-for="Publishers[i].IsSelected" id="publisher-@Model.Publishers[i].Id" />
+                                                <label for="publisher-@Model.Publishers[i].Id" class="d-inline-block ml-2">@Model.Publishers[i].PublisherName</label>
 
-                                    @for (int i = 0; i < Model.Publishers.Count; i++)
-                                    {
-                                        <li class="custom-checkbox pb-2">
-                                            <input type="checkbox" asp-for="Publishers[i].IsSelected" id="publisher-@Model.Publishers[i].Id" />
-                                            <label for="publisher-@Model.Publishers[i].Id" class="d-inline-block ml-2">@Model.Publishers[i].PublisherName</label>
-
-                                            <input type="hidden" asp-for="Publishers[i].Id" />
-                                            <input type="hidden" asp-for="Publishers[i].PublisherName" />
-                                        </li>
-                                    }
-                                </ul>
+                                                <input type="hidden" asp-for="Publishers[i].Id" />
+                                                <input type="hidden" asp-for="Publishers[i].PublisherName" />
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <!--FILTER PUBLISHER END-->
-                        <!--FILTER PRICE START-->
-                        <div class="widget border p-4d875 woocommerce widget_price_filter">
-                            <div class="widget-head">
-                                <a class="d-flex align-items-center justify-content-between text-dark">
-                                    <h3 class="widget-title font-weight-medium font-size-3 mb-0">
-                                        Filter by price
-                                    </h3>
-                                </a>
-                            </div>
-                            <div class="mt-4 widget-content">
-                                <div class="row">
-                                    <div class="float-left col-md-6 ">
-                                        <span>Min$</span>
-                                        <input asp-for="MinPrice" type="number" min="0" max="1000" />
-                                    </div>
-                                    <div class="float:left col-md-6">
-                                        <span>Max$</span>
-                                        <input asp-for="MaxPrice" type="number" min="0" max="1000" />
+                            <!--FILTER PUBLISHER END-->
+                            <!--FILTER PRICE START-->
+                            <div class="widget border p-4d875 woocommerce widget_price_filter">
+                                <div class="widget-head">
+                                    <a class="d-flex align-items-center justify-content-between text-dark">
+                                        <h3 class="widget-title font-weight-medium font-size-3 mb-0">
+                                            Filter by price
+                                        </h3>
+                                    </a>
+                                </div>
+                                <div class="mt-4 widget-content">
+                                    <div class="row">
+                                        <div class="float-left col-md-6 ">
+                                            <span>Min$</span>
+                                            <input asp-for="MinPrice" type="number" min="0" max="1000" id="MinPrice" class="input-text qty text js-result form-control text-center">
+                                            <span class="text-danger" asp-validation-for="MinPrice"></span>
+                                        </div>
+                                        <div class="float:left col-md-6">
+                                            <span>Max$</span>
+                                            <input asp-for="MaxPrice" type="number" min="0" max="1000" id="MaxPrice" class="input-text qty text js-result form-control text-center">
+                                            <span class="text-danger" asp-validation-for="MaxPrice"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--FILTER PRICE END-->
                         </div>
-                        <!--FILTER PRICE END-->
-                    </div>
-                    <div>
-                        <button asp-route-categoryId="@Model.CategoryId" asp-route-max="@Model.MaxPrice" asp-route-min="@Model.MinPrice" type="submit" class="btn btn-primary rounded-0 float-right">Filter</button>
-                    </div>
-                </form>
+                        <div>
+                            <button asp-route-categoryId="@Model.CategoryId" asp-route-max="@Model.MaxPrice" asp-route-min="@Model.MinPrice" type="submit" class="btn btn-primary rounded-0 float-right">Filter</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-        <!--LEFT ASIDE END-->
-        <!--CONTENT ASIDE START-->
-        <div class="col-md-9">
-            <div class="position-relative mb-6">
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel"
-                         aria-labelledby="pills-one-example1-tab">
-                        <div class="shop-control-bar d-lg-flex justify-content-between align-items-center mb-5 text-center text-md-left">
-                            <div class="shop-control-bar__left mb-4 m-lg-0">
-                                <h1 class="woocommerce-result-count m-0">@(Model.CategoryName ?? "")</h1>
-                                @if (!string.IsNullOrEmpty(Model.Keyword))
-                                {
-                                    <h6 class="woocommerce-result-count m-0 text-muted">
-                                        Your search result for <strong>'@(Model.Keyword)'</strong>
-                                        <a href="#" id="deleteKeyword"><i class="fas fa-times"></i></a>
-                                    </h6>
-                                }
-                            </div>
-                            <div class="shop-control-bar__right d-md-flex align-items-center">
-                                <select id="orderByPrice" class="selectpicker dropdown-select orderby" name="orderby" data-style="border-bottom shadow-none outline-none py-2">
-                                    <option value="DEFAULT">Sort by trending</option>
-                                    <option value="INCREASING">Sort by price: low to high</option>
-                                    <option value="DECREASING">Sort by price: high to low</option>
-                                </select>
-                            </div>
-                        </div>
-                        <ul class="products list-unstyled row no-gutters row-cols-2 row-cols-lg-3 row-cols-wd-4 border-top border-left mb-6">
-                            @foreach (var book in Model.Books)
-                            {
-                                <li class="product col">
-                                    <div class="product__inner overflow-hidden p-3 p-md-4d875">
-                                        <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
-                                            <div class="woocommerce-loop-product__thumbnail">
-                                                <a asp-controller="Book" asp-action="Index" asp-route-isbn="@book.ISBN" class="d-block">
-                                                    <img src="~/img/books/@book.ImagePath"
-                                                         class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                         alt="image-description">
-                                                </a>
-                                            </div>
-                                            <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
-                                                <div class="text-uppercase font-size-1 mb-1 text-truncate">
-                                                    <a href="#">@book.PublisherName</a>
-                                                </div>
-                                                <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                                    <a href="#">
-                                                        @book.BookName
-                                                    </a>
-                                                </h2>
-                                                <div class="font-size-2  mb-1 text-truncate">
-                                                    <a href="#"
-                                                       class="text-gray-700">@book.AuthorName</a>
-                                                </div>
-                                                <div class="price d-flex align-items-center font-weight-medium font-size-3">
-                                                    <span class="woocommerce-Price-amount amount">
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>@book.UnitPrice
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="product__hover d-flex align-items-center">
-                                                <a data-add-cart="@book.ISBN" href=".#"
-                                                   class="text-uppercase text-dark h-dark font-weight-medium mr-auto" data-toggle="tooltip"
-                                                   data-placement="right" title="" data-original-title="ADD TO CART">
-                                                    <span class="product__add-to-cart">ADD TO CART</span>
-                                                    <span class="product__add-to-cart-icon font-size-4">
-                                                        <i class="flaticon-icon-126515"></i>
-                                                    </span>
-                                                </a>
+            <!--LEFT ASIDE END-->
+            <!--CONTENT ASIDE START-->
+            <div class="col-md-9">
+                <div class="position-relative mb-6">
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-one-example1" role="tabpanel"
+                             aria-labelledby="pills-one-example1-tab">
+                            <div class="shop-control-bar d-lg-flex justify-content-between align-items-center mb-5 text-center text-md-left">
+                                <div class="shop-control-bar__left mb-4 m-lg-0 w-100">
+                                    @if (Model.CategoryName != "")
+                                    {
+                                        <h6 class="woocommerce-result-count m-0 text-muted filter-top">
+                                            Category <strong>'@(Model.CategoryName)'</strong>
+                                            <a href="#" id="deleteCategoryFilter"><i class="fas fa-times"></i></a>
+                                        </h6>
+                                    }
+                                    @if (!string.IsNullOrEmpty(Model.Keyword))
+                                    {
+                                        <h6 class="woocommerce-result-count m-0 text-muted filter-top">
+                                            Your search result for <strong>'@(Model.Keyword)'</strong>
+                                            <a href="#" id="deleteKeyword"><i class="fas fa-times"></i></a>
+                                        </h6>
+                                    }
+                                    @if (Model.Authors.Any(x => x.IsSelected))
+                                    {
+                                        foreach (var author in Model.Authors.Where(x => x.IsSelected))
+                                        {
+                                            <h6 class="woocommerce-result-count m-0 text-muted filter-top">
+                                                Author: <strong>@author.AuthorName</strong>
+                                                <a href="#" data-delete-authorId="@author.Id"><i class="fas fa-times"></i></a>
+                                            </h6>
+                                        }
+                                    }
+                                    @if (Model.Publishers.Any(x => x.IsSelected))
+                                    {
+                                        foreach (var publisher in Model.Publishers.Where(x => x.IsSelected))
+                                        {
+                                            <h6 class="woocommerce-result-count m-0 text-muted filter-top">
+                                                Publisher: <strong>@publisher.PublisherName</strong>
+                                                <a href="#" data-delete-publisherId="@publisher.Id"><i class="fas fa-times"></i></a>
+                                            </h6>
+                                        }
+                                    }
+                                    @if (Model.MaxPrice > 0)
+                                    {
+                                        <h6 class="woocommerce-result-count m-0 text-muted filter-top">
+                                            Price: <strong>$@Model.MinPrice - $@Model.MaxPrice</strong>
+                                            <a href="#" id="deleteFilterPrice"><i class="fas fa-times"></i></a>
+                                        </h6>
+                                    }
 
-                                                <a href="#" class="h-p-bg btn btn-outline-primary border-0">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </a>
+                                </div>
+                                <div class="shop-control-bar__right d-md-flex align-items-center">
+                                    <select id="orderByPrice" class="selectpicker dropdown-select orderby" name="orderby" data-style="border-bottom shadow-none outline-none py-2">
+                                        <option value="DEFAULT">Sort by trending</option>
+                                        <option value="INCREASING">Sort by price: low to high</option>
+                                        <option value="DECREASING">Sort by price: high to low</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <ul class="products list-unstyled row no-gutters row-cols-2 row-cols-lg-3 row-cols-wd-4 border-top border-left mb-6">
+                                @foreach (var book in Model.Books)
+                                {
+                                    <li class="product col">
+                                        <div class="product__inner overflow-hidden p-3 p-md-4d875">
+                                            <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
+                                                <div class="woocommerce-loop-product__thumbnail">
+                                                    <a asp-controller="Book" asp-action="Index" asp-route-isbn="@book.ISBN" class="d-block">
+                                                        <img src="~/img/books/@book.ImagePath"
+                                                             class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
+                                                             alt="image-description">
+                                                    </a>
+                                                </div>
+                                                <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                                    <div class="text-uppercase font-size-1 mb-1 text-truncate">
+                                                        <a href="#">@book.PublisherName</a>
+                                                    </div>
+                                                    <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
+                                                        <a href="#">
+                                                            @book.BookName
+                                                        </a>
+                                                    </h2>
+                                                    <div class="font-size-2  mb-1 text-truncate">
+                                                        <a href="#"
+                                                           class="text-gray-700">@book.AuthorName</a>
+                                                    </div>
+                                                    <div class="price d-flex align-items-center font-weight-medium font-size-3">
+                                                        <span class="woocommerce-Price-amount amount">
+                                                            <span class="woocommerce-Price-currencySymbol">$</span>@book.UnitPrice
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="product__hover d-flex align-items-center">
+                                                    <a data-add-cart="@book.ISBN" href=".#"
+                                                       class="text-uppercase text-dark h-dark font-weight-medium mr-auto" data-toggle="tooltip"
+                                                       data-placement="right" title="" data-original-title="ADD TO CART">
+                                                        <span class="product__add-to-cart">ADD TO CART</span>
+                                                        <span class="product__add-to-cart-icon font-size-4">
+                                                            <i class="flaticon-icon-126515"></i>
+                                                        </span>
+                                                    </a>
+
+                                                    <a href="#" class="h-p-bg btn btn-outline-primary border-0">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-                <!--PAGINATION START-->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
-                        @{ var pageInfo = Model.PaginationInfo; }
-
-                        <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasPrevious ? "" : "disabled")"><a style="cursor:pointer" id="previousPage" class="page-link">Previous</a></li>
-
-
-                        @foreach (var i in pageInfo.PageNumbers)
-                        {
-                            if (i == -1)
-                            {
-                                <li class="flex-shrink-0 flex-md-shrink-1 page-item disabled"><a style="cursor:pointer" class="page-link">&hellip;</a></li>
-
-                            }
-                            else
-                            {
-                                if (@pageInfo.CurrentPage == i)
-                                {
-                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item active">
-                                        <a style="cursor:pointer" data-page-id="@i" class="page-link">@(i)</a>
                                     </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <!--PAGINATION START-->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
+                            @{ var pageInfo = Model.PaginationInfo; }
+
+                            <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasPrevious ? "" : "disabled")"><a style="cursor:pointer" id="previousPage" class="page-link">Previous</a></li>
+
+
+                            @foreach (var i in pageInfo.PageNumbers)
+                            {
+                                if (i == -1)
+                                {
+                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item disabled"><a style="cursor:pointer" class="page-link">&hellip;</a></li>
+
                                 }
                                 else
                                 {
-                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item">
-                                        <a style="cursor:pointer" data-page-id="@i" class="page-link">@(i)</a>
-                                    </li>
+                                    if (@pageInfo.CurrentPage == i)
+                                    {
+                                        <li class="flex-shrink-0 flex-md-shrink-1 page-item active">
+                                            <a style="cursor:pointer" data-page-id="@i" class="page-link">@(i)</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="flex-shrink-0 flex-md-shrink-1 page-item">
+                                            <a style="cursor:pointer" data-page-id="@i" class="page-link">@(i)</a>
+                                        </li>
+                                    }
                                 }
                             }
-                        }
 
-                        <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasNext ? "" : "disabled")">
-                            <a style="cursor:pointer" id="nextPage" class="page-link">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-                <!--PAGINATION END-->
+                            <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasNext ? "" : "disabled")">
+                                <a style="cursor:pointer" id="nextPage" class="page-link">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!--PAGINATION END-->
 
+                </div>
             </div>
+            <!-- CONTENT END-->
         </div>
-        <!-- CONTENT END-->
     </div>
-</div>
+
 
 @section Scripts{
      <script src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js"></script>
     <script>
+
         $("[data-add-cart]").click(function (event) {
             event.preventDefault();
             let bookIsbn = $(this).data('add-cart');
@@ -307,11 +353,39 @@
             $("#filterForm").submit();
         })
 
-        $("#deleteKeyword").click(function (e) {
-            $("#searchKeyword").val("");
-            var parentEl = ($(this)[0].parentElement);
-            $("#filterForm").submit();
+        $(".fa-times").click(function () {
+            var parentEl = ($(this)[0].parentElement.parentElement);
             parentEl.hidden = true;
         })
-    </script>
-}
+
+        $("#deleteFilterPrice").click(function () {
+            $("#MinPrice").val(0);
+            $("#MaxPrice").val(null);
+            $("#filterForm").submit();
+        })
+
+        $("#deleteCategoryFilter").click(function () {
+            $("#catId").val(null);
+            $("#filterForm").submit();
+        })
+
+        $("#deleteKeyword").click(function () {
+            $("#searchKeyword").val("");
+            $("#filterForm").submit();
+        })
+
+        $("[data-delete-publisherId]").click(function () {
+            var pubId = $(this).data("delete-publisherid");
+            var publisherUncheck = `publisher-${pubId}`;
+            $("#" + publisherUncheck).prop('checked', false);
+            $("#filterForm").submit();
+        });
+
+        $("[data-delete-authorId]").click(function () {
+            var authorId = $(this).data("delete-authorid");
+            var authorUncheck = `author-${authorId}`;
+            $("#" + authorUncheck).prop('checked', false);
+            $("#filterForm").submit();
+        })
+        </script>
+    }

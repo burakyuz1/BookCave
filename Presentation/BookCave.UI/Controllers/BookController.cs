@@ -1,6 +1,4 @@
-﻿using BookCave.Application.Abstracts;
-using BookCave.Domain.Entities;
-using BookCave.UI.Abstracts.Book;
+﻿using BookCave.UI.Abstracts.Book;
 using BookCave.UI.Abstracts.Comment;
 using BookCave.UI.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +17,7 @@ namespace BookCave.UI.Controllers
             _singleBookViewModelService = singleBookViewModelService;
             _commentViewModelService = commentViewModelService;
         }
-        public async Task<IActionResult> Index(string isbn,int commentPage = 1)
+        public async Task<IActionResult> Index(string isbn, int commentPage = 1)
         {
             var model = await _singleBookViewModelService.GetSingleBookViewModelAsync(isbn, commentPage);
             return View(model);

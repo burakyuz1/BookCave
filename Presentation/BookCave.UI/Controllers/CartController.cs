@@ -23,7 +23,6 @@ namespace BookCave.UI.Controllers
 
 
             CartViewModel model = await _cartViewModelService.GetCartViewModelAsync();
-
             return View(model);
         }
 
@@ -31,7 +30,6 @@ namespace BookCave.UI.Controllers
         {
 
             var cartVm = await _cartViewModelService.AddToCartAsync(isbn, quantity);
-
             return Json(new NavCartViewModel() { TotalQuantityCartLines = cartVm.TotalCartLines, TotalPriceCartLine = cartVm.TotalPrice });
         }
 

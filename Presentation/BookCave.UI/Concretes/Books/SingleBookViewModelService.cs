@@ -3,9 +3,11 @@ using BookCave.Application.Feature.Specifications;
 using BookCave.Domain.Entities;
 using BookCave.UI.Abstracts.Book;
 using BookCave.UI.ViewModels;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BookCave.UI.Concretes.Books
@@ -26,7 +28,7 @@ namespace BookCave.UI.Concretes.Books
             var singleBook = await _bookRepository.FirstOrDefaultAsync(new SingleBookSpecification(isbn));
             int skip = (commentPage - 1) * Constants.COMMENTS_PER_PAGE;
             int take = Constants.COMMENTS_PER_PAGE;
-            var pagedComment = await _commentRepository.GetAllAsync(new CommentSpecification(skip, take));
+            var pagedComment = await _commentRepository.GetAllAsync(new CommentSpecification(skip, take, isbn));
 
             int totalCommentCount = singleBook.Comments.Count;
             int totalPageCount = (int)Math.Ceiling((decimal)totalCommentCount / Constants.COMMENTS_PER_PAGE);
