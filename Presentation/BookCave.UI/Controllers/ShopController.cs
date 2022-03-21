@@ -23,7 +23,7 @@ namespace BookCave.UI.Controllers
             List<AuthorViewModel> authors,
             List<PublisherViewModel> publishers,
             int? categoryId,
-            int? minPrice, int? maxPrice,
+            int minPrice, int? maxPrice,
             OrderType orderType,
             string keyword,
             SearchType searchType,

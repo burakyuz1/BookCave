@@ -36,7 +36,7 @@ namespace BookCave.UI.Concretes.Shop
             List<AuthorViewModel> authors,
             List<PublisherViewModel> publishers,
             int? categoryId,
-            int? min,
+            int min,
             int? max,
             OrderType orderType,
             string keyword,
