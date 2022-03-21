@@ -186,6 +186,7 @@
 </section>
 
 @section Scripts{
+    <script src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js"></script>
     <script>
         $("[data-add-cart]").click(function(event){
             event.preventDefault();
@@ -198,6 +199,14 @@
                 success: function (data) {
                     $("#totalCartLinesCount").text(data.totalQuantityCartLines);
                     $("#totalCartLinesPrice").text(data.totalPriceCartLine);
+                    Swal.fire({
+                        position:'bottom-end',
+                        icon:'success',
+                        title: 'Added to cart',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        width: '300px'
+                    })
                 }
             })
         })
