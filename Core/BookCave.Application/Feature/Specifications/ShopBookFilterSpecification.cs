@@ -8,7 +8,7 @@ namespace BookCave.Application.Feature.Specifications
 {
     public class ShopBookFilterSpecification : Specification<Book>
     {
-        public ShopBookFilterSpecification(List<int> authorIds, List<int> publisherIds, int? categoryId, int? min, int? max, OrderType orderType, string keyword, SearchType searchType)
+        public ShopBookFilterSpecification(List<int> authorIds, List<int> publisherIds, int? categoryId, decimal min, decimal? max, OrderType orderType, string keyword, SearchType searchType)
         {
             if (categoryId.HasValue)
             {
@@ -18,7 +18,7 @@ namespace BookCave.Application.Feature.Specifications
             {
                 Query.Where(x => authorIds.Contains(x.AuthorId.Value));
             }
-            if (min.HasValue && max.HasValue)
+            if (min > 0 && max.HasValue)
             {
                 Query.Where(x => x.UnitPrice >= min && x.UnitPrice <= max);
             }
@@ -55,7 +55,7 @@ namespace BookCave.Application.Feature.Specifications
             }
         }
 
-        public ShopBookFilterSpecification(List<int> authorIds, List<int> publisherIds, int? categoryId, int? min, int? max, OrderType orderType, int skip, int take, string keyword, SearchType searchType) : this(authorIds, publisherIds, categoryId, min, max, orderType, keyword, searchType)
+        public ShopBookFilterSpecification(List<int> authorIds, List<int> publisherIds, int? categoryId, decimal min, decimal? max, OrderType orderType, int skip, int take, string keyword, SearchType searchType) : this(authorIds, publisherIds, categoryId, min, max, orderType, keyword, searchType)
         {
             Query.Skip(skip).Take(take);
         }

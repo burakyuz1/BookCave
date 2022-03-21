@@ -6,8 +6,8 @@ namespace BookCave.UI.ViewModels
 {
     public class ShopViewModel
     {
-        public int? MaxPrice { get; set; }
-        public int? MinPrice { get; set; }
+        public decimal MinPrice { get; set; }
+        public decimal? MaxPrice { get; set; }
         public int? CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string Keyword { get; set; }

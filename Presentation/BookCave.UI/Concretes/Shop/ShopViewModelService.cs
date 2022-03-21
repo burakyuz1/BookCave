@@ -36,8 +36,8 @@ namespace BookCave.UI.Concretes.Shop
             List<AuthorViewModel> authors,
             List<PublisherViewModel> publishers,
             int? categoryId,
-            int min,
-            int? max,
+            decimal min,
+            decimal? max,
             OrderType orderType,
             string keyword,
             SearchType searchType,
@@ -104,6 +104,7 @@ namespace BookCave.UI.Concretes.Shop
             };
         }
 
+    
         private void SetTrueSelectedItem<T>(ICollection<T> filteredList, List<int> ids)
         {
             foreach (dynamic item in filteredList)

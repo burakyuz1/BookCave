@@ -8,6 +8,6 @@ namespace BookCave.UI.Abstracts.Shop
 {
     public interface IShopViewModelService
     {
-        Task<ShopViewModel> GetShopViewModelAsync(List<AuthorViewModel> authors, List<PublisherViewModel> publisherIds, int? categoryId, int min, int? max, OrderType orderType, string keyword, SearchType searchType, byte pageNumber);
+        Task<ShopViewModel> GetShopViewModelAsync(List<AuthorViewModel> authors, List<PublisherViewModel> publisherIds, int? categoryId, decimal min, decimal? max, OrderType orderType, string keyword, SearchType searchType, byte pageNumber);
     }
 }
