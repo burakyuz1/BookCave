@@ -208,11 +208,7 @@
         </div>
     </div>
 </div>
-<style>
-    .position-absolute {
-        position: absolute;
-    }
-</style>
+
 @section Scripts{
     <script src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js"></script>
     <script>
@@ -227,7 +223,7 @@
             data: { isbn: isbn, quantity: quantity },
             success: function (data) {
                 $("#totalCartLinesCount").text(data.totalQuantityCartLines);
-                $("#totalCartLinePrice").text(data.totalPriceCartLine);
+                $("#totalCartLinesPrice").text(data.totalPriceCartLine);
 
                 Swal.fire({
                     position: 'bottom-end',

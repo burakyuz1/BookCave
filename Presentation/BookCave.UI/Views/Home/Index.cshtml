@@ -163,7 +163,7 @@
                                     </div>
                                 </div>
                                 <div class="product__hover d-flex align-items-center">
-                                    <a data-add-cart="@book.ISBN "href="#"
+                                    <a data-add-cart="@book.ISBN" href="#"
                                        class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
                                         <span class="product__add-to-cart">ADD TO CART</span>
                                         <span class="product__add-to-cart-icon font-size-4">
@@ -195,9 +195,9 @@
                 type:'POST',
                 url:'@Url.Action("AddBookToCart","Cart")',
                 data:{isbn:bookIsbn},
-                success: function(data){
+                success: function (data) {
                     $("#totalCartLinesCount").text(data.totalQuantityCartLines);
-                    $("#totalCartLinesPrice").text(data.totalPriceCartLİne);
+                    $("#totalCartLinesPrice").text(data.totalPriceCartLine);
                 }
             })
         })
