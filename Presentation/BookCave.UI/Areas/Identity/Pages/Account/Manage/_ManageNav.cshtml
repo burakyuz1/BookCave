@@ -6,48 +6,30 @@
         <ul class="my__account-nav nav flex-column mb-0" role="tablist" id="pills-tab">
             <li class="nav-item mx-0">
                 <a class="nav-link d-flex align-items-center px-0" asp-page="./Dashboard">
-                    <span class="font-weight-normal text-gray-600">Dashboard</span>
+                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-gears"></i>  Dashboard</span>
                 </a>
             </li>
             <li class="nav-item mx-0">
                 <a class="nav-link d-flex align-items-center px-0" asp-page="./Orders">
-                    <span class="font-weight-normal text-gray-600">Orders</span>
+                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-truck"></i>  Orders</span>
                 </a>
             </li>
             <li class="nav-item mx-0">
                 <a class="nav-link d-flex align-items-center px-0" asp-page="./Comments">
-                    <span class="font-weight-normal text-gray-600">Comments</span>
-                </a>
-            </li>
-            <li class="nav-item mx-0">
-                <a class="nav-link d-flex align-items-center px-0" asp-page="./Addresses">
-                    <span class="font-weight-normal text-gray-600">Addresses</span>
+                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-comment"></i>  Comments</span>
                 </a>
             </li>
             <li class="nav-item mx-0">
                 <a class="nav-link d-flex align-items-center px-0" asp-page="./ChangePassword">
-                    <span class="font-weight-normal text-gray-600"><i class="fas fa-lock"></i>  Change Password</span>
+                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-lock-open"></i>  Change Password</span>
                 </a>
             </li>
             <li class="nav-item mx-0">
                 <a class="nav-link d-flex align-items-center px-0" asp-page="./PersonalInfo">
-                    <span class="font-weight-normal text-gray-600">Personal Information</span>
+                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-user"></i>  Personal Information</span>
                 </a>
             </li>
         </ul>
     </div>
 
-    @{
-        //var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
-    }
-    @*<ul class="nav nav-pills flex-column">
-            <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
-            <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
-            <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
-            @if (hasExternalLogins)
-            {
-                <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
-            }
-            <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
-            <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
-        </ul>*@
+  

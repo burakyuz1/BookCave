@@ -14,5 +14,9 @@ namespace BookCave.Application.Feature.Specifications
         {
             Query.Where(x => x.ISBN == isbn).Skip(skip).Take(take).OrderByDescending(x => x.CreatedDate);
         }
+        public CommentSpecification(string userId)
+        {
+            Query.Where(x => x.UserId == userId).Include(x => x.Book);
+        }
     }
 }

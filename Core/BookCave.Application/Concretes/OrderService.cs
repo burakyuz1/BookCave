@@ -32,7 +32,7 @@ namespace BookCave.Application.Concretes
 
             Order order = new Order()
             {
-                UserId = cart.CustomerId,
+                UserId = cart.UserId,
                 OrderDate = DateTime.UtcNow,
                 ContactDetails = contact,
                 OrderDetails = cart.CartLines.Select(x => new OrderDetail()

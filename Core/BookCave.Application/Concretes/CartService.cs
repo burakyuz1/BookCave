@@ -100,7 +100,7 @@ namespace BookCave.Application.Concretes
             {
                 destinationCart = new Cart()
                 {
-                    CustomerId = userId
+                    UserId = userId
                 };
                 await _cartRepository.AddAsync(destinationCart);
             }
