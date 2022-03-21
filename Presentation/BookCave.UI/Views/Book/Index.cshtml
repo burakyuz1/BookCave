@@ -116,68 +116,75 @@
                                         </div>
                                     </div>
 
-
                                     @{ var pageInfo = Model.PaginationInfo; }
-                                    <h4 class="font-size-3 mb-8">@pageInfo.Start - @pageInfo.End of @pageInfo.TotalItems reviews</h4>
-                                    <ul class="list-unstyled mb-8">
-                                        @foreach (var item in Model.Comments)
-                                        {
-                                            <li class="mb-4 pb-5 border-bottom">
-                                                @{
-                                                    var user = await _userManager.FindByIdAsync(item.UserId);
-                                                    string userFullName = $"{user.Name} {user.LastName}";
-                                                }
-                                                <div class="d-flex align-items-center mb-3">
-                                                    <h6 class="mb-0">@item.Title</h6>
-                                                </div>
-                                                <p class="mb-4 text-lh-md">@item.Content</p>
-                                                <div class="text-gray-600 mb-4">@(userFullName), @item.CreatedDate.ToShortDateString()</div>
-                                            </li>
-                                        }
-                                    </ul>
-                                    <!--Pagination Start-->
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
-
-                                            <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasPrevious ? "" : "disabled")">
-                                                <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(pageInfo.CurrentPage - 1)" class="page-link">Previous</a>
-                                            </li>
-
-
-                                            @foreach (var i in pageInfo.PageNumbers)
+                                    @if (pageInfo.TotalItems < 1)
+                                    {
+                                        <h2>No review yet...</h2>
+                                        <hr />
+                                    }
+                                    <div class="@(pageInfo.TotalItems < 1 ? "d-none" : "")">
+                                        <h4 class="font-size-3 mb-8">@pageInfo.Start - @pageInfo.End of @pageInfo.TotalItems reviews</h4>
+                                        <ul class="list-unstyled mb-8">
+                                            @foreach (var item in Model.Comments)
                                             {
-                                                if (i == -1)
-                                                {
-                                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item disabled">
-                                                        <a style="cursor:pointer" class="page-link">&hellip;</a>
-                                                    </li>
+                                                <li class="mb-4 pb-5 border-bottom">
+                                                    @{
+                                                        var user = await _userManager.FindByIdAsync(item.UserId);
+                                                        string userFullName = $"{user.Name} {user.LastName}";
+                                                    }
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <h6 class="mb-0">@item.Title</h6>
+                                                    </div>
+                                                    <p class="mb-4 text-lh-md">@item.Content</p>
+                                                    <div class="text-gray-600 mb-4">@(userFullName), @item.CreatedDate.ToShortDateString()</div>
+                                                </li>
+                                            }
+                                        </ul>
+                                        <!--Pagination Start-->
 
-                                                }
-                                                else
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
+
+                                                <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasPrevious ? "" : "disabled")">
+                                                    <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(pageInfo.CurrentPage - 1)" class="page-link">Previous</a>
+                                                </li>
+
+
+                                                @foreach (var i in pageInfo.PageNumbers)
                                                 {
-                                                    if (pageInfo.CurrentPage == i)
+                                                    if (i == -1)
                                                     {
-                                                        <li class="flex-shrink-0 flex-md-shrink-1 page-item active">
-                                                            <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(i)" class="page-link">@(i)</a>
-
-
+                                                        <li class="flex-shrink-0 flex-md-shrink-1 page-item disabled">
+                                                            <a style="cursor:pointer" class="page-link">&hellip;</a>
                                                         </li>
+
                                                     }
                                                     else
                                                     {
-                                                        <li class="flex-shrink-0 flex-md-shrink-1 page-item">
-                                                            <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(i)" class="page-link">@(i)</a>
-                                                        </li>
+                                                        if (pageInfo.CurrentPage == i)
+                                                        {
+                                                            <li class="flex-shrink-0 flex-md-shrink-1 page-item active">
+                                                                <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(i)" class="page-link">@(i)</a>
+
+
+                                                            </li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li class="flex-shrink-0 flex-md-shrink-1 page-item">
+                                                                <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(i)" class="page-link">@(i)</a>
+                                                            </li>
+                                                        }
                                                     }
                                                 }
-                                            }
 
-                                            <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasNext ? "" : "disabled")">
-                                                <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(pageInfo.CurrentPage + 1)" class="page-link">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                    <!--Pagination End-->
+                                                <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasNext ? "" : "disabled")">
+                                                    <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(pageInfo.CurrentPage + 1)" class="page-link">Next</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                        <!--Pagination End-->
+                                    </div>
 
                                     <h4 class="font-size-3 mb-4">Write a Review</h4>
                                     <form asp-controller="Book" asp-action="AddComment" method="post">

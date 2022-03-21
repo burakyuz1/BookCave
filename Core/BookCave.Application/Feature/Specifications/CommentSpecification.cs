@@ -10,9 +10,9 @@ namespace BookCave.Application.Feature.Specifications
 {
     public class CommentSpecification : Specification<Comment>
     {
-        public CommentSpecification(int skip, int take)
+        public CommentSpecification(int skip, int take, string isbn)
         {
-            Query.Skip(skip).Take(take).OrderByDescending(x => x.CreatedDate);
+            Query.Where(x => x.ISBN == isbn).Skip(skip).Take(take).OrderByDescending(x => x.CreatedDate);
         }
     }
 }
