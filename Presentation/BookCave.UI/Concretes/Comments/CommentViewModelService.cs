@@ -5,6 +5,7 @@ using BookCave.Domain.Entities;
 using BookCave.UI.Abstracts.Comment;
 using BookCave.UI.ViewModels;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -41,6 +42,7 @@ namespace BookCave.UI.Concretes.Comments
         {
             //userıd'ye göre user comments getir
             //
+            return null;
         }
     }
 }

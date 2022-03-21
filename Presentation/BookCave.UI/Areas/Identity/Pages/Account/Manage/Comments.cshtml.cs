@@ -25,7 +25,7 @@ namespace BookCave.UI.Areas.Identity.Pages.Account.Manage
         {
             var userId = (await _userManager.GetUserAsync(User)).Id;
             var comments = await _commentViewModelService.GetCommentViewModelAsync(userId);
-            Comments = comments;
+          // Comments = comments;
             return Page();
         }
     }

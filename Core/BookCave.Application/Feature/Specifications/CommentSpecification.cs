@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace BookCave.Application.Feature.Specifications
 {
-    public class CommentSpecification : Specification<Comment>
     public class CommentSpecification:Specification<Comment>
     {
         public CommentSpecification(int skip, int take)
-        public CommentSpecification(string userId)
         {
             Query.Skip(skip).Take(take).OrderByDescending(x => x.CreatedDate);
+
+        }
+        public CommentSpecification(string userId)
+        {
             Query.Where(a => a.UserId == userId);
         }
     }
