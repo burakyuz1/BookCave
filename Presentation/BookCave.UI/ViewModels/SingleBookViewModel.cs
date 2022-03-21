@@ -17,13 +17,16 @@ namespace BookCave.UI.ViewModels
         public decimal UnitPrice { get; set; }
         public int PublishYear { get; set; }
         public string ImageUri { get; set; }
-        //SUB CLASS
+        public CommentDto CommentModel { get; set; }
+        public PaginationInfoViewModel PaginationInfo { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        public int CommentCount { get; set; }
+    }
+    public class CommentDto
+    {
         public string CommentTitle { get; set; }
         public string CommentDescription { get; set; }
         public string CommentOwnerName { get; set; }
         public string CommentOwnerLastName { get; set; }
-        //SUB CLASS
-        public ICollection<Comment> Comments { get; set; }
-        public int CommentCount => Comments.Count;
     }
 }

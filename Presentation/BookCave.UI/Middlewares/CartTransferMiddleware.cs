@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BookCave.UI.Middlewares
 {
-    public class BasketTransferMiddleWare
+    public class CartTransferMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public BasketTransferMiddleWare(RequestDelegate next)
+        public CartTransferMiddleware(RequestDelegate next)
         {
             _next = next;
         }

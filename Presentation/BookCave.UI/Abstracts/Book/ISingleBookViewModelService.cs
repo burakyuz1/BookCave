@@ -8,6 +8,6 @@ namespace BookCave.UI.Abstracts.Book
 {
     public interface ISingleBookViewModelService
     {
-        Task<SingleBookViewModel> GetSingleBookViewModelAsync(string isbn);
+        Task<SingleBookViewModel> GetSingleBookViewModelAsync(string isbn,int commentPage);
     }
 }

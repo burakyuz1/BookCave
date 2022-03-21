@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BookCave.UI.ViewModels
 {
@@ -13,6 +10,8 @@ namespace BookCave.UI.ViewModels
         public int TotalItems { get; set; }
         public bool HasPrevious { get; set; }
         public bool HasNext { get; set; }
+        public int Start { get; set; }
+        public int End { get; set; }
         public int[] PageNumbers => Pagination(CurrentPage, TotalPages);
         private static int[] Pagination(int current, int last)
         {

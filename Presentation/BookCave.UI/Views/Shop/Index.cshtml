@@ -175,7 +175,7 @@
                                                 </div>
                                             </div>
                                             <div class="product__hover d-flex align-items-center">
-                                                <a data-add-cart="@book.ISBN" href=".#" 
+                                                <a data-add-cart="@book.ISBN" href=".#"
                                                    class="text-uppercase text-dark h-dark font-weight-medium mr-auto" data-toggle="tooltip"
                                                    data-placement="right" title="" data-original-title="ADD TO CART">
                                                     <span class="product__add-to-cart">ADD TO CART</span>
@@ -214,11 +214,15 @@
                             {
                                 if (@pageInfo.CurrentPage == i)
                                 {
-                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item active"><a style="cursor:pointer" data-page-id="@i" class="page-link">@(i)</a></li>
+                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item active">
+                                        <a style="cursor:pointer" data-page-id="@i" class="page-link">@(i)</a>
+                                    </li>
                                 }
                                 else
                                 {
-                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item"><a style="cursor:pointer" data-page-id="@i" class="page-link">@(i)</a></li>
+                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item">
+                                        <a style="cursor:pointer" data-page-id="@i" class="page-link">@(i)</a>
+                                    </li>
                                 }
                             }
                         }
