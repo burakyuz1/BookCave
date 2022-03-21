@@ -1,0 +1,78 @@
+﻿@page
+@model BookCave.UI.Areas.Identity.Pages.Account.Manage.CommentsModel
+@{
+}
+<style>
+    .bootstrap-select {
+        width: 80px !important;
+    }
+</style>
+
+<div class="tab-content" id="pills-tabContent">
+    <div class="pt-5 pl-md-5 pt-lg-8 pl-lg-9 space-bottom-lg-2 mb-lg-4">
+        <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-lg-8 pb-xl-1">
+            Your comments
+        </h6>
+        <table id="order-table" class="table">
+            <thead>
+                <tr class="border">
+                    <th scope="col" class="py-3 border-bottom-0 font-weight-medium ">
+                        Date
+                    </th>
+                    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">
+                        Title
+                    </th>
+                    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">
+                       Comment
+                    </th>
+                    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">
+                       Book Name
+                    </th>
+                    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">
+                       
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Comments)
+                {
+                    <tr class="border">
+                        <td class="align-middle py-5">@item.CommentDate.ToShortDateString()</td>
+                        <td class="align-middle py-5">@item.CommentTitle</td>
+                        <td class="align-middle py-5">@item.CommentContent</td>
+                        <td class="align-middle py-5">@item.BookName</td>
+                        <td class="align-middle py-5">
+                            <a asp-controller="Book" asp-action="index" asp-route-isbn="@item.ISBN" >
+                              <img style="height:75px" src="~/img/books/@item.PictureUri">
+                              </a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section DataTable{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#order-table').DataTable({
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                columnDefs: [
+                    { orderable: false, targets: 4 },
+                    { searchable: false, targets: 4 }
+                ],
+                'language': { search: "" },
+                'initComplete': function (setting, json) {
+                    $('select[name=order-table_length]').addClass("selectpicker")
+                    $('input[aria-controls="order-table"]').attr('placeholder', 'Search Here').addClass("input-text form-control")
+                }
+            });
+
+        });
+
+    </script>
+}

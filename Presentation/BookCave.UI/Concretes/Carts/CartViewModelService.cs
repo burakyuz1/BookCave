@@ -73,7 +73,7 @@ namespace BookCave.UI.Concretes.Carts
             return new()
             {
                 CartId = cart.Id,
-                CustomerId = cart.CustomerId,
+                CustomerId = cart.UserId,
                 CartLines = cart.CartLines.Select(x => new CartLineViewModel()
                 {
                     BookName = x.Book.Name,
@@ -95,7 +95,7 @@ namespace BookCave.UI.Concretes.Carts
             {
                 cart = new Cart()
                 {
-                    CustomerId = userId
+                    UserId = userId
                 };
                 await _cartRepository.AddAsync(cart);
             }

@@ -10,7 +10,7 @@ namespace BookCave.Domain.Entities
 {
     public class Cart : BaseEntity, IEntity
     {
-        public string CustomerId { get; set; }
+        public string UserId { get; set; }
         public List<CartLine> CartLines { get; set; } = new List<CartLine>();
     }
 }
