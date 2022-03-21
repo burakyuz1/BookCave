@@ -12,7 +12,7 @@ namespace BookCave.Application.Feature.Specifications
     {
         public CartSpecification(string userId)
         {
-            Query.Where(x => x.CustomerId == userId).Include(x=>x.CartLines).ThenInclude(x=>x.Book).ThenInclude(x=>x.Author);
+            Query.Where(x => x.UserId == userId).Include(x=>x.CartLines).ThenInclude(x=>x.Book).ThenInclude(x=>x.Author);
         }
         public CartSpecification(int cartId)
         {
