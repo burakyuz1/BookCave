@@ -1,0 +1,85 @@
+﻿@page
+@model BookCave.UI.Areas.Identity.Pages.Account.Manage.CommentsModel
+@{
+}
+
+<style>
+    .bootstrap-select {
+        width: 80px !important;
+    }
+</style>
+
+<div class="tab-content" id="pills-tabContent">
+    <div class="pt-5 pl-md-5 pt-lg-8 pl-lg-9 space-bottom-lg-2 mb-lg-4">
+        <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-lg-8 pb-xl-1">
+            Your orders
+        </h6>
+        <table id="order-table" class="table">
+            <thead>
+                <tr class="border">
+                    <th scope="col" class="py-3 border-bottom-0 font-weight-medium pl-3 pl-lg-5">
+                        Order No
+                    </th>
+                    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">
+                        Date
+                    </th>
+                    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">
+                        Product Quantity
+                    </th>
+                    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">
+                        Total Price
+                    </th>
+                    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Orders)
+                {
+                    <tr class="border">
+                        <th class="pl-3 pl-md-5 font-weight-normal align-middle py-6">
+                            @item.OrderId
+                        </th>
+                        <td class="align-middle py-5">@item.OrderDate.ToShortDateString()</td>
+                        <td class="align-middle py-5">@item.OrderDetails.Sum(a => a.Quantity)</td>
+                        <td class="align-middle py-5">
+                            <span class="text-primary">@item.TotalWithTaxes.ToString("c2")</span>
+                        </td>
+
+                        <td class="align-middle py-5">
+                            <div class="d-flex justify-content-center">
+                                <a asp-page="./ViewOrder" asp-route-orderId="@item.OrderId" class="btn btn-dark rounded-0 btn-wide font-weight-medium">
+                                    View
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section DataTable{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#order-table').DataTable({
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                columnDefs: [
+                    { orderable: false, targets: 4 },
+                    { searchable: false, targets: 4 }
+                ],
+                'language': { search: "" },
+                'initComplete': function (setting, json) {
+                    $('select[name=order-table_length]').addClass("selectpicker")
+                    $('input[aria-controls="order-table"]').attr('placeholder', 'Search Here').addClass("input-text form-control")
+                }
+            });
+
+        });
+    </script>
+}
