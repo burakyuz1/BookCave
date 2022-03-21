@@ -2,7 +2,7 @@
 using BookCave.Application.Enums;
 using BookCave.Application.Feature.Specifications;
 using BookCave.Domain.Entities;
-using BookCave.UI.Abstracts.Shop;
+using BookCave.UI.Abstracts;
 using BookCave.UI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace BookCave.UI.Concretes.Shop
+namespace BookCave.UI.Concretes
 {
     public class ShopViewModelService : IShopViewModelService
     {
@@ -103,7 +103,6 @@ namespace BookCave.UI.Concretes.Shop
                 }).ToList()
             };
         }
-
     
         private void SetTrueSelectedItem<T>(ICollection<T> filteredList, List<int> ids)
         {

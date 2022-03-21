@@ -1,17 +1,7 @@
 ﻿using BookCave.Application.Abstracts;
 using BookCave.Application.Concretes;
-using BookCave.UI.Abstracts.Book;
-using BookCave.UI.Abstracts.Cart;
-using BookCave.UI.Abstracts.Comment;
-using BookCave.UI.Abstracts.Home;
-using BookCave.UI.Abstracts.Order;
-using BookCave.UI.Abstracts.Shop;
-using BookCave.UI.Concretes.Books;
-using BookCave.UI.Concretes.Carts;
-using BookCave.UI.Concretes.Comments;
-using BookCave.UI.Concretes.Home;
-using BookCave.UI.Concretes.Orders;
-using BookCave.UI.Concretes.Shop;
+using BookCave.UI.Abstracts;
+using BookCave.UI.Concretes;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookCave.UI
@@ -21,7 +11,7 @@ namespace BookCave.UI
         public static void AddInfrastructureServices(this IServiceCollection service)
         {
             service.AddScoped<ICartService, CartService>();
-            service.AddScoped<IHomeService, HomeService>();
+            service.AddScoped<IHomeViewModelService, HomeViewModelService>();
             service.AddScoped<IOrderService, OrderService>();
             service.AddScoped<ICommentService, CommentService>();
             service.AddScoped<IShopViewModelService, ShopViewModelService>();

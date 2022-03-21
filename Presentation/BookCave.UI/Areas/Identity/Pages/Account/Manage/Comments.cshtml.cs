@@ -1,5 +1,5 @@
 using BookCave.Persistance.Identity;
-using BookCave.UI.Abstracts.Comment;
+using BookCave.UI.Abstracts;
 using BookCave.UI.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

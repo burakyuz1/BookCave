@@ -4,7 +4,7 @@ using BookCave.UI.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BookCave.UI.Abstracts.Shop
+namespace BookCave.UI.Abstracts
 {
     public interface IShopViewModelService
     {

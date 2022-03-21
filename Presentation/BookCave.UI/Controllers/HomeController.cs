@@ -1,4 +1,4 @@
-﻿using BookCave.UI.Abstracts.Home;
+﻿using BookCave.UI.Abstracts;
 using BookCave.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -7,8 +7,8 @@ namespace BookCave.UI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IHomeService _homeService;
-        public HomeController(IHomeService homeService)
+        private readonly IHomeViewModelService _homeService;
+        public HomeController(IHomeViewModelService homeService)
         {
             _homeService = homeService;
         }

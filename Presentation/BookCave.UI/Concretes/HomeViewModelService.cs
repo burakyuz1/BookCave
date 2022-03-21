@@ -1,4 +1,4 @@
-﻿using BookCave.UI.Abstracts.Home;
+﻿using BookCave.UI.Abstracts;
 using BookCave.Application.Abstracts.Repository;
 using BookCave.Application.Feature.Specifications;
 using BookCave.UI.ViewModels;
@@ -6,13 +6,13 @@ using BookCave.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BookCave.UI.Concretes.Home
+namespace BookCave.UI.Concretes
 {
-    public class HomeService : IHomeService //HOMEVIEMODEL SERVICE DIYE DEGISCEK
+    public class HomeViewModelService : IHomeViewModelService 
     {
         private readonly IRepository<Book> _repository;
 
-        public HomeService(IRepository<Book> repository)
+        public HomeViewModelService(IRepository<Book> repository)
         {
             _repository = repository;
         }

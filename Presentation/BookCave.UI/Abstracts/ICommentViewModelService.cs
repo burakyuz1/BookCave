@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BookCave.UI.Abstracts.Comment
+namespace BookCave.UI.Abstracts
 {
     public interface ICommentViewModelService
     {

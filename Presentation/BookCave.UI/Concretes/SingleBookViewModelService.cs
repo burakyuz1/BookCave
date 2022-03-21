@@ -1,16 +1,13 @@
 ﻿using BookCave.Application.Abstracts.Repository;
 using BookCave.Application.Feature.Specifications;
 using BookCave.Domain.Entities;
-using BookCave.UI.Abstracts.Book;
+using BookCave.UI.Abstracts;
 using BookCave.UI.ViewModels;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace BookCave.UI.Concretes.Books
+namespace BookCave.UI.Concretes
 {
     public class SingleBookViewModelService : ISingleBookViewModelService
     {

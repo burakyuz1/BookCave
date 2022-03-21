@@ -1,5 +1,5 @@
-﻿using BookCave.UI.Abstracts.Book;
-using BookCave.UI.Abstracts.Comment;
+﻿using BookCave.UI.Abstracts;
+using BookCave.UI.Abstracts;
 using BookCave.UI.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,14 +1,13 @@
 ﻿using BookCave.Application.Abstracts.Repository;
 using BookCave.Application.Feature.Specifications;
 using BookCave.Domain.Entities;
-using BookCave.UI.Abstracts.Order;
+using BookCave.UI.Abstracts;
 using BookCave.UI.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookCave.UI.Concretes.Orders
+namespace BookCave.UI.Concretes
 {
     public class OrderViewModelService : IOrderViewModelService
     {
@@ -40,7 +39,6 @@ namespace BookCave.UI.Concretes.Orders
 
         }
 
-        //TODO: Kullanılmazsa yukarıdaki 21. satır metodun içine tekrar alınacak.
         private OrderCompleteViewModel OrderToOrderViewModel(Order order)
         {
             return new()

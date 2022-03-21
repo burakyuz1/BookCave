@@ -1,11 +1,8 @@
-﻿using BookCave.Application;
-using BookCave.Application.Enums;
-using BookCave.UI.Abstracts.Shop;
+﻿using BookCave.Application.Enums;
+using BookCave.UI.Abstracts;
 using BookCave.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookCave.UI.Controllers
