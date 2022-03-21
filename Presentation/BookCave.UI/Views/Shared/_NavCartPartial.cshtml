@@ -1,5 +1,5 @@
 ﻿@inject BookCave.UI.Abstracts.Cart.ICartViewModelService _cartService
-@{ 
+@{
     var navCartVm = await _cartService.GetNavCartViewModelAsync();
     decimal totalPrice = navCartVm.TotalPriceCartLine;
     int cartLineCount = navCartVm.TotalQuantityCartLines;
@@ -10,6 +10,9 @@
        class="nav-link pr-0 text-white position-relative">
         <span id="totalCartLinesCount" class="position-absolute bg-primary-yellow width-16 height-16 rounded-circle d-flex align-items-center justify-content-center text-dark font-size-n9 left-0">@cartLineCount</span>
         <i class="fa-solid fa-basket-shopping"></i>
-        <span id="totalCartLinePrice" class="d-none d-xl-inline h6 mb-0 ml-1">@totalPrice</span>
+        <span class="d-none d-xl-inline h6 mb-0 ml-1">
+            <span class="woocommerce-Price-currencySymbol">$</span>
+            <span id="totalCartLinePrice"> @totalPrice</span>
+        </span>
     </a>
 </li>

@@ -1,6 +1,7 @@
-﻿@model SingleBookViewModel
+﻿@inject Microsoft.AspNetCore.Identity.UserManager<BookCave.Persistance.Identity.ApplicationUser> _userManager
+@model SingleBookViewModel
 
-<div class="site-content " id="content">
+<div style="position:relative!important" class="site-content " id="content">
     <div class="container ">
         <div class="row  space-top-2 ">
             <div id="primary" class="content-area col-sm-9 mx-auto ">
@@ -15,7 +16,7 @@
                                     <div class="px-lg-4 px-xl-6">
                                         <h1 class="product_title entry-title font-size-7 mb-3">@Model.BookName</h1>
                                         <div class="font-size-2 mb-4">
-                                            <span class=""><i class="fa-regular fa-comment"></i> @Model.CommentCount</span>
+                                            <span class=""><i class="fa-regular fa-comment"></i> @Model.CommentCount Reviews</span>
                                             <span class="ml-2 text-gray-600"><i class="fa-solid fa-pen"></i>@Model.AuthorName</span>
                                         </div>
 
@@ -23,7 +24,7 @@
                                             <p class="">@Model.Description</p>
                                         </div>
 
-                                        <p class="price font-size-22 font-weight-medium mb-4">
+                                        <p style="font-size:3rem" class="price font-size-22 font-weight-medium mb-4">
                                             <span class="woocommerce-Price-amount amount">
                                                 @Model.UnitPrice.ToString("c2")
                                             </span>
@@ -37,7 +38,7 @@
                                                         <div class="d-flex align-items-center">
                                                             <label class="screen-reader-text sr-only">Quantity</label>
 
-                                                            <input type="number" class="input-text qty text js-result form-control text-center border-0" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
+                                                            <input type="number" class="input-text qty text js-result form-control text-center border-0" step="1" min="1" max="100" id="quantity" value="1" title="Qty">
 
                                                         </div>
                                                     </div>
@@ -45,7 +46,7 @@
                                                 <!-- End Quantity -->
                                             </div>
 
-                                            <button type="submit" asp-controller="Cart" asp-action="Index" name="add-to-cart" value="7145" class="btn btn-dark border-0 rounded-0 p-3 btn-block ml-md-4 single_add_to_cart_button button alt mb-1">Add to cart</button>
+                                            <button type="submit" id="add-to-cart" class="btn btn-dark border-0 rounded-0 p-3 btn-block ml-md-4 single_add_to_cart_button button alt mb-1">Add to cart</button>
 
                                         </form>
                                     </div>
@@ -58,21 +59,22 @@
                         <div class="woocommerce-tabs wc-tabs-wrapper mb-10 row">
                             <!-- Nav Classic -->
                             <ul class="col-lg-4 col-xl-3 pt-9 border-top d-lg-block tabs wc-tabs nav justify-content-lg-center flex-nowrap flex-lg-wrap overflow-auto overflow-lg-visble" id="pills-tab" role="tablist">
+
                                 <li class="flex-shrink-0 flex-lg-shrink-1 nav-item mb-3">
-                                    <a class="py-1 d-inline-block nav-link font-weight-medium active" id="pills-two-example1-tab" data-toggle="pill" href="#pills-two-example1" role="tab" aria-controls="pills-two-example1" aria-selected="true">
-                                        Product Details
+                                    <a class="py-1 d-inline-block nav-link font-weight-medium active" id="pills-four-example1-tab" data-toggle="pill" href="#book-comments" role="tab" aria-controls="pills-four-example1" aria-selected="false">
+                                        Reviews (@Model.CommentCount)
                                     </a>
                                 </li>
                                 <li class="flex-shrink-0 flex-lg-shrink-1 nav-item mb-3">
-                                    <a class="py-1 d-inline-block nav-link font-weight-medium" id="pills-four-example1-tab" data-toggle="pill" href="#pills-four-example1" role="tab" aria-controls="pills-four-example1" aria-selected="false">
-                                        Reviews (@Model.CommentCount)
+                                    <a class="py-1 d-inline-block nav-link font-weight-medium" id="pills-two-example1-tab" data-toggle="pill" href="#book-details" role="tab" aria-controls="pills-two-example1" aria-selected="true">
+                                        Product Details
                                     </a>
                                 </li>
                             </ul>
                             <!-- End Nav Classic -->
                             <!-- Tab Content -->
                             <div class="tab-content col-lg-8 col-xl-9 border-top" id="pills-tabContent">
-                                <div class="woocommerce-Tabs-panel panel entry-content wc-tab tab-pane fade border-left pl-4 pt-4 pl-lg-6 pt-lg-6 pl-xl-9 pt-xl-9 show active" id="pills-two-example1" role="tabpanel" aria-labelledby="pills-two-example1-tab">
+                                <div class="woocommerce-Tabs-panel panel entry-content wc-tab tab-pane fade border-left pl-4 pt-4 pl-lg-6 pt-lg-6 pl-xl-9 pt-xl-9" id="book-details" role="tabpanel" aria-labelledby="pills-two-example1-tab">
                                     <!-- Mockup Block -->
                                     <div class="table-responsive mb-4">
                                         <table class="table table-hover table-borderless">
@@ -98,7 +100,7 @@
                                     </div>
                                     <!-- End Mockup Block -->
                                 </div>
-                                <div class="woocommerce-Tabs-panel panel entry-content wc-tab tab-pane fade border-left pl-4 pt-4 pl-lg-6 pt-lg-6 pl-xl-9 pt-xl-9" id="pills-four-example1" role="tabpanel" aria-labelledby="pills-four-example1-tab">
+                                <div class="woocommerce-Tabs-panel panel entry-content wc-tab tab-pane fade border-left pl-4 pt-4 pl-lg-6 pt-lg-6 pl-xl-9 pt-xl-9 show active" id="book-comments" role="tabpanel" aria-labelledby="pills-four-example1-tab">
                                     <!-- Mockup Block -->
                                     <h4 class="font-size-5">Customer Reviews </h4>
                                     <div class="mb-8">
@@ -114,30 +116,78 @@
                                         </div>
                                     </div>
 
-                                    <h4 class="font-size-3 mb-8">1-5 of 44 reviews</h4>
 
+                                    @{ var pageInfo = Model.PaginationInfo; }
+                                    <h4 class="font-size-3 mb-8">@pageInfo.Start - @pageInfo.End of @pageInfo.TotalItems reviews</h4>
                                     <ul class="list-unstyled mb-8">
-                                        <!--Renderlanacak alan start-->
-                                        <li class="mb-4 pb-5 border-bottom">
-                                            <div class="d-flex align-items-center mb-3">
-                                                <h6 class="mb-0">Amazing Story! You will LOVE it</h6>
-                                            </div>
-                                            <p class="mb-4 text-lh-md">Such an incredibly complex story! I had to buy it because there was a waiting list of 30+ at the local library for this book. Thrilled that I made the purchase</p>
-                                            <div class="text-gray-600 mb-4">Staci, February 22, 2020 </div>
-                                        </li>
-                                        <!--Renderlanacak alan END-->
-
+                                        @foreach (var item in Model.Comments)
+                                        {
+                                            <li class="mb-4 pb-5 border-bottom">
+                                                @{
+                                                    var user = await _userManager.FindByIdAsync(item.UserId);
+                                                    string userFullName = $"{user.Name} {user.LastName}";
+                                                }
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <h6 class="mb-0">@item.Title</h6>
+                                                </div>
+                                                <p class="mb-4 text-lh-md">@item.Content</p>
+                                                <div class="text-gray-600 mb-4">@(userFullName), @item.CreatedDate.ToShortDateString()</div>
+                                            </li>
+                                        }
                                     </ul>
+                                    <!--Pagination Start-->
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
+
+                                            <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasPrevious ? "" : "disabled")">
+                                                <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(pageInfo.CurrentPage - 1)" class="page-link">Previous</a>
+                                            </li>
+
+
+                                            @foreach (var i in pageInfo.PageNumbers)
+                                            {
+                                                if (i == -1)
+                                                {
+                                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item disabled">
+                                                        <a style="cursor:pointer" class="page-link">&hellip;</a>
+                                                    </li>
+
+                                                }
+                                                else
+                                                {
+                                                    if (pageInfo.CurrentPage == i)
+                                                    {
+                                                        <li class="flex-shrink-0 flex-md-shrink-1 page-item active">
+                                                            <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(i)" class="page-link">@(i)</a>
+
+
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li class="flex-shrink-0 flex-md-shrink-1 page-item">
+                                                            <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(i)" class="page-link">@(i)</a>
+                                                        </li>
+                                                    }
+                                                }
+                                            }
+
+                                            <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasNext ? "" : "disabled")">
+                                                <a asp-controller="Book" asp-action="Index" asp-route-isbn="@Model.ISBN" asp-route-commentPage="@(pageInfo.CurrentPage + 1)" class="page-link">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <!--Pagination End-->
 
                                     <h4 class="font-size-3 mb-4">Write a Review</h4>
                                     <form asp-controller="Book" asp-action="AddComment" method="post">
                                         <div class="js-form-message form-group mb-4">
-                                            <label asp-for="CommentDescription" class="form-label text-dark h6 mb-3">Details please! Your review helps other shoppers.</label>
-                                            <textarea asp-for="CommentDescription" class="form-control rounded-0 p-4" rows="7" id="descriptionTextarea" placeholder="What did you like or dislike? What should other shoppers know before buying?" required="" data-msg="Please enter your message." data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
+                                            <label asp-for="CommentModel.CommentDescription" class="form-label text-dark h6 mb-3">Details please! Your review helps other shoppers.</label>
+                                            <textarea asp-for="CommentModel.CommentDescription" class="form-control rounded-0 p-4" rows="7" id="descriptionTextarea" placeholder="What did you like or dislike? What should other shoppers know before buying?" required="" data-msg="Please enter your message." data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
                                         </div>
                                         <div class="form-group mb-5">
-                                            <label asp-for="CommentTitle" class="form-label text-dark h6 mb-3">Add a title</label>
-                                            <input asp-for="CommentTitle" type="text" class="form-control rounded-0 px-4" id="inputCompanyName" placeholder="3000 characters remaining" aria-label="3000 characters remaining">
+                                            <label asp-for="CommentModel.CommentTitle" class="form-label text-dark h6 mb-3">Add a title</label>
+                                            <input asp-for="CommentModel.CommentTitle" type="text" class="form-control rounded-0 px-4" id="inputCompanyName" placeholder="3000 characters remaining" aria-label="3000 characters remaining">
                                         </div>
                                         <div class="d-flex">
                                             <input type="hidden" asp-for="ISBN" />
@@ -158,3 +208,38 @@
         </div>
     </div>
 </div>
+<style>
+    .position-absolute {
+        position: absolute;
+    }
+</style>
+@section Scripts{
+    <script src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js"></script>
+    <script>
+
+    $("#add-to-cart").click(function (e) {
+        var isbn = @Model.ISBN;
+        var quantity = $("#quantity").val();
+        e.preventDefault();
+        $.ajax({
+            type: 'get',
+            url: '@Url.Action("AddBookToCart","Cart")',
+            data: { isbn: isbn, quantity: quantity },
+            success: function (data) {
+                $("#totalCartLinesCount").text(data.totalQuantityCartLines);
+                $("#totalCartLinePrice").text(data.totalPriceCartLine);
+
+                Swal.fire({
+                    position: 'bottom-end',
+                    icon: 'success',
+                    title: 'Added to cart',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    width: '300px'
+                })
+            }
+
+        })
+    })
+    </script>
+}

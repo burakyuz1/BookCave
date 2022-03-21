@@ -39,6 +39,10 @@
         "dataTables.rowReorder.min.js",
         "dataTables.rowReorder.js"
       ]
+    },
+    {
+      "library": "limonte-sweetalert2@11.4.6",
+      "destination": "wwwroot/lib/limonte-sweetalert2/"
     }
   ]
 }

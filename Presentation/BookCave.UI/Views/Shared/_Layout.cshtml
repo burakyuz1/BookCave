@@ -20,6 +20,7 @@
     <link href="~/lib/jQuery/jquery.mCustomScrollbar.css" rel="stylesheet" />
     <link href="~/css/theme.css" rel="stylesheet" />
     <link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/lib/limonte-sweetalert2/sweetalert2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -40,10 +41,13 @@
                                     "animationSpeed": 100
                                 }' data-unfold-animation-in="fadeInLeft" data-unfold-animation-out="fadeOutLeft"
                                data-unfold-duration="100">
-                                <span class="ml-3">
-                                    <img style="height: 75px;margin-top: 4px;" src="~/img/logo/logo.png"
-                                         alt="">
-                                </span>
+                                
+                                <a asp-controller="Home" asp-action="Index">
+                                    <span class="text-center ml-3">
+                                        <img style="height: 75px;margin-top: 4px;" src="~/img/logo/logo.png"
+                                             alt="">
+                                    </span>
+                                </a>
                             </a>
                             <ul class="nav d-md-none ml-auto">
                                 <li class="nav-item">
@@ -62,7 +66,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="site-search ml-xl-0 ml-md-auto w-r-100 flex-grow-1 mr-md-5 mt-2 mt-md-0 py-2 py-md-0">
+                        <div class="site-search ml-xl-0 ml-md-auto w-r-100 col-md-6 mr-md-5 mt-2 mt-md-0 py-2 py-md-0">
                             <form id="formSearch" class="form-inline my-2 my-xl-0" asp-controller="Shop" asp-action="Index" method="get">
                                 <input type="hidden" name="keyword" id="searchKeywordHidden" />
                                 <input type="hidden" name="searchType" id="searchHidden" />
@@ -84,11 +88,11 @@
                             </form>
                         </div>
                         <ul class="nav d-none d-md-flex">
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a href="#" class="nav-link text-white">
                                     <i class="fa-regular fa-heart"></i>
                                 </a>
-                            </li>
+                            </li>*@
                             <partial name="_LoginPartial" />
                             <partial name="_NavCartPartial" />
 
@@ -128,7 +132,7 @@
                         <div class="row text-white">
                             <div class="col-lg-4 mb-6 mb-lg-0">
                                 <div class="pb-md-6">
-                                    <a href="index.html" class="d-inline-block mb-5">
+                                    <a asp-controller="Home" asp-action="Index" class="d-inline-block mb-5">
                                         <img style="height: 75px;margin-top: 4px;" src="~/img/logo/logo.png" alt="">
                                     </a>
                                     <address class="font-size-2 mb-5">
@@ -396,8 +400,8 @@
         })
     </script>
 
-    @await RenderSectionAsync("Validators", false);
-    @await RenderSectionAsync("Scripts", false);
+    @await RenderSectionAsync("Validators", false)
+    @await RenderSectionAsync("Scripts", false)
 
 </body>
 

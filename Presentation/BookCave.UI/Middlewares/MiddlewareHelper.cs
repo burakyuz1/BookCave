@@ -10,7 +10,7 @@ namespace BookCave.UI.Middlewares
     {
         public static void UseTransferCart(this IApplicationBuilder app)
         {
-            app.UseMiddleware<BasketTransferMiddleWare>();
+            app.UseMiddleware<CartTransferMiddleware>();
         }
     }
 }

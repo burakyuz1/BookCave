@@ -13,21 +13,42 @@ namespace BookCave.UI.Concretes.Books
     public class SingleBookViewModelService : ISingleBookViewModelService
     {
         private readonly IRepository<Book> _bookRepository;
+        private readonly IRepository<Comment> _commentRepository;
 
-        public SingleBookViewModelService(IRepository<Book> bookRepository)
+        public SingleBookViewModelService(IRepository<Book> bookRepository, IRepository<Comment> commentRepository)
         {
             _bookRepository = bookRepository;
+            _commentRepository = commentRepository;
         }
 
-        public async Task<SingleBookViewModel> GetSingleBookViewModelAsync(string isbn)
+        public async Task<SingleBookViewModel> GetSingleBookViewModelAsync(string isbn, int commentPage)
         {
             var singleBook = await _bookRepository.FirstOrDefaultAsync(new SingleBookSpecification(isbn));
-            return BookToSingleBookVm(singleBook);
+            int skip = (commentPage - 1) * Constants.COMMENTS_PER_PAGE;
+            int take = Constants.COMMENTS_PER_PAGE;
+            var pagedComment = await _commentRepository.GetAllAsync(new CommentSpecification(skip, take));
+
+            int totalCommentCount = singleBook.Comments.Count;
+            int totalPageCount = (int)Math.Ceiling((decimal)totalCommentCount / Constants.COMMENTS_PER_PAGE);
+
+            PaginationInfoViewModel paginationInfo = new()
+            {
+                CurrentPage = commentPage,
+                TotalPages = totalPageCount,
+                ItemsOnPage = pagedComment.Count,
+                TotalItems = totalCommentCount,
+                HasNext = commentPage < totalPageCount,
+                HasPrevious = commentPage > 1,
+                Start = (commentPage - 1) * Constants.COMMENTS_PER_PAGE + 1,
+                End = ((commentPage - 1) * Constants.COMMENTS_PER_PAGE) + pagedComment.Count
+            };
+
+            return BookToSingleBookVm(singleBook, pagedComment, paginationInfo);
         }
 
-        private SingleBookViewModel BookToSingleBookVm(Book book)
+        private SingleBookViewModel BookToSingleBookVm(Book book, ICollection<Comment> comments, PaginationInfoViewModel paginationInfo)
         {
-            return new ()
+            return new()
             {
                 ISBN = book.ISBN,
                 BookName = book.Name,
@@ -37,8 +58,10 @@ namespace BookCave.UI.Concretes.Books
                 PublishYear = book.PublishYear,
                 Description = book.Details,
                 AuthorName = book.Author.FullName,
-                Comments = book.Comments,
-                PublisherName = book.Publisher.Name
+                Comments = comments,
+                PublisherName = book.Publisher.Name,
+                PaginationInfo = paginationInfo,
+                CommentCount = paginationInfo.TotalItems
             };
         }
     }

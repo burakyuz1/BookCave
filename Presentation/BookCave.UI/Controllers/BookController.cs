@@ -19,9 +19,9 @@ namespace BookCave.UI.Controllers
             _singleBookViewModelService = singleBookViewModelService;
             _commentViewModelService = commentViewModelService;
         }
-        public async Task<IActionResult> Index(string isbn)
+        public async Task<IActionResult> Index(string isbn,int commentPage = 1)
         {
-            var model = await _singleBookViewModelService.GetSingleBookViewModelAsync(isbn);
+            var model = await _singleBookViewModelService.GetSingleBookViewModelAsync(isbn, commentPage);
             return View(model);
         }
 
