@@ -241,6 +241,7 @@
 </div>
 
 @section Scripts{
+     <script src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js"></script>
     <script>
         $("[data-add-cart]").click(function (event) {
             event.preventDefault();
@@ -252,7 +253,15 @@
                 data: { isbn: bookIsbn},
                 success: function (data) {
                     $("#totalCartLinesCount").text(data.totalQuantityCartLines);
-                    $("#totalCartLinePrice").text(data.totalPriceCartLine);
+                    $("#totalCartLinePrice").text(data.totalPriceCartLine); 
+                    Swal.fire({
+                        position: 'bottom-end',
+                        icon: 'success',
+                        title: 'Added to cart',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        width: '300px'
+                    })
                 }
             })
 
