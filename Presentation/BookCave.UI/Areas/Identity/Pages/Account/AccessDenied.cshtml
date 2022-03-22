@@ -4,7 +4,15 @@
     ViewData["Title"] = "Access denied";
 }
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>
+<div class="space-bottom-1 space-top-xl-2 space-bottom-xl-4">
+    <div class="d-flex flex-column align-items-center pt-lg-7 pb-lg-4 pb-lg-6">
+        <div class="font-weight-medium font-size-200 font-size-xs-170 text-lh-sm mt-xl-1">403</div>
+        <h6 class="font-size-4 font-weight-medium mb-2">Woops, @ViewData["Title"]</h6>
+        <div class="d-flex align-items-center flex-column">
+            <span>You don't have permission to access this page.</span>
+            <a asp-action="Index" asp-controller="Home" asp-area="" class="btn btn-dark pt-3 mt-4 rounded-0 btn-wide height-60 width-250 font-weight-medium">
+                Go Back
+            </a>
+        </div>
+    </div>
+</div>

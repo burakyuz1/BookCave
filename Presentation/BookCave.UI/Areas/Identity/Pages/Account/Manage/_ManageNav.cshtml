@@ -1,35 +1,42 @@
 ﻿@inject SignInManager<ApplicationUser> SignInManager
-    <h6 class="font-weight-medium font-size-7 pt-5 pt-lg-8 mb-5 mb-lg-7">
-        Manage Account
-    </h6>
-    <div class="tab-wrapper">
-        <ul class="my__account-nav nav flex-column mb-0" role="tablist" id="pills-tab">
+<h6 class="font-weight-medium font-size-7 pt-5 pt-lg-8 mb-5 mb-lg-7">
+    Manage Account
+</h6>
+<div class="tab-wrapper">
+    <ul class="my__account-nav nav flex-column mb-0" role="tablist" id="pills-tab">
+        <li class="nav-item mx-0">
+            <a class="nav-link d-flex align-items-center px-0" asp-page="./Dashboard">
+                <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-gears"></i>  Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item mx-0">
+            <a class="nav-link d-flex align-items-center px-0" asp-page="./Orders">
+                <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-truck"></i>  Orders</span>
+            </a>
+        </li>
+        <li class="nav-item mx-0">
+            <a class="nav-link d-flex align-items-center px-0" asp-page="./Comments">
+                <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-comment"></i>  Comments</span>
+            </a>
+        </li>
+        <li class="nav-item mx-0">
+            <a class="nav-link d-flex align-items-center px-0" asp-page="./ChangePassword">
+                <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-lock-open"></i>  Change Password</span>
+            </a>
+        </li>
+        <li class="nav-item mx-0">
+            <a class="nav-link d-flex align-items-center px-0" asp-page="./PersonalInfo">
+                <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-user"></i>  Personal Information</span>
+            </a>
+        </li>
+        @if (User.IsInRole("admin"))
+        {
             <li class="nav-item mx-0">
-                <a class="nav-link d-flex align-items-center px-0" asp-page="./Dashboard">
-                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-gears"></i>  Dashboard</span>
+                <a class="nav-link d-flex align-items-center px-0" asp-area="Admin">
+                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-key"></i> Admin Panel</span>
                 </a>
             </li>
-            <li class="nav-item mx-0">
-                <a class="nav-link d-flex align-items-center px-0" asp-page="./Orders">
-                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-truck"></i>  Orders</span>
-                </a>
-            </li>
-            <li class="nav-item mx-0">
-                <a class="nav-link d-flex align-items-center px-0" asp-page="./Comments">
-                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-comment"></i>  Comments</span>
-                </a>
-            </li>
-            <li class="nav-item mx-0">
-                <a class="nav-link d-flex align-items-center px-0" asp-page="./ChangePassword">
-                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-lock-open"></i>  Change Password</span>
-                </a>
-            </li>
-            <li class="nav-item mx-0">
-                <a class="nav-link d-flex align-items-center px-0" asp-page="./PersonalInfo">
-                    <span class="font-weight-normal text-gray-600"><i class="fa-solid fa-user"></i>  Personal Information</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+        }
+    </ul>
+</div>
 
-  

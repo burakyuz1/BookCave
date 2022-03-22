@@ -42,7 +42,10 @@
     },
     {
       "library": "limonte-sweetalert2@11.4.6",
-      "destination": "wwwroot/lib/limonte-sweetalert2/"
+      "destination": "wwwroot/admin/js/plugins/limonte-sweetalert2/",
+      "files": [
+        "sweetalert2.all.min.js"
+      ]
     }
   ]
 }

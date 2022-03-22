@@ -1,10 +1,6 @@
 ﻿using Ardalis.Specification;
 using BookCave.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookCave.Application.Feature.Specifications
 {
@@ -18,6 +14,9 @@ namespace BookCave.Application.Feature.Specifications
         {
             Query.Where(x => x.ISBN == isbn).Include(x => x.Author);
         }
-
+        public BookSpecification(string isbn, bool empty)
+        {
+            Query.Where(x => x.ISBN == isbn).Include(x => x.Author).Include(a => a.Category).Include(a => a.Publisher);
+        }
     }
 }

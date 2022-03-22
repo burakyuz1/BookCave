@@ -1,4 +1,4 @@
-﻿@inject BookCave.UI.Abstracts.Cart.ICartViewModelService _cartService
+﻿@inject BookCave.UI.Abstracts.ICartViewModelService _cartService
 @{
     var navCartVm = await _cartService.GetNavCartViewModelAsync();
     decimal totalPrice = navCartVm.TotalPriceCartLine;

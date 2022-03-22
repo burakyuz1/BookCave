@@ -1,0 +1,68 @@
+﻿@model Book
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="ibox product-detail">
+            <div class="ibox-content">
+
+                <div class="row">
+                    <div class="col-md-5 text-center">
+
+                        <img src="~/img/books/@(Model.ImageUri)" />
+
+
+
+                    </div>
+                    <div class="col-md-7">
+
+                        <h2 class="font-bold m-b-xs">
+                            @Model.Name
+                        </h2>
+                        <small>Author: @Model.Author.FullName  |   Publisher: @Model.Publisher.Name</small>
+                        <div class="m-t-md">
+                            <h2 class="product-main-price">$@Model.UnitPrice <small class="text-muted">Exclude Tax</small> </h2>
+                        </div>
+                        <hr>
+
+                        <h4>Product description</h4>
+
+                        <div class="small text-muted">
+                            @Model.Details
+                        </div>
+                        <dl class="small m-t-md">
+                            <dt>Publish Year</dt>
+                            <dd>@Model.PublishYear</dd>
+
+                            <dt>Number of Page</dt>
+                            <dd>@Model.NumberOfPages</dd>
+
+                            <dt>Stock</dt>
+                            <dd>@Model.Stock</dd>
+
+                            <dt>Sales Quantity</dt>
+                            <dd>@Model.SalesQuantity</dd>
+                        </dl>
+                        <hr>
+
+                        <div>
+                            <div class="btn-group">
+                                <a asp-action="UpdateBook" asp-route-isbn="@Model.ISBN" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i> Update</a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="ibox-footer">
+                <span class="float-right">
+                    Created Date - <i class="fa fa-clock-o"></i> @Model.CreatedDate.ToLongDateString()
+                </span>
+                Book Cave...
+            </div>
+        </div>
+
+    </div>
+</div>
