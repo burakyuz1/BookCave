@@ -12,7 +12,7 @@ namespace BookCave.Application.Feature.Specifications
     {
         public BookCommentSpecification(string isbn)
         {
-            Query.Where(x => x.ISBN == isbn);
+            Query.Where(x => x.ISBN == isbn && x.Status && x.Stock > 0);
         }
     }
 }

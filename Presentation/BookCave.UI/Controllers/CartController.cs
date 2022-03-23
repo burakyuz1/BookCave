@@ -19,8 +19,6 @@ namespace BookCave.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-
-
             CartViewModel model = await _cartViewModelService.GetCartViewModelAsync();
             return View(model);
         }
@@ -53,8 +51,12 @@ namespace BookCave.UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Checkout()
+        public async Task<IActionResult> Checkout()
         {
+            if(!await _cartViewModelService.CheckCartItemsValid())
+            {
+                return NotFound();
+            }
             return View();
         }
 
@@ -63,7 +65,7 @@ namespace BookCave.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var model = await _cartViewModelService.CompleteCheckoutAsync(order);
+                OrderCompleteViewModel model = await _cartViewModelService.CompleteCheckoutAsync(order);
                 return RedirectToAction("OrderSuccess", model);
             }
             return View();

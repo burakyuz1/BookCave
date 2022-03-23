@@ -10,11 +10,11 @@ namespace BookCave.Application.Feature.Specifications
         {
             if (type == "trendingBook")
             {
-                Query.Take(10).Include(x => x.Author).Include(x => x.Publisher).OrderByDescending(x => x.SalesQuantity);
+                Query.Where(x=>x.Status && x.Stock > 0).Take(10).Include(x => x.Author).Include(x => x.Publisher).OrderByDescending(x => x.SalesQuantity);
             }
             if (type == "lastBook")
             {
-                Query.Take(7).Include(x => x.Author).Include(x => x.Publisher).OrderByDescending(x => x.CreatedDate);
+                Query.Where(x => x.Status && x.Stock > 0).Take(7).Include(x => x.Author).Include(x => x.Publisher).OrderByDescending(x => x.CreatedDate);
             }
         }
 

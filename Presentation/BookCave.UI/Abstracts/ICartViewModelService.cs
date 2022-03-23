@@ -15,5 +15,6 @@ namespace BookCave.UI.Abstracts
         Task RemoveCartAsync();
         Task<CartViewModel> UpdateCartAsync(Dictionary<int, int> quantities);
         Task<OrderCompleteViewModel> CompleteCheckoutAsync(OrderViewModel orderViewModel);
+        Task<bool> CheckCartItemsValid();
     }
 }
