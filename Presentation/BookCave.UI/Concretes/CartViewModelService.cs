@@ -19,13 +19,19 @@ namespace BookCave.UI.Concretes
         private readonly IHttpContextAccessor _httpContext;
         private readonly ICartService _cartService;
         private readonly IOrderService _orderService;
+        private readonly IRepository<Book> _bookrepository;
+public CartViewModelService(IRepository<Book> bookrepository)
+        {
+            _bookrepository = bookrepository;
+        }
 
-        public CartViewModelService(IRepository<Cart> cartRepository, IHttpContextAccessor httpContext, ICartService cartService, IOrderService orderService)
+        public CartViewModelService(IRepository<Cart> cartRepository, IHttpContextAccessor httpContext, ICartService cartService, IOrderService orderService, IRepository<Book> bookRepository)
         {
             _cartRepository = cartRepository;
             _httpContext = httpContext;
             _cartService = cartService;
             _orderService = orderService;
+            _bookrepository = bookRepository;
         }
 
         public async Task<CartViewModel> GetCartViewModelAsync()
@@ -130,6 +136,7 @@ namespace BookCave.UI.Concretes
         public async Task<OrderCompleteViewModel> CompleteCheckoutAsync(OrderViewModel orderViewModel)
         {
             var cartId = (await GetOrCreateCartAsync()).Id;
+            var cart = await _cartRepository.FirstOrDefaultAsync(new CartSpecification(cartId));
 
             Contact contact = new Contact()
             {
@@ -143,6 +150,14 @@ namespace BookCave.UI.Concretes
 
             Order order = await _orderService.AddOrderAsync(cartId, contact);
 
+            foreach (var item in cart.CartLines)
+            {
+                var book = await _bookrepository.FirstOrDefaultAsync(new BookSpecification(item.ISBN));
+                book.SalesQuantity += item.Quantity;
+                book.Stock -= item.Quantity;
+                await _bookrepository.UpdateAsync(book);
+            }
+
             return new()
             {
                 OrderId = order.Id,
@@ -152,6 +167,19 @@ namespace BookCave.UI.Concretes
                 TotalWithTaxes = order.OrderDetails.Sum(x => x.UnitPrice * x.Quantity) * 1.08m,
                 TotalWithoutTaxes = order.OrderDetails.Sum(x => x.UnitPrice * x.Quantity)
             };
+        }
+        public async Task<bool> CheckCartItemsValid()
+        {
+            var cartId = (await GetOrCreateCartAsync()).Id;
+            var cart = await _cartRepository.FirstOrDefaultAsync(new CartSpecification(cartId));
+            foreach (var item in cart.CartLines)
+            {
+                if (!item.Book.Status || item.Book.Stock < 1)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

@@ -1,6 +1,112 @@
-﻿<h2>
+﻿@model DashboardViewModel
+<div class="row">
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>User</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">@Model.TotalUser</h1>
+                <small>Total count</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Book</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">@Model.TotalBookCount</h1>
+                <small>Total count</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Order</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">@Model.TotalOrder</h1>
+                <small>Total count</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <span class="label label-success float-right">TODAY</span>
+                <h5>Order</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">@Model.TotalOrderToday</h1>
+                <small>Total count</small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Income</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">@Model.TotalIncome.ToString("c2")</h1>
+                <small>Total income</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Category</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">@Model.TotalCategory</h1>
+                <small>Total count</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Publisher</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">@Model.TotaLPublisher</h1>
+                <small>Total count</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Author</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">@Model.TotalAuthor</h1>
+                <small>Total count</small>
+            </div>
+        </div>
+    </div>
 
-    DASHBOARD
+</div>
 
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 2331
+                };
+                toastr.success('Welcome to BookCave Dashboard', 'Book Cave');
 
-</h2>
+            }, 1300);
+        });
+    </script>
+}

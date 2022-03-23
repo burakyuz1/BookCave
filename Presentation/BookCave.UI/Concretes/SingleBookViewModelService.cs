@@ -5,6 +5,7 @@ using BookCave.UI.Abstracts;
 using BookCave.UI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookCave.UI.Concretes
@@ -27,7 +28,7 @@ namespace BookCave.UI.Concretes
             int take = Constants.COMMENTS_PER_PAGE;
             var pagedComment = await _commentRepository.GetAllAsync(new CommentSpecification(skip, take, isbn));
 
-            int totalCommentCount = singleBook.Comments.Count;
+            int totalCommentCount = singleBook.Comments.Where(x => x.IsActive).Count();
             int totalPageCount = (int)Math.Ceiling((decimal)totalCommentCount / Constants.COMMENTS_PER_PAGE);
 
             PaginationInfoViewModel paginationInfo = new()

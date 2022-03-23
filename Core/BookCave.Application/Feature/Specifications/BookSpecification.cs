@@ -16,7 +16,7 @@ namespace BookCave.Application.Feature.Specifications
         }
         public BookSpecification(string isbn, bool empty)
         {
-            Query.Where(x => x.ISBN == isbn).Include(x => x.Author).Include(a => a.Category).Include(a => a.Publisher);
+            Query.Where(x => x.ISBN == isbn && x.Status && x.Stock > 0).Include(x => x.Author).Include(a => a.Category).Include(a => a.Publisher);
         }
     }
 }

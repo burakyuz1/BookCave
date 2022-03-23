@@ -43,6 +43,9 @@
                         </div>
                     </li>
                     <li>
+                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index"><i class="fa-solid fa-key"></i><span class="nav-label">Dashboard</span></a>
+                    </li>
+                    <li>
                         <a asp-area="Admin" asp-controller="Book" asp-action="Index"><i class="fa-solid fa-book"></i> <span class="nav-label">Book</span></a>
                     </li>
                     <li>
@@ -69,10 +72,15 @@
                     <li>
                         <a href="layouts.html"><i class="fa-solid fa-user"></i> <span class="nav-label">User</span></a>
                     </li>
+
+                    <li>
+                        <a asp-controller="Home" asp-action="Index" asp-area=""><i class="fa-solid fa-globe"></i><span class="nav-label">BookCave.com</span></a>
+
                     <li>
                         <a asp-area="Admin" asp-controller="Order" asp-action="Index">
                             <i class="fa-solid fa-table-columns"></i> <span class="nav-label">Order</span>
                         </a>
+
                     </li>
                 </ul>
 
@@ -93,9 +101,12 @@
                             <span class="m-r-sm text-muted welcome-message">Welcome to Book Cave Admin Panel.</span>
                         </li>
                         <li>
-                            <a href="login.html">
-                                <i class="fa fa-sign-out"></i> Log out
-                            </a>
+                            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <a id="logoutButton" href="#">
+                                    <i class="fa fa-sign-out"></i> Log out
+                                </a>
+                            </form>
+
                         </li>
                     </ul>
 
@@ -520,18 +531,11 @@
     <script src="~/admin/js/plugins/limonte-sweetalert2/sweetalert2.all.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            setTimeout(function () {
-                toastr.options = {
-                    closeButton: true,
-                    progressBar: true,
-                    showMethod: 'slideDown',
-                    timeOut: 4000
-                };
-                toastr.success('Welcome to BookCave Dashboard', 'Book Cave');
+       
 
-            }, 1300);
-        });
+        $("#logoutButton").click(function () {
+            $("#logoutForm").submit();
+        })
     </script>
 
 
