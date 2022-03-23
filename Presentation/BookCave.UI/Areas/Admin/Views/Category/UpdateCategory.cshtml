@@ -1,0 +1,52 @@
+﻿@model UpdateCategoryViewModel
+
+
+<style>
+    .input-validation-error {
+        border: 1px solid red;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Add new category..</h5>
+                <div class="ibox-tools">
+                    <a asp-action="Index" class="btn btn-success text-white btn-xs">« Go back </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <form method="post" enctype="multipart/form-data">
+
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <div class="form-group  row">
+                                <div class="col-sm-11">
+                                    <label class="col-form-label">Name</label>
+                                    <input asp-for="CategoryName" type="text" class="form-control">
+                                    <span class="text-danger" asp-validation-for="CategoryName"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="oldIsbn" value="@Model.CategoryId" />
+                    <button class="btn btn-primary mt-3" type="submit"><i class="fa fa-check"></i>&nbsp;Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jQuery/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jQuery/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/admin/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+    <script>
+        $('.custom-file-input').on('change', function () {
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });
+    </script>
+
+}
