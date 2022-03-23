@@ -46,7 +46,7 @@
                         <a asp-area="Admin" asp-controller="Book" asp-action="Index"><i class="fa-solid fa-book"></i> <span class="nav-label">Book</span></a>
                     </li>
                     <li>
-                        <a href="layouts.html">
+                        <a asp-area="Admin" asp-controller="Category" asp-action="Index">
                             <i class="fa-solid fa-table-columns"></i> <span class="nav-label">Category</span>
                         </a>
                     </li>
@@ -68,6 +68,11 @@
                     </li>
                     <li>
                         <a href="layouts.html"><i class="fa-solid fa-user"></i> <span class="nav-label">User</span></a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="Order" asp-action="Index">
+                            <i class="fa-solid fa-table-columns"></i> <span class="nav-label">Order</span>
+                        </a>
                     </li>
                 </ul>
 
