@@ -60,7 +60,7 @@ namespace BookCave.UI.Areas.Admin.Controllers
             };
             return View(model);
         }
-
+                                                   //9781401310929
         public async Task<IActionResult> BookDetail(string isbn)
         {
             var book = await _bookRepository.FirstOrDefaultAsync(new BookSpecification(isbn, true));
