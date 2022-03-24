@@ -14,5 +14,13 @@ namespace BookCave.Application.Feature.Specifications
         {
             Query.Where(x => x.UserId == userId && x.IsActive).Include(x => x.Book);
         }
+        public CommentSpecification ()
+        {
+            Query.Include(x => x.Book).OrderByDescending(x=>x.CreatedDate);
+        }
+        public CommentSpecification(int id)
+        {
+            Query.Where(x => x.Id == id);
+        }
     }
 }
