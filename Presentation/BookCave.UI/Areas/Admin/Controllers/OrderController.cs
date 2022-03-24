@@ -26,9 +26,9 @@ namespace BookCave.UI.Areas.Admin.Controllers
             return View(order);
         }       
         
-        public async Task<IActionResult> OrderDetail(int orderId)
+        public async Task<IActionResult> OrderDetail(int id)
         {
-            var order = await _orderRepository.FirstOrDefaultAsync(new OrderSpecification(orderId));
+            var order = await _orderRepository.FirstOrDefaultAsync(new OrderSpecification(id));
             return View(order);
         }
 
