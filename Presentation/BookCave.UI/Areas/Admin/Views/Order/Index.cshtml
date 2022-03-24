@@ -23,7 +23,7 @@
                             <thead>
                                 <tr>
                                     <th>Order Date</th>
-                                    <th>User Name</th>
+                                    <th>User Name - User Lastname</th>
                                     <th style="width:20%"></th>
                                 </tr>
                             </thead>
@@ -32,9 +32,9 @@
                                 {
                                 <tr class="gradeX">
                                     <td>@order.OrderDate</td>
-                                    <td>@order.UserId</td>
-                                    <td>
-                                        <a asp-action="OrderDetail" asp-route-isbn="@order.Id" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
+                                    <td>@order.ContactDetails.Name @order.ContactDetails.LastName</td>
+                                    <td class="project-actions">
+                                        <a asp-action="OrderDetail" asp-route-id="@order.Id" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
                                     </td>
                                 </tr>
                                 }
@@ -50,24 +50,7 @@
 
 @section Scripts{
     <script>
-        $('[data-change-status]').click(function () {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, I am sure!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    var isbn = $(this).data('change-status');
-                    window.location.href = '/Admin/Book/ChangeStatus?isbn=' + isbn;
-                }
-            })
-
-        })
-
+       
         $('#order-table').DataTable({
             "order": [],
             pageLength: 25,
