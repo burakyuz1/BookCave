@@ -1,0 +1,21 @@
+.limetted-height{
+	height: 300px !important
+	
+}
+.trending-height{
+	height: 500px !important
+}
+
+@media only screen and (max-width:770px){
+	.limetted-height{
+		height: auto !important;
+	}
+}
+@media only screen and (max-width:1200px) {
+	.trending-height {
+		height:560px !important
+	}
+}
+	
+
+	
