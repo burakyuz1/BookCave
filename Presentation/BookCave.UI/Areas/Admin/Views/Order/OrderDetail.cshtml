@@ -11,22 +11,27 @@
                                 <tr>
                                     <th>User Name - User Lastname</th>
                                     <th>Count</th>
-                                    <th></th>
-                                    <th style="width:20%"></th>
+                                    <th>The books in Order</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                    <tr class="gradeX">
-                                        <td>
-                                            @Model.ContactDetails.Name @Model.ContactDetails.LastName 
-                                        </td>
-                                        <td>
-                                            @Model.OrderDetails.Count
-                                        </td> 
-                                        <td>
-                                           @*//@Model.OrderDetails.*@
-                                        </td>
-                                    </tr>
+                                <tr class="gradeX">
+                                    <td>
+                                        @Model.ContactDetails.Name @Model.ContactDetails.LastName
+                                    </td>
+                                    <td>
+                                        @Model.OrderDetails.Count
+                                    </td>
+                                    <td>
+                                        @foreach (var item in Model.OrderDetails)
+                                        {
+
+                                            string book = item.BookName + " x " + item.Quantity;
+                                            @book
+                                            <br />
+                                        }
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
