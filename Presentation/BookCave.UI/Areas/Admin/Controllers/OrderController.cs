@@ -22,10 +22,10 @@ namespace BookCave.UI.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var order = await _orderRepository.GetAllAsync();
+            var order = (await _orderRepository.GetAllAsync()).OrderByDescending(x => x.OrderDate).ToList();
             return View(order);
-        }
-
+        }       
+        
         public async Task<IActionResult> OrderDetail(int orderId)
         {
             var order = await _orderRepository.FirstOrDefaultAsync(new OrderSpecification(orderId));
