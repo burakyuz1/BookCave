@@ -46,6 +46,24 @@
       "files": [
         "sweetalert2.all.min.js"
       ]
+    },
+    {
+      "library": "font-awesome@6.1.1",
+      "destination": "wwwroot/admin/css/plugins/font-awesome/font-awesome/",
+      "files": [
+        "css/all.min.css",
+        "sprites/brands.svg",
+        "sprites/regular.svg",
+        "sprites/solid.svg",
+        "webfonts/fa-brands-400.ttf",
+        "webfonts/fa-brands-400.woff2",
+        "webfonts/fa-regular-400.ttf",
+        "webfonts/fa-regular-400.woff2",
+        "webfonts/fa-solid-900.ttf",
+        "webfonts/fa-solid-900.woff2",
+        "webfonts/fa-v4compatibility.ttf",
+        "webfonts/fa-v4compatibility.woff2"
+      ]
     }
   ]
 }

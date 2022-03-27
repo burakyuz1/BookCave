@@ -24,8 +24,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <label class="col-form-label">ISBN</label>
-                                    <input asp-for="ISBN" type="text" class="form-control" data-mask="9999999999999"
-                                           placeholder="">
+                                    <input asp-for="ISBN" type="text" class="form-control"  placeholder="">
                                     <span class="text-danger"  asp-validation-for="ISBN"></span>
                                 </div>
                             </div>
@@ -117,7 +116,6 @@
 @section Scripts{
     <script src="~/lib/jQuery/jquery-validate/jquery.validate.min.js"></script>
     <script src="~/lib/jQuery/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/admin/js/plugins/jasny/jasny-bootstrap.min.js"></script>
     <script>
         $('.custom-file-input').on('change', function () {
             let fileName = $(this).val().split('\\').pop();

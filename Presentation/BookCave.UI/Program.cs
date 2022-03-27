@@ -19,7 +19,6 @@ namespace BookCave.UI
                 var context = scope.ServiceProvider.GetRequiredService<BookCaveDbContext>();
                 await BookCaveDbContextSeed.SeedDataAsync(context);
 
-
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
                 await IdentityBookCaveDbContextSeed.SeedAsync(roleManager, userManager);

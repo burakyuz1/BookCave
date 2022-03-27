@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32014.148
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{90486383-41E1-4C36-9C04-4C2E96362D16}"
 EndProject
@@ -14,8 +14,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCave.Domain", "Core\BookCave.Domain\BookCave.Domain.csproj", "{76350A97-B5C8-4994-B603-876FA2F87DCE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCave.Application", "Core\BookCave.Application\BookCave.Application.csproj", "{390D2760-4445-4C81-A837-56CA6665FD2B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCave.Infrastructure", "Infrastructure\BookCave.Infrastructure\BookCave.Infrastructure.csproj", "{64BE2714-283F-41A3-9B45-E142D2E19460}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCave.Persistance", "Infrastructure\BookCave.Persistance\BookCave.Persistance.csproj", "{6DA42510-5645-4A3B-BCC8-5FB4EF93DCE8}"
 EndProject
@@ -37,10 +35,6 @@ Global
 		{390D2760-4445-4C81-A837-56CA6665FD2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{390D2760-4445-4C81-A837-56CA6665FD2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{390D2760-4445-4C81-A837-56CA6665FD2B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64BE2714-283F-41A3-9B45-E142D2E19460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64BE2714-283F-41A3-9B45-E142D2E19460}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64BE2714-283F-41A3-9B45-E142D2E19460}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64BE2714-283F-41A3-9B45-E142D2E19460}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6DA42510-5645-4A3B-BCC8-5FB4EF93DCE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6DA42510-5645-4A3B-BCC8-5FB4EF93DCE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DA42510-5645-4A3B-BCC8-5FB4EF93DCE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,7 +47,6 @@ Global
 		{5B36C1E5-0D31-46AE-9CF6-B726BD7F640E} = {90486383-41E1-4C36-9C04-4C2E96362D16}
 		{76350A97-B5C8-4994-B603-876FA2F87DCE} = {8987C724-3F3C-42F2-AE33-FD91E88FA750}
 		{390D2760-4445-4C81-A837-56CA6665FD2B} = {8987C724-3F3C-42F2-AE33-FD91E88FA750}
-		{64BE2714-283F-41A3-9B45-E142D2E19460} = {13E6D718-3E46-453F-8F31-DFB3AEA7B8FA}
 		{6DA42510-5645-4A3B-BCC8-5FB4EF93DCE8} = {13E6D718-3E46-453F-8F31-DFB3AEA7B8FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
