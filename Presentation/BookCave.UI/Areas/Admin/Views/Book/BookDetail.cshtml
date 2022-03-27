@@ -7,14 +7,9 @@
 
                 <div class="row">
                     <div class="col-md-5 text-center">
-
-                        <img src="~/img/books/@(Model.ImageUri ?? "default.png")" />
-
-
-
+                        <img class="img-thumbnail" src="~/img/books/@(Model.ImageUri ?? "default.png")" />
                     </div>
                     <div class="col-md-7">
-
                         <h2 class="font-bold m-b-xs">
                             @Model.Name
                         </h2>
@@ -23,9 +18,7 @@
                             <h2 class="product-main-price">$@Model.UnitPrice <small class="text-muted">Exclude Tax</small> </h2>
                         </div>
                         <hr>
-
                         <h4>Product description</h4>
-
                         <div class="small text-muted">
                             @Model.Details
                         </div>
@@ -43,18 +36,13 @@
                             <dd>@Model.SalesQuantity</dd>
                         </dl>
                         <hr>
-
                         <div>
                             <div class="btn-group">
                                 <a asp-action="UpdateBook" asp-route-isbn="@Model.ISBN" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i> Update</a>
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
-
             </div>
             <div class="ibox-footer">
                 <span class="float-right">
