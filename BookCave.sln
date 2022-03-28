@@ -19,6 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookCave.Persistance", "Inf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{DCDA243E-5881-4338-9467-9D0F5E8AB3B7}"
 	ProjectSection(SolutionItems) = preProject
+		main_page.png = main_page.png
 		README.md = README.md
 	EndProjectSection
 EndProject
