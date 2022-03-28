@@ -60,7 +60,7 @@ namespace BookCave.UI.Areas.Admin.Controllers
             };
             return View(model);
         }
-                                                   //9781401310929
+                                                   
         public async Task<IActionResult> BookDetail(string isbn)
         {
             var book = await _bookRepository.FirstOrDefaultAsync(new BookSpecification(isbn, true));
@@ -68,6 +68,7 @@ namespace BookCave.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddBook(AddBookViewModel vm)
         {
             if (ModelState.IsValid)
@@ -118,6 +119,7 @@ namespace BookCave.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateBook(UpdateBookViewModel vm)
         {
             var book = await _bookRepository.FirstOrDefaultAsync(new BookSpecification(vm.ISBN));

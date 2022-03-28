@@ -185,16 +185,18 @@
                                         </nav>
                                         <!--Pagination End-->
                                     </div>
+                                    <span asp-validation-for="CommentModel.CommentTitle"></span>
+                                    <span asp-validation-for="CommentModel.CommentDescription"></span>
 
                                     <h4 class="font-size-3 mb-4">Write a Review</h4>
                                     <form asp-controller="Book" asp-action="AddComment" method="post">
                                         <div class="js-form-message form-group mb-4">
                                             <label asp-for="CommentModel.CommentDescription" class="form-label text-dark h6 mb-3">Details please! Your review helps other shoppers.</label>
-                                            <textarea asp-for="CommentModel.CommentDescription" class="form-control rounded-0 p-4" rows="7" id="descriptionTextarea" placeholder="What did you like or dislike? What should other shoppers know before buying?" required="" data-msg="Please enter your message." data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
+                                            <textarea asp-for="CommentModel.CommentDescription" class="form-control rounded-0 p-4" rows="7" id="descriptionTextarea" placeholder="What did you like or dislike? What should other shoppers know before buying?" required></textarea>
                                         </div>
                                         <div class="form-group mb-5">
                                             <label asp-for="CommentModel.CommentTitle" class="form-label text-dark h6 mb-3">Add a title</label>
-                                            <input asp-for="CommentModel.CommentTitle" type="text" class="form-control rounded-0 px-4" id="inputCompanyName" placeholder="3000 characters remaining" aria-label="3000 characters remaining">
+                                            <input asp-for="CommentModel.CommentTitle" type="text" class="form-control rounded-0 px-4" id="inputCompanyName" placeholder="3000 characters remaining" required>
                                         </div>
                                         <div class="d-flex">
                                             <input type="hidden" asp-for="ISBN" />

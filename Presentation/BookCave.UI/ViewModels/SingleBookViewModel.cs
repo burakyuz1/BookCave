@@ -1,8 +1,6 @@
 ﻿using BookCave.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookCave.UI.ViewModels
 {
@@ -24,7 +22,12 @@ namespace BookCave.UI.ViewModels
     }
     public class CommentDto
     {
+        [Required]
+        [MaxLength(30, ErrorMessage = "Title can maximum 30 characters")]
         public string CommentTitle { get; set; }
+
+        [Required]
+        [MaxLength(255, ErrorMessage = "Description can maximum 255 characters")]
         public string CommentDescription { get; set; }
         public string CommentOwnerName { get; set; }
         public string CommentOwnerLastName { get; set; }

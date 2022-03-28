@@ -42,7 +42,7 @@
                         <td class="align-middle py-5">@item.CommentContent</td>
                         <td class="align-middle py-5">@item.BookName</td>
                         <td class="align-middle py-5">
-                            <a asp-controller="Book" asp-action="index" asp-route-isbn="@item.ISBN" >
+                            <a asp-area="" asp-controller="Book" asp-action="index" asp-route-isbn="@item.ISBN" >
                               <img style="height:75px" src="~/img/books/@item.PictureUri">
                               </a>
                         </td>
