@@ -1,6 +1,6 @@
 ### BOOK CAVE 
 
-BookCave is the graduation project of the education given within the scope of BilgeAdam Academy Boost [Burak](https://github.com/burakyuz1), [Aysegül](https://github.com/AysegulCelk), [Koray](https://github.com/Koray95) and [Ezgi](https://github.com/ezgiyildirim21).
+BookCave is the graduation project of the education given within the scope of BilgeAdam Academy Boost [Burak](https://github.com/burakyuz1), [AysegÃ¼l](https://github.com/AysegulCelk), [Koray](https://github.com/Koray95) and [Ezgi](https://github.com/ezgiyildirim21).
 The main purpose of the project is to develop an e-Commerce system with .Net Core 5.0 and Ms-SQL.
 
 
@@ -58,7 +58,7 @@ pwd: Ankara1.
 
 * If you are logged in with admin, you can access the admin panel from the account section. Otherwise, you cannot see the admin panel.
   
-![image](https://raw.githubusercontent.com/burakyuz1/BookCave/master/main_page.png_)
+![image](https://raw.githubusercontent.com/burakyuz1/BookCave/master/main_page.png?token=GHSAT0AAAAAABSWMUWW6WO3DFZ4TCCSHEJSYSBZMVQ)
 
 
 ### Resources
