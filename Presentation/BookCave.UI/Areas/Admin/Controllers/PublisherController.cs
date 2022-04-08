@@ -24,14 +24,9 @@ namespace BookCave.UI.Areas.Admin.Controllers
             var publisher = (await _publisherRepo.GetAllAsync()).OrderBy(x => x.Name).ToList();
             return View(publisher);
         }
-        public async Task<IActionResult> AddPublisher()
+        public IActionResult AddPublisher()
         {
-            var model = new AddPublisherViewModel()
-            {
-
-            };
-
-            return View(model);
+            return View(new AddPublisherViewModel());
         }
         [HttpPost]
         public async Task<IActionResult> AddPublisher(AddPublisherViewModel vm)

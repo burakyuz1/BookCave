@@ -25,13 +25,9 @@ namespace BookCave.UI.Areas.Admin.Controllers
             return View(category);
         }
 
-        public async Task<IActionResult> AddCategory()
+        public IActionResult AddCategory()
         {
-            var model = new AddCategoryViewModel()
-            {
-   
-            };
-            return View(model);
+            return View(new AddCategoryViewModel());
         }
 
         [HttpPost]

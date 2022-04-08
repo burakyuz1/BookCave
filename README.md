@@ -38,11 +38,21 @@ The main purpose of the project is to develop an e-Commerce system with .Net Cor
 
 ### Usage Scenerio
 
-* Please use **Package Manager Console** to enable migrations after cloning the project. (Don't forget to choose **BookCave.Persistence** as the default project and **BookCave.UI** as the startup project)
+* To enable migrations after cloning the project. (Don't forget to choose **BookCave.Persistence** as the default project and **BookCave.UI** as the startup project)
 ```
+[by using Package Manager Console]
+
 Update-Database -Context BookCaveDbContext
 Update-Database -Context IdentityBookCaveDbContext
 ```
+
+```
+[by using dotnet CLI]
+
+dotnet ef database update --context BookCaveDbContext
+dotnet ef database update --context IdentityBookCaveDbContext
+```
+
 
 * One admin and user are ready when the project is standing up.
 
