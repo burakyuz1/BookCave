@@ -199,8 +199,8 @@
                                             <div class="woocommerce-loop-product__thumbnail">
                                                 <a asp-controller="Book" asp-action="Index" asp-route-isbn="@book.ISBN" class="d-block">
                                                     <img style="height:316px" src="~/img/books/@book.ImagePath"
-                                                         class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
-                                                         alt="image-description">
+                                                     class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
+                                                     alt="image-description">
                                                 </a>
                                             </div>
                                             <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
@@ -214,7 +214,7 @@
                                                 </h2>
                                                 <div class="font-size-2  mb-1 text-truncate">
                                                     <a href="#"
-                                                       class="text-gray-700">@book.AuthorName</a>
+                                                   class="text-gray-700">@book.AuthorName</a>
                                                 </div>
                                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                     <span class="woocommerce-Price-amount amount">
@@ -223,13 +223,9 @@
                                                 </div>
                                             </div>
                                             <div class="product__hover d-flex align-items-center">
-                                                <a data-add-cart="@book.ISBN" href=".#"
-                                                   class="text-uppercase text-dark h-dark font-weight-medium mr-auto" data-toggle="tooltip"
-                                                   data-placement="right" title="" data-original-title="ADD TO CART">
-                                                    <span class="product__add-to-cart">ADD TO CART</span>
-                                                    <span class="product__add-to-cart-icon font-size-4">
-                                                        <i class="flaticon-icon-126515"></i>
-                                                    </span>
+                                                <a data-add-cart="@book.ISBN" href="#"
+                                               class="text-uppercase text-dark h-dark font-weight-medium mr-auto">
+                                                    <span class="product__add-to-cart mr-2">ADD TO CART</span>
                                                 </a>
 
                                                 <a href="#" class="h-p-bg btn btn-outline-primary border-0">
@@ -246,7 +242,9 @@
                 <!--PAGINATION START-->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
-                        @{ var pageInfo = Model.PaginationInfo; }
+                        @{
+                            var pageInfo = Model.PaginationInfo;
+                        }
 
                         <li class="flex-shrink-0 flex-md-shrink-1 page-item @(pageInfo.HasPrevious ? "" : "disabled")"><a style="cursor:pointer" id="previousPage" class="page-link">Previous</a></li>
 
@@ -290,106 +288,105 @@
 
 
 @section Scripts{
-    <script src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js"></script>
-    <script>
+<script src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js"></script>
+<script>
 
-        $("[data-add-cart]").click(function (event) {
-            event.preventDefault();
-            let bookIsbn = $(this).data('add-cart');
+    $("[data-add-cart]").click(function (event) {
+        event.preventDefault();
+        let bookIsbn = $(this).data('add-cart');
 
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("AddBookToCart", "Cart")',
-                data: { isbn: bookIsbn},
-                success: function (data) {
-                    $("#totalCartLinesCount").text(data.totalQuantityCartLines);
-                    $("#totalCartLinePrice").text(data.totalPriceCartLine);
-                    Swal.fire({
-                        position: 'bottom-end',
-                        icon: 'success',
-                        title: 'Added to cart',
-                        showConfirmButton: false,
-                        timer: 1000,
-                        width: '300px'
-                    })
-                }
+    $.ajax({
+        type:'POST',
+        url:'@Url.Action("AddBookToCart","Cart")',
+        data:{isbn:bookIsbn},
+        success: function (data) {
+            $("#totalCartLinesCount").text(data.totalQuantityCartLines);
+            $("#totalCartLinesPrice").text(data.totalPriceCartLine);
+            Swal.fire({
+                position:'bottom-end',
+                icon:'success',
+                title: 'Added to cart',
+                showConfirmButton: false,
+                timer: 1000,
+                width: '300px'
             })
+        }
+     })
+    })
 
-        })
+    $(document).ready(function () {
+        let selectedSortingType = $("#sortingHidden").val();
+        $(`#orderByPrice option[value=${selectedSortingType}]`).prop("selected", true);
+    })
 
-        $(document).ready(function () {
-            let selectedSortingType = $("#sortingHidden").val();
-            $(`#orderByPrice option[value=${selectedSortingType}]`).prop("selected", true);
-        })
-
-        $("[data-cat-ids]").click(function () {
-            let id = $(this).data("cat-ids");
-            if (id == 0) {
-                $("#catId").val(null);
-            } else {
-                $("#catId").val(id);
-            }
-            $("#filterForm").submit();
-        })
-
-        $("#orderByPrice").on('change', function () {
-
-            let selectedValue = $("#orderByPrice").val();
-            $("#sortingHidden").val(selectedValue);
-            $("#filterForm").submit();
-        })
-
-        $("#previousPage").click(function (e) {
-            var destinationPage = '@(Model.PaginationInfo.CurrentPage - 1)'
-            $("#pageStatu").val(destinationPage);
-            $("#filterForm").submit();
-        })
-
-        $("#nextPage").click(function (e) {
-            var destinationPage = '@(Model.PaginationInfo.CurrentPage + 1)'
-            $("#pageStatu").val(destinationPage);
-            $("#filterForm").submit();
-        })
-
-        $("[data-page-id]").click(function () {
-            let id = $(this).data("page-id");
-            $("#pageStatu").val(id);
-            $("#filterForm").submit();
-        })
-
-        $(".fa-times").click(function () {
-            var parentEl = ($(this)[0].parentElement.parentElement);
-            parentEl.hidden = true;
-        })
-
-        $("#deleteFilterPrice").click(function () {
-            $("#MinPrice").val(0);
-            $("#MaxPrice").val(null);
-            $("#filterForm").submit();
-        })
-
-        $("#deleteCategoryFilter").click(function () {
+    $("[data-cat-ids]").click(function () {
+        let id = $(this).data("cat-ids");
+        if (id == 0) {
             $("#catId").val(null);
-            $("#filterForm").submit();
-        })
+        } else {
+            $("#catId").val(id);
+        }
+        $("#filterForm").submit();
+    })
 
-        $("#deleteKeyword").click(function () {
-            $("#searchKeyword").val("");
-            $("#filterForm").submit();
-        })
+    $("#orderByPrice").on('change', function () {
 
-        $("[data-delete-publisherId]").click(function () {
-            var pubId = $(this).data("delete-publisherid");
-            var publisherUncheck = `publisher-${pubId}`;
-            $("#" + publisherUncheck).prop('checked', false);
-            $("#filterForm").submit();
-        });
+        let selectedValue = $("#orderByPrice").val();
+        $("#sortingHidden").val(selectedValue);
+        $("#filterForm").submit();
+    })
 
-        $("[data-delete-authorId]").click(function () {
-            var authorId = $(this).data("delete-authorid");
-            var authorUncheck = `author-${authorId}`;
-            $("#" + authorUncheck).prop('checked', false);
-            $("#filterForm").submit();
-        })
-    </script>
+    $("#previousPage").click(function (e) {
+        var destinationPage = '@(Model.PaginationInfo.CurrentPage - 1)'
+        $("#pageStatu").val(destinationPage);
+        $("#filterForm").submit();
+    })
+
+    $("#nextPage").click(function (e) {
+        var destinationPage = '@(Model.PaginationInfo.CurrentPage + 1)'
+        $("#pageStatu").val(destinationPage);
+        $("#filterForm").submit();
+    })
+
+    $("[data-page-id]").click(function () {
+        let id = $(this).data("page-id");
+        $("#pageStatu").val(id);
+        $("#filterForm").submit();
+    })
+
+    $(".fa-times").click(function () {
+        var parentEl = ($(this)[0].parentElement.parentElement);
+        parentEl.hidden = true;
+    })
+
+    $("#deleteFilterPrice").click(function () {
+        $("#MinPrice").val(0);
+        $("#MaxPrice").val(null);
+        $("#filterForm").submit();
+    })
+
+    $("#deleteCategoryFilter").click(function () {
+        $("#catId").val(null);
+        $("#filterForm").submit();
+    })
+
+    $("#deleteKeyword").click(function () {
+        $("#searchKeyword").val("");
+        $("#filterForm").submit();
+    })
+
+    $("[data-delete-publisherId]").click(function () {
+        var pubId = $(this).data("delete-publisherid");
+        var publisherUncheck = `publisher-${pubId}`;
+        $("#" + publisherUncheck).prop('checked', false);
+        $("#filterForm").submit();
+    });
+
+    $("[data-delete-authorId]").click(function () {
+        var authorId = $(this).data("delete-authorid");
+        var authorUncheck = `author-${authorId}`;
+        $("#" + authorUncheck).prop('checked', false);
+        $("#filterForm").submit();
+    })
+</script>
 }
